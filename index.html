@@ -7,6 +7,9 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
+html { scroll-behavior:smooth; }
+[id] { scroll-margin-top:70px; }
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   font-size:16px;
@@ -450,9 +453,29 @@ tr:last-child td { border-bottom:none; }
   .days-grid { grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); }
   .checklist { column-count:1; }
   .flights-row { flex-direction:column; gap:16px; }
-  .site-nav { margin:0 -16px 48px; padding-left:16px; }
-  table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  td, th { overflow-wrap:break-word; }
+  .hotel-card { padding:16px; }
+
+  /* Nav: één swipebare regel i.p.v. stapel chips */
+  .site-nav { margin:0 -16px 40px; padding:10px 16px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
+  .site-nav::-webkit-scrollbar { display:none; }
+
+  /* Tabellen → kaarten: rij = kaartje, kolomkop = label boven elke waarde */
+  table, table tbody, table tr, table td, table th { display:block; width:100%; box-sizing:border-box; }
+  table tr:has(th) { display:none; }
+  table tr { border:1px solid #e8e8e8; border-radius:8px; padding:12px 14px; margin-bottom:10px; }
+  table td { border:none; padding:1px 0; overflow-wrap:break-word; }
+  table td[data-label]::before {
+    content:attr(data-label);
+    display:block;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:#aaa;
+    font-weight:700;
+    margin:8px 0 1px;
+  }
+  table td[data-label]:first-child::before { margin-top:0; }
+  .total td { border-top:none; }
 }
 /* ─── TIMELINE-BLOG (gecombineerde stijl) ─── */
 .activities.timeline { padding-top:4px; }
@@ -2804,5 +2827,20 @@ tr:last-child td { border-bottom:none; }
   Japan met Baby · November 2026 · Qatar Airways ZRH→KIX (QR96/QR802) / HND→ZRH via Doha (QR813/QR95, vertrek ma 23/11 01:35) · 2101 CHF · 17 nachten + Haneda-avondkamer · 4–23 november · geüpdatet 6 juli 2026 (restaurants + transit geverifieerd, Haneda-omboeking bevestigd)
 </div>
 
+<script>
+/* Mobiele tabel-kaarten: zet de kolomkop van elke tabel als data-label op de cellen */
+document.querySelectorAll('table').forEach(function(t){
+  var ths = t.querySelectorAll('tr:first-child th');
+  if (!ths.length) return;
+  var labels = Array.prototype.map.call(ths, function(th){ return th.textContent.trim(); });
+  t.querySelectorAll('tr').forEach(function(tr){
+    Array.prototype.forEach.call(tr.children, function(td, i){
+      if (td.tagName === 'TD' && !td.hasAttribute('colspan') && labels[i] && td.textContent.trim()) {
+        td.setAttribute('data-label', labels[i]);
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
