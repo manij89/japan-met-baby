@@ -4,8 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Japan met Baby — November 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --ink:#1B1B1F;
+  --paper:#FCFBF8;
+  --line:#E9E6DF;
+  --muted:#77726A;
+  --c-osaka:#D9481C;
+  --c-koyasan:#5C6B4C;
+  --c-kyoto:#B32025;
+  --c-kawaguchiko:#33628C;
+  --c-tokyo:#2A2E3F;
+  --display:'Shippori Mincho', Georgia, 'Times New Roman', serif;
+}
 
 html { scroll-behavior:smooth; }
 [id] { scroll-margin-top:70px; }
@@ -15,38 +31,99 @@ body {
   font-size:16px;
   line-height:1.75;
   color:#2a2a2a;
-  background:#fff;
+  background:var(--paper);
   max-width:760px;
   margin:0 auto;
   padding:0 24px;
 }
 
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline:2px solid var(--ink);
+  outline-offset:2px;
+  border-radius:4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after { transition:none !important; animation:none !important; }
+}
+
 /* ─── HEADER ─── */
 .site-header {
-  padding:60px 0 40px;
-  border-bottom:2px solid #111;
+  padding:60px 0 36px;
+  border-bottom:2px solid var(--ink);
   margin-bottom:40px;
 }
 .site-header h1 {
-  font-size:38px;
-  font-weight:800;
-  letter-spacing:-1px;
+  font-family:var(--display);
+  font-size:42px;
+  font-weight:700;
+  letter-spacing:-0.5px;
   line-height:1.15;
-  color:#111;
+  color:var(--ink);
   margin-bottom:10px;
 }
 .site-header .meta {
   font-size:14px;
-  color:#888;
+  color:var(--muted);
   margin-bottom:14px;
 }
 .site-header .route {
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:#bbb;
+  color:#b5b0a6;
   margin-bottom:20px;
 }
+
+/* Signatuur: de reis als lijn met vijf haltes */
+.routeline {
+  position:relative;
+  display:flex;
+  margin:26px 0 10px;
+}
+.routeline::before {
+  content:"";
+  position:absolute;
+  top:5px;
+  left:4px;
+  right:4px;
+  height:2px;
+  background:var(--line);
+  border-radius:2px;
+}
+.rl-stop {
+  flex:1;
+  position:relative;
+  padding-top:18px;
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--ink);
+  line-height:1.35;
+  min-width:0;
+}
+.rl-stop:last-child { flex:0 0 auto; padding-right:2px; }
+.rl-stop i {
+  position:absolute;
+  top:0;
+  left:0;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--c, var(--ink));
+  border:2.5px solid var(--paper);
+  box-shadow:0 0 0 1.5px var(--c, var(--ink));
+}
+.rl-stop b {
+  display:block;
+  font-weight:400;
+  font-size:10.5px;
+  color:var(--muted);
+}
+.rl-osaka { --c:var(--c-osaka); }
+.rl-koyasan { --c:var(--c-koyasan); }
+.rl-kyoto { --c:var(--c-kyoto); }
+.rl-kawaguchiko { --c:var(--c-kawaguchiko); }
+.rl-tokyo { --c:var(--c-tokyo); }
 .tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:16px; }
 .tag {
   background:#f2f2f2;
@@ -58,14 +135,11 @@ body {
 
 /* ─── NAV BAR ─── */
 .site-nav {
-  position:sticky;
-  top:0;
   background:#fff;
   border-bottom:1px solid #e8e8e8;
   padding:10px 0;
   margin:0 -24px 48px;
   padding-left:24px;
-  z-index:100;
   display:flex;
   gap:6px;
   flex-wrap:wrap;
@@ -89,8 +163,9 @@ body {
   margin-bottom:56px;
 }
 .hotel-card {
-  border:1px solid #e8e8e8;
-  border-radius:6px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
   padding:20px 24px;
   margin-bottom:16px;
 }
@@ -170,22 +245,23 @@ body {
 .day-chip {
   display:block;
   text-decoration:none;
-  background:#fafafa;
-  border:1px solid #e8e8e8;
-  border-radius:6px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-left:3px solid var(--c, #ddd);
+  border-radius:8px;
   padding:10px 12px;
-  transition:background .15s;
+  transition:background .15s, border-color .15s;
 }
-.day-chip:hover { background:#f0f0f0; }
-.day-chip-num { font-size:10px; color:#bbb; text-transform:uppercase; letter-spacing:1px; }
-.day-chip-date { font-size:12px; font-weight:700; color:#111; margin:2px 0; }
+.day-chip:hover { background:color-mix(in srgb, var(--c, #888) 6%, white); }
+.day-chip-num { font-size:10px; color:var(--c, #bbb); font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+.day-chip-date { font-size:12px; font-weight:700; color:var(--ink); margin:2px 0; }
 .day-chip-city { font-size:10px; color:#888; }
 .day-chip-title { font-size:11px; color:#555; margin-top:3px; line-height:1.4; }
-.chip-osaka    { border-left:3px solid #c0392b; }
-.chip-koyasan  { border-left:3px solid #7d6043; }
-.chip-kyoto    { border-left:3px solid #a93226; }
-.chip-kawaguchiko { border-left:3px solid #2471a3; }
-.chip-tokyo    { border-left:3px solid #2c3e50; }
+.chip-osaka    { --c:var(--c-osaka); }
+.chip-koyasan  { --c:var(--c-koyasan); }
+.chip-kyoto    { --c:var(--c-kyoto); }
+.chip-kawaguchiko { --c:var(--c-kawaguchiko); }
+.chip-tokyo    { --c:var(--c-tokyo); }
 
 /* ─── COST ESTIMATE ─── */
 .costs-section {
@@ -229,58 +305,81 @@ body {
 
 /* ─── CITY DIVIDER ─── */
 .city-divider {
-  border-top:2px solid #111;
+  border-top:3px solid var(--c, var(--ink));
   margin:64px 0 40px;
-  padding-top:24px;
+  padding-top:22px;
+  position:relative;
+}
+.city-divider::before {
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:0;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:var(--c, var(--ink));
+  border:2.5px solid var(--paper);
 }
 .city-divider h2 {
-  font-size:28px;
-  font-weight:800;
-  letter-spacing:-0.5px;
-  color:#111;
+  font-family:var(--display);
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:-0.3px;
+  color:var(--ink);
   margin-bottom:4px;
 }
 .city-divider .city-meta {
   font-size:13px;
-  color:#888;
+  color:var(--muted);
   margin-bottom:8px;
 }
 .city-divider .koyo-note {
   display:inline-block;
   font-size:12px;
-  color:#666;
-  background:#f5f5f5;
+  color:color-mix(in srgb, var(--c, #666) 75%, black);
+  background:color-mix(in srgb, var(--c, #888) 9%, white);
   padding:3px 10px;
-  border-radius:4px;
+  border-radius:999px;
 }
 
 /* ─── DAY ENTRY ─── */
 .day-entry {
-  margin-bottom:52px;
+  margin-bottom:48px;
 }
 .day-entry + .day-entry {
-  border-top:1px solid #ebebeb;
-  padding-top:48px;
+  border-top:1px solid var(--line);
+  padding-top:28px;
 }
+.day-entry.dicht { margin-bottom:16px; }
+.day-entry.dicht + .day-entry { padding-top:16px; }
 .day-headline {
   margin-bottom:20px;
+  border-left:3px solid var(--c, var(--line));
+  padding-left:14px;
+  border-radius:0 8px 8px 0;
+  transition:background .15s;
 }
+.day-entry.dicht .day-headline { margin-bottom:0; padding-top:2px; padding-bottom:2px; }
+.day-headline:hover { background:color-mix(in srgb, var(--c, #888) 5%, white); }
 .day-num-label {
   font-size:11px;
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:2px;
-  color:#bbb;
+  color:var(--c, #bbb);
   margin-bottom:6px;
 }
 .day-headline h3 {
+  font-family:var(--display);
   font-size:22px;
-  font-weight:800;
-  letter-spacing:-0.3px;
-  color:#111;
-  line-height:1.25;
+  font-weight:700;
+  letter-spacing:-0.2px;
+  color:var(--ink);
+  line-height:1.3;
   margin-bottom:4px;
 }
+.day-entry.dicht .day-headline h3 { font-size:18px; margin-bottom:2px; }
 .day-headline .day-sub {
   font-size:14px;
   color:#888;
@@ -290,11 +389,13 @@ body {
   color:#aaa;
   margin-top:2px;
 }
+.day-entry.dicht .sleep-note { display:none; }
 
 /* ─── TRANSPORT BAR ─── */
 .transport-bar {
-  background:#f7f7f7;
-  border-left:3px solid #ddd;
+  background:#F6F4EE;
+  border-left:3px solid #D8D2C6;
+  border-radius:0 8px 8px 0;
   padding:10px 16px;
   margin:16px 0 24px;
   font-size:13px;
@@ -364,12 +465,12 @@ body {
   display:inline-flex;
   align-items:center;
   gap:4px;
-  padding:4px 11px;
-  border-radius:4px;
+  padding:4px 12px;
+  border-radius:999px;
   font-size:12px;
-  background:#f5f5f5;
+  background:#f4f2ec;
   color:#555;
-  border:1px solid #e8e8e8;
+  border:1px solid var(--line);
   line-height:1.5;
 }
 .badge-workshop { background:#fdf8ec; border-color:#e8d88a; color:#6b5000; }
@@ -394,11 +495,11 @@ body {
 .gyg-link:hover { background:#e05500; }
 
 .tip-box {
-  background:#fafafa;
-  border-left:3px solid #ddd;
+  background:#F6F4EE;
+  border-left:3px solid #D8D2C6;
   padding:14px 18px;
   margin-top:16px;
-  border-radius:0 4px 4px 0;
+  border-radius:0 8px 8px 0;
   font-size:14px;
   color:#555;
   line-height:1.7;
@@ -408,12 +509,14 @@ body {
 .overview-tables { margin-top:80px; border-top:2px solid #111; padding-top:32px; }
 .overview-block { margin-bottom:56px; }
 .overview-block h3 {
-  font-size:20px;
-  font-weight:800;
-  color:#111;
+  font-family:var(--display);
+  font-size:21px;
+  font-weight:700;
+  color:var(--ink);
   margin-bottom:20px;
-  letter-spacing:-0.3px;
+  letter-spacing:-0.2px;
 }
+.overview-block tr:hover td { background:#F6F4EE; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th {
   padding:9px 12px;
@@ -446,6 +549,105 @@ tr:last-child td { border-bottom:none; }
   margin-top:80px;
 }
 
+/* ─── REIS-APP: sticky dag-strip · accordeon · top-knop ─── */
+.day-strip {
+  position:sticky;
+  top:0;
+  z-index:110;
+  display:flex;
+  gap:6px;
+  align-items:center;
+  overflow-x:auto;
+  background:#fff;
+  border-bottom:1px solid #e8e8e8;
+  padding:9px 24px;
+  margin:0 -24px 40px;
+  scrollbar-width:none;
+}
+.day-strip::-webkit-scrollbar { display:none; }
+.day-strip a {
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:700;
+  color:#555;
+  padding:7px 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  white-space:nowrap;
+  background:#fff;
+  transition:background .15s, color .15s, border-color .15s;
+}
+.day-strip a::before {
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--c, #bbb);
+  flex:0 0 auto;
+}
+.day-strip a.actief {
+  background:var(--c, var(--ink));
+  color:#fff;
+  border-color:var(--c, var(--ink));
+}
+.day-strip a.actief::before { background:#fff; }
+.day-strip a.vandaag { box-shadow:0 0 0 2px var(--ink); }
+.day-strip button {
+  flex:0 0 auto;
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+  background:#f4f2ec;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 12px;
+  cursor:pointer;
+}
+
+.day-entry.dicht > :not(.day-headline) { display:none; }
+.day-headline { cursor:pointer; position:relative; padding-right:26px; }
+.day-headline::after {
+  content:"▾";
+  position:absolute;
+  right:2px;
+  top:50%;
+  margin-top:-10px;
+  color:#bbb;
+  font-size:15px;
+  transition:transform .15s;
+}
+.day-entry.dicht .day-headline::after { transform:rotate(-90deg); }
+.day-entry.dicht .day-headline:hover h3 { color:#000; }
+
+.naar-boven {
+  position:fixed;
+  right:16px;
+  bottom:20px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid #ddd;
+  background:#fff;
+  color:#111;
+  font-size:18px;
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s;
+  box-shadow:0 2px 10px rgba(0,0,0,.12);
+  z-index:120;
+}
+.naar-boven.zichtbaar { opacity:1; pointer-events:auto; }
+
+@media print {
+  .day-entry > * { display:block !important; }
+  .day-strip, .naar-boven { display:none !important; }
+}
+
 @media(max-width:600px) {
   body { padding:0 16px; overflow-x:clip; }
   .site-header h1 { font-size:28px; }
@@ -458,11 +660,16 @@ tr:last-child td { border-bottom:none; }
   /* Nav: één swipebare regel i.p.v. stapel chips */
   .site-nav { margin:0 -16px 40px; padding:10px 16px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; }
   .site-nav::-webkit-scrollbar { display:none; }
+  .day-strip { margin:0 -16px 32px; padding:9px 16px; }
+  .site-header h1 { font-size:30px; }
+  .rl-stop { font-size:10px; }
+  .rl-stop b { font-size:9px; }
+  .rl-stop:nth-child(4) { flex:1.3; }
 
   /* Tabellen → kaarten: rij = kaartje, kolomkop = label boven elke waarde */
   table, table tbody, table tr, table td, table th { display:block; width:100%; box-sizing:border-box; }
   table tr:has(th) { display:none; }
-  table tr { border:1px solid #e8e8e8; border-radius:8px; padding:12px 14px; margin-bottom:10px; }
+  table tr { background:#fff; border:1px solid var(--line); border-radius:10px; padding:12px 14px; margin-bottom:10px; }
   table td { border:none; padding:1px 0; overflow-wrap:break-word; }
   table td[data-label]::before {
     content:attr(data-label);
@@ -665,7 +872,14 @@ tr:last-child td { border-bottom:none; }
 <header class="site-header">
   <h1>Japan met Baby 🍂</h1>
   <div class="meta">17 nachten · 2 volwassenen + 1 baby (1 jaar) · November 2026</div>
-  <div class="route">Zurich → Osaka → Koyasan → Kyoto → Kawaguchiko → Tokyo → Zurich · 4–22 november</div>
+  <div class="routeline" aria-label="Route met vijf haltes">
+    <span class="rl-stop rl-osaka"><i></i>Osaka<b>3 nachten</b></span>
+    <span class="rl-stop rl-koyasan"><i></i>Koyasan<b>1 nacht</b></span>
+    <span class="rl-stop rl-kyoto"><i></i>Kyoto<b>5 nachten</b></span>
+    <span class="rl-stop rl-kawaguchiko"><i></i>Kawaguchiko<b>2 nachten</b></span>
+    <span class="rl-stop rl-tokyo"><i></i>Tokyo<b>6 nachten</b></span>
+  </div>
+  <div class="route">ZRH → KIX 4 nov · HND → ZRH 23 nov · Qatar Airways</div>
   <div class="tags">
     <span class="tag">Vegetarisch</span>
     <span class="tag">Stroller-vriendelijk</span>
@@ -2865,6 +3079,111 @@ document.querySelectorAll('table').forEach(function(t){
     });
   });
 });
+
+/* Reis-app: sticky dag-strip, accordeon-dagen, vandaag-open, terug-naar-boven */
+(function(){
+  var gridChips = document.querySelectorAll('.days-grid .day-chip');
+  var days = document.querySelectorAll('.day-entry');
+  if (!gridChips.length || !days.length) return;
+
+  var nav = document.querySelector('.site-nav');
+  var strip = document.createElement('nav');
+  strip.className = 'day-strip';
+  strip.setAttribute('aria-label', 'Dag-navigatie');
+  var alles = document.createElement('button');
+  alles.textContent = 'alles';
+  strip.appendChild(alles);
+  gridChips.forEach(function(c){
+    var href = c.getAttribute('href');
+    var a = document.createElement('a');
+    a.href = href;
+    var date = c.querySelector('.day-chip-date');
+    a.textContent = href.replace('#dag','') + ' · ' + (date ? date.textContent.replace(/\s*\(.*\)$/, '') : '');
+    var m = c.className.match(/chip-[a-z]+/);
+    if (m) a.classList.add(m[0]);
+    var entry = document.querySelector(href);
+    if (entry && m) entry.classList.add(m[0]);
+    strip.appendChild(a);
+  });
+  nav.parentNode.insertBefore(strip, nav.nextSibling);
+
+  // City-dividers taggen met haltekleur op basis van de titel
+  document.querySelectorAll('.city-divider h2').forEach(function(h){
+    var t = h.textContent.toLowerCase();
+    var key = t.indexOf('osaka') > -1 ? 'osaka'
+      : t.indexOf('koya') > -1 ? 'koyasan'
+      : t.indexOf('kyoto') > -1 ? 'kyoto'
+      : (t.indexOf('kawaguchiko') > -1 || t.indexOf('fuji') > -1) ? 'kawaguchiko'
+      : t.indexOf('tokyo') > -1 ? 'tokyo' : null;
+    if (key) h.parentElement.classList.add('chip-' + key);
+  });
+
+  function openDay(id, scroll){
+    var d = document.getElementById(id);
+    if (!d) return;
+    d.classList.remove('dicht');
+    if (scroll) setTimeout(function(){ d.scrollIntoView(); }, 150);
+  }
+
+  days.forEach(function(d){
+    d.classList.add('dicht');
+    var h = d.querySelector('.day-headline');
+    if (h) h.addEventListener('click', function(){ d.classList.toggle('dicht'); });
+  });
+
+  var openAll = false;
+  alles.addEventListener('click', function(){
+    openAll = !openAll;
+    days.forEach(function(d){ d.classList.toggle('dicht', !openAll); });
+    alles.textContent = openAll ? 'sluit' : 'alles';
+  });
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#dag"]');
+    if (a) openDay(a.getAttribute('href').slice(1));
+  });
+  window.addEventListener('hashchange', function(){
+    if (/^#dag\d+$/.test(location.hash)) openDay(location.hash.slice(1));
+  });
+
+  // Tijdens de reis: dag van vandaag openen + markeren (dag 1 = wo 4 nov 2026)
+  var start = new Date(2026, 10, 4);
+  var dagNum = Math.floor((new Date() - start) / 86400000) + 1;
+  if (dagNum >= 1 && dagNum <= 19) {
+    var id = 'dag' + dagNum;
+    var chip = strip.querySelector('a[href="#' + id + '"]');
+    if (chip) chip.classList.add('vandaag');
+    openDay(id, !location.hash);
+  } else if (/^#dag\d+$/.test(location.hash)) {
+    openDay(location.hash.slice(1), true);
+  } else {
+    openDay('dag1');
+  }
+
+  // Actieve chip volgt mee tijdens scrollen
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (!en.isIntersecting) return;
+      strip.querySelectorAll('a.actief').forEach(function(x){ x.classList.remove('actief'); });
+      var c = strip.querySelector('a[href="#' + en.target.id + '"]');
+      if (c) {
+        c.classList.add('actief');
+        strip.scrollTo({ left: c.offsetLeft - strip.clientWidth / 2, behavior: 'smooth' });
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+  days.forEach(function(d){ io.observe(d); });
+
+  var top = document.createElement('button');
+  top.className = 'naar-boven';
+  top.textContent = '↑';
+  top.setAttribute('aria-label', 'Naar boven');
+  document.body.appendChild(top);
+  top.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  window.addEventListener('scroll', function(){
+    top.classList.toggle('zichtbaar', window.scrollY > 600);
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
