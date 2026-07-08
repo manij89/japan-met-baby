@@ -444,12 +444,15 @@ tr:last-child td { border-bottom:none; }
 }
 
 @media(max-width:600px) {
-  body { padding:0 16px; }
+  body { padding:0 16px; overflow-x:clip; }
   .site-header h1 { font-size:28px; }
   .cost-grid { grid-template-columns:1fr; }
   .days-grid { grid-template-columns:repeat(auto-fill, minmax(110px,1fr)); }
   .checklist { column-count:1; }
   .flights-row { flex-direction:column; gap:16px; }
+  .site-nav { margin:0 -16px 48px; padding-left:16px; }
+  table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  td, th { overflow-wrap:break-word; }
 }
 /* ─── TIMELINE-BLOG (gecombineerde stijl) ─── */
 .activities.timeline { padding-top:4px; }
@@ -814,7 +817,7 @@ tr:last-child td { border-bottom:none; }
       <span class="hotel-tag">Rooftop-natuuronsen Izumi Tenku no Yu</span>
       <span class="hotel-tag">Haneda Airport Garden food hall beneden</span>
     </div>
-    <div class="hotel-card-note">Doel: peuter doet zijn <strong>volledige avondritueel + eerste slaap (19:30–23:00) in een echt bed</strong> vlak bij de gate, i.p.v. wakker gehouden worden tot de nachtvlucht. Koffers komen via airport-takkyubin aan bij de Yamato/JAL ABC-balie in T3 (vr 20/11 verstuurd). Alternatief in T3 zelf: Royal Park Hotel Tokyo Haneda (landside 3F, kleiner maar dichtstbij). Nacht wordt "verspild" vanaf ~23:00 — dat is de bedoeling.</div>
+    <div class="hotel-card-note">Doel: peuter doet zijn <strong>volledige avondritueel + eerste slaap (19:30–23:00) in een echt bed</strong> vlak bij de gate, i.p.v. wakker gehouden worden tot de nachtvlucht. Koffers komen mee met de directe trein vanaf Kuramae (~45 min, geen overstap). Alternatief in T3 zelf: Royal Park Hotel Tokyo Haneda (landside 3F, kleiner maar dichtstbij). Nacht wordt "verspild" vanaf ~23:00 — dat is de bedoeling.</div>
   </div>
 </div>
 
@@ -1228,8 +1231,8 @@ tr:last-child td { border-bottom:none; }
       <p><strong>Optie 2 — Umeda Sky Building</strong> 🏙️ · Midosuji-lijn 1 stop naar Umeda (~10 min). Hiroshi Hara's <strong>Floating Garden Observatory</strong> — twee wolkenkrabbers verbonden door een open dakring op 173m. <strong>Glazen roltrap</strong> over de afgrond tussen de torens (peuter-spektakel) + 360° uitzicht over Osaka. ¥1.500 p.p. <em>📿 Goshuin-bonus: <strong>Tsuyu-no-Tenjinja (Ohatsu Tenjin)</strong> ligt naast Umeda Station — kleine city-shrine met mooie goshuincho-designs als jullie hier al willen beginnen i.p.v. Koyasan.</em></p>
       <p style="font-size:12px; color:#888;"><em>Trade-off: Shinsekai = compact + dichtbij hotel + park-escape + retro-Osaka die je nergens anders ziet · Umeda = modern + glazen-roltrap-spektakel + verder weg. Voor energiebesparing vóór Koyasan-transit dag 5 wint Shinsekai.</em></p>
 
-      <h5>~17:30 — Diner: Kura Sushi Shinsekai 🚂🐟 of Imai Honten 🍜</h5>
-      <p><strong>Optie 1 — Kura Sushi Shinsekai</strong> (in Shinsekai zelf, geen omweg) · ¥165/bordje · <strong>Bikkurapon-game: elke 5 lege bordjes in de gleuf = mini-prijs uit gachapon</strong> (Pokémon, anime — peuter-magic). Touchscreen Engels, walk-in, kinderstoelen. Vegetarisch: tamago, kappa-maki, avocado-maki, inari, edamame, miso-soep. ~¥1.500–2.000 p.p.</p>
+      <h5>~17:30 — Diner: Sushiro Dotonbori 🚂🐟 of Imai Honten 🍜</h5>
+      <p><strong>Optie 1 — Sushiro Dotonbori</strong> (Nakaza Kuidaore Building 2F, midden op Dotonbori — op de terugweg naar het hotel) · kwalitatief de beste grote kaiten-keten, vanaf ¥120/bordje, geopend maart 2025. Touchscreen Engels, walk-in, kinderstoelen, baby kijkt naar de band = entertainment ingebouwd. Vegetarisch: tamago, kappa-maki, avocado-maki, inari, edamame, miso-soep. ~¥1.500–2.000 p.p.</p>
       <p><strong>Optie 2 — Imai Honten kitsune-udon</strong> · Dotonbori-instituut sinds 1946. Bonito-kombu-dashi udon met zachte tofu-pouch op zijde-zachte noedels — peuter-comfort. Walk-in, kinderstoel, sluit 21:00.</p>
 
       <h5>~19:00 — Thuis · 19:30 in bed</h5>
@@ -2243,7 +2246,7 @@ tr:last-child td { border-bottom:none; }
       <div class="act-body">
         <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>🍽️ Diner — laagdrempelig</div>
         <div class="act-meta">Aankomst-dag = simpel houden</div>
-        <div class="choice-block"><strong>A · Lokale Kuramae-zaak</strong> (default) · veel kleine cafés en izakaya in de buurt · walk-in.</div>
+        <div class="choice-block"><strong>A · Yuwaeru honten</strong> (default) · dé Kuramae-klassieker, 3 min lopen · nekase-genmai (gerijpte zilvervliesrijst) teishoku met groente-okazu — veggie-vriendelijk · vandaag ma ✓ diner open 17:00–22:00 (zondag dicht) · walk-in. Alternatief: <strong>Sushiro Asakusa Azumabashi</strong> (~12 min lopen langs de Sumida) — beste grote kaiten-keten, touchscreen, kinderstoelen, veggie + vis.</div>
         <div class="choice-block"><strong>B · Konbini-haul thuis</strong> · 7-Eleven / FamilyMart op de hoek · eet op tatami, peuter speelt rond, laagste energie.</div>
         <div class="choice-block"><strong>C · Food delivery</strong> · Uber Eats / Demae-can / Wolt naar hotel · breedste keuze.</div>
       </div>
@@ -2293,7 +2296,7 @@ tr:last-child td { border-bottom:none; }
   </div>
   <div class="meals">
     <div><b>Lunch:</b> Queen of Hearts Banquet Hall (Fantasyland) — kies de officieel gemarkeerde <b>plant-based items</b> (bv. kikkererwt-aardappelkroketten met tomaat-sojamelk-saus ¥1.680; gewone salades/pasta zijn niet gegarandeerd veggie) · ook Eastside Cafe + Blue Bayou hebben plant-based gerechten · reserveer via Disney app · ~¥2.000 p.p.</div>
-    <div><b>Dinner:</b> Soranoiro Tokyo Station (veggie ramen) ~¥1.400 p.p. op de terugweg</div>
+    <div><b>Dinner:</b> Soranoiro Tokyo Station (veggie ramen) ~¥1.400 p.p. op de terugweg · of <b>Nemuro Hanamaru</b> (KITTE Marunouchi 5F, tegenover Marunouchi South Exit) — beste kaiten van Tokyo (Hokkaido-vis, Reddit/Eater-favoriet), di-avond doable: elektronisch ticket trekken en in KITTE rondlopen ~¥2.500 p.p.</div>
   </div>
   <div class="badges">
     <span class="badge badge-weekdag">Weekdag ✓ — kortste rijen, vertrek ~16:00 voor avonddrukte</span>
@@ -2313,7 +2316,7 @@ tr:last-child td { border-bottom:none; }
     <div class="act-block">
       <h4>Ochtend — chill</h4>
       <div class="act-title">Late ontbijt + Sumida-wandeling Kuramae</div>
-      <p>Disney was een lange dag — ochtend is voor recovery. Late ontbijt in de Kuramae-buurt (Koffee Mameya, Higuma Doughnuts), wandeling langs de Sumida-rivier of het lokale park. Geen metro, geen tickets, geen agenda. 🍡 Kuramae-buurt-extra's (beide ✓ open): <strong>Dandelion Chocolate Kuramae</strong> (bean-to-bar hot chocolate + smoked brownie, 1F counter sneller dan 2F café) en <strong>Kashiya Shinonome</strong> (burnt-butter poundcake + scones, take-away, 12:00–19:00 — misschien wel de mooiste yakigashi-winkel van Tokyo, 5 min van het hotel).</p>
+      <p>Disney was een lange dag — ochtend is voor recovery. Late ontbijt in de Kuramae-buurt (Koffee Mameya, Higuma Doughnuts) — of fluffy soufflé-pancakes bij <strong>Hoshino Coffee Asakusa</strong> (kissaten-sfeer, kinderstoelen, geen Flipper's-rijen). Wandeling langs de Sumida-rivier of het lokale park. Geen metro, geen tickets, geen agenda. 🍡 Kuramae-buurt-extra's (beide ✓ open): <strong>Dandelion Chocolate Kuramae</strong> (bean-to-bar hot chocolate + smoked brownie, 1F counter sneller dan 2F café) en <strong>Kashiya Shinonome</strong> (burnt-butter poundcake + scones, take-away, 12:00–19:00 — misschien wel de mooiste yakigashi-winkel van Tokyo, 5 min van het hotel).</p>
     </div>
     <div class="act-block">
       <h4>Middag — bed-nap</h4>
@@ -2333,7 +2336,7 @@ tr:last-child td { border-bottom:none; }
     <div class="act-block">
       <h4>Avond (~18:30)</h4>
       <div class="act-title">Diner Ginza Six (13F) of buurt</div>
-      <p>Ginza Six 13F heeft een restaurant-verdieping met kinderstoelen en uitzicht — vraag bij de Information Desk naar veggie-vriendelijke opties. Alternatief: <strong>Ain Soph Ginza</strong> (vegan, 5 min lopen, reserveerbaar via TableCheck — T's TanTan heeft géén Ginza-vestiging). 🍡 Onderweg: <strong>HIGASHIYA GINZA</strong> (Pola Building 2F, Ginza 1-chome) — sereen theesalon voor seizoens-wagashi + thee, of pak beneden een doosje "hitokuchi-gashi" (date-butter!) to-go; 11:00–19:00, ma gesloten — vandaag wo ✓. Thuis ~20:00 via Asakusa-lijn naar Kuramae.</p>
+      <p>Ginza Six 13F heeft een restaurant-verdieping met kinderstoelen en uitzicht — vraag bij de Information Desk naar veggie-vriendelijke opties. Alternatief: <strong>Ain Soph Ginza</strong> (vegan, 5 min lopen, reserveerbaar via TableCheck — T's TanTan heeft géén Ginza-vestiging). Of voor sushi: <strong>Sushi no Midori Ginza</strong> (Corridor-gai, Ginza 7-2-2, ~7 min lopen) — Tokyo's beste mid-range sushi, ¥3.000–5.000 omakase · zeer populair: trek bij aankomst (~17:45) meteen een ticket bij de ingang en doe daarna Ginza Six tot jullie beurt. 🍡 Onderweg: <strong>HIGASHIYA GINZA</strong> (Pola Building 2F, Ginza 1-chome) — sereen theesalon voor seizoens-wagashi + thee, of pak beneden een doosje "hitokuchi-gashi" (date-butter!) to-go; 11:00–19:00, ma gesloten — vandaag wo ✓. Thuis ~20:00 via Asakusa-lijn naar Kuramae.</p>
     </div>
     <div class="act-block">
       <h4>⚪️ Optionele HP-dag-uit (alleen als jullie écht energie over hebben)</h4>
@@ -2376,8 +2379,8 @@ tr:last-child td { border-bottom:none; }
     </div>
   </div>
   <div class="meals">
-    <div><b>Lunch:</b> Vegan Gyoza YU (échte naam — ligt in Negishi, tussen Ueno en Iriya, ~20 min van Asakusa; wo–zo 12:00–21:00, do ✓ open — combineer met Ueno-optie B) of gewoon in Asakusa ~¥1.500 p.p.</div>
-    <div><b>Dinner:</b> T's TanTan Ueno (100% vegan ramen, ín JR Ueno Station / Ecute 3F — heropend okt 2025, perfect op de route naar huis) ~¥1.200 p.p. · Afuri Ebisu geschrapt: verkeerde kant van de stad · bij HP-optie: diner Akasaka</div>
+    <div><b>Lunch:</b> Vegan Gyoza YU (échte naam — ligt in Negishi, tussen Ueno en Iriya, ~20 min van Asakusa; wo–zo 12:00–21:00, do ✓ open — combineer met Ueno-optie B) of <b>Misojyu</b> in Asakusa (miso-soep + verse onigiri, mom-en-pop-sfeer, 3 min van Senso-ji, 08:00–19:00 — soep op bonito-dashi = ok) ~¥1.000–1.500 p.p. · of <b>Daikokuya Tempura</b> (tendon-instituut sinds 1887, vlak bij Senso-ji — ebi + veggie tempura, dagelijks 11:00–20:00, wees er bij opening 11:00 want de rij loopt op tot 45 min) ~¥2.000 p.p.</div>
+    <div><b>Dinner:</b> T's TanTan Ueno (100% vegan ramen, ín JR Ueno Station / Ecute 3F — heropend okt 2025, perfect op de route naar huis) ~¥1.200 p.p. · izakaya-zin? <b>Isomaru Suisan Ueno</b> (vis-izakaya, grill-je-eigen zeevruchten aan tafel, luidruchtig-casual = baby-geluid valt weg, 24u open — ga ~17:00 dan is het rustig) ~¥2.000–3.000 p.p. · Afuri Ebisu geschrapt: verkeerde kant van de stad · bij HP-optie: diner Akasaka</div>
   </div>
   <div class="badges">
     <span class="badge badge-workshop">🥢 Eetstokjes · Asakusa · 10:00–11:00 · ~€8–15 p.p. · 3 min vanaf Senso-ji · oude link is dood — zoek nieuwe op GYG</span>
@@ -2415,7 +2418,7 @@ tr:last-child td { border-bottom:none; }
     <div class="act-block">
       <h4>~15:30 — 🚂 Uobei Shibuya (sushi-treintje)</h4>
       <div class="act-title">Snel hapje vóór Parco rooftop</div>
-      <p>Yamanote Shinjuku → Shibuya (4 min). 5 min lopen vanaf station naar Uobei. <strong>Sushi-treintje brengt elk bordje rechtstreeks naar je tafel</strong> via een mini-rail (geen conveyor belt) — letterlijk peuter-magic. Touchscreen Engels. Geen wachtrij meestal in de namiddag-luwte. Snel hapje 4-5 bordjes per persoon = ~¥1.500 p.p., eet in 30-40 min. Vegetarische opties: tamago, kappa-maki, avocado-maki, inari, edamame. Dan door naar Parco rooftop op tijd voor blue hour.</p>
+      <p>Yamanote Shinjuku → Shibuya (4 min). 5 min lopen vanaf station naar Uobei. <strong>Sushi-treintje brengt elk bordje rechtstreeks naar je tafel</strong> via een mini-rail (geen conveyor belt) — letterlijk peuter-magic. Touchscreen Engels. Geen wachtrij meestal in de namiddag-luwte. Snel hapje 4-5 bordjes per persoon = ~¥1.500 p.p., eet in 30-40 min. Vegetarische opties: tamago, kappa-maki, avocado-maki, inari, edamame. Kwaliteits-alternatief in dezelfde buurt: <strong>Katsu Midori</strong> (Seibu Shibuya 8F, 11:00–23:00) — Tokyo's beste sushi-train qua vis (Tokyo Cheapo/Reddit-favoriet), maar drukker; Uobei wint op peuter-entertainment. Dan door naar Parco rooftop op tijd voor blue hour.</p>
     </div>
     <div class="act-block">
       <h4>~16:00 — Shibuya Parco rooftop ✨</h4>
@@ -2430,7 +2433,7 @@ tr:last-child td { border-bottom:none; }
     <div class="act-block">
       <h4>Avond (~17:30)</h4>
       <div class="act-title">Diner — Okonomiyaki Yaiyai (Harajuku) of terug Kuramae</div>
-      <p>Vanaf Shibuya 1 stop Yamanote-lijn → Harajuku/Meiji Jingumae voor <strong>Okonomiyaki Yaiyai</strong> (180m van station, Tabelog 100 okonomiyaki 2025, ¥1.000–2.000 p.p. lunch / ¥3.000–4.000 dinner, children welcome, non-smoking, veggie-opties beschikbaar). Alternatief: metro terug Kuramae voor buurtzaak. Thuis rond 19:30.<br><br>🧳 <strong>Vanavond thuis (~20:00): koffers afgeven voor airport-takkyubin.</strong> Grote koffers naar de Kuramae-konbini (Yamato-balie, 24/7) — bestemming <b>Haneda Airport Terminal 3 bagagebalie</b>, pickup-datum zo 22/11, vluchtnr. QR813. Vrijdagavond versturen = 2 dagen buffer voor een 1-dags-rit (zelfde stad); zaterdag + zondag leven jullie uit de daypacks (kleren 2 dagen, toiletspullen, pyjama's, baby-spullen — paspoorten/meds/electronica NIET meesturen). ~¥2.500–3.000 per koffer. Tracking-nr bewaren en zondagochtend even checken.</p>
+      <p>Vanaf Shibuya 1 stop Yamanote-lijn → Harajuku/Meiji Jingumae voor <strong>Okonomiyaki Yaiyai</strong> (180m van station, Tabelog 100 okonomiyaki 2025, ¥1.000–2.000 p.p. lunch / ¥3.000–4.000 dinner, children welcome, non-smoking, veggie-opties beschikbaar). Alternatief: metro terug Kuramae voor buurtzaak. Thuis rond 19:30.</p>
     </div>
   </div>
   <div class="meals">
@@ -2442,7 +2445,7 @@ tr:last-child td { border-bottom:none; }
     <span class="badge badge-tip">Gratis viewpoints (walk-in): Parco · Hikarie · Fukuras — bailen wnn nodig</span>
     <span class="badge badge-tip">TeamLab + Ginza Six op dag 15 (na Disney-recovery) · Akasaka HP optie op dag 16</span>
   </div>
-  <div class="tip-box"><b>Izakaya met baby:</b> Volledig haalbaar bij grote ketens (Watami, Torikizoku) — rookvrij, kinderstoelen. Ga vroeg (17:30). Vermijd kleine traditionele zaakjes en smalle steegjes zoals Omoide Yokocho — geen kans met stroller.</div>
+  <div class="tip-box"><b>Izakaya & mom-en-pop met baby:</b> Prima haalbaar met de juiste aanpak. <b>(1) Ga bij opening (~17:00–17:30)</b> — zaken zijn dan leeg, baby-geluid stoort niemand, en jullie zijn ruim vóór 19:30 buiten. <b>(2) Vraag "zashiki"</b> (tatami-zitgedeelte) of <b>"horigotatsu"</b> (verzonken tafel) — baby hoeft niet in een stoel maar zit/kruipt op de tatami naast jullie. <b>(3) Koshitsu (privé-box)</b> bij grotere izakaya = baby beweegt vrij zonder andere gasten te storen. <b>(4) Kies vis-izakaya</b> (veggie/vis gegarandeerd): <b>Isomaru Suisan</b> (Ueno + Asakusa Kannon-dori) — sashimi, gegrilde vis, veggie-sides; pure yakitori-ketens zoals Torikizoku zijn vlees-only, skip. Echte mom-en-pop met tatami: <b>Sometaro</b> (Asakusa, okonomiyaki sinds 1937, zie dag 19 — 's avonds soms rokerig, lunch is veiliger). Vermijd piepkleine counter-zaakjes en steegjes als Omoide Yokocho — geen plek voor stroller of kruipende peuter.</div>
 </div>
 
 <div class="day-entry" id="dag18">
@@ -2499,15 +2502,15 @@ tr:last-child td { border-bottom:none; }
     <div class="act-block">
       <h4>Avond (~18:00)</h4>
       <div class="act-title">Rustig diner Kuramae · 19:30 in bed</div>
-      <p>⚠️ <strong>Tofu Ukai (Tofuya Ukai, Shiba) is per 31 maart 2026 permanent gesloten</strong> — het geplande afscheidsdiner vervalt (het was bovendien ¥15.400+ p.p. en zou met een 19:00-start de bedtijd volledig breken op de avond vóór de terugreis). Nieuw plan: vandaag gewoon casual eten in de buurt (buurtzaak, konbini of delivery) en peuter op tijd in bed — het <strong>afscheidsmoment verschuift naar dag 19</strong> (bonusdag): tof-maar-casual afscheidslunch + activiteit — zie het keuzeblok bij dag 19.</p>
+      <p>Casual eten in de buurt — <strong>Yuwaeru</strong> (za-avond ✓ 17:00–21:30), buurtzaak, konbini of delivery — en peuter op tijd in bed. Het <strong>afscheidsmoment zit op dag 19</strong> (bonusdag): tof-maar-casual afscheidslunch + activiteit — zie het keuzeblok bij dag 19.</p>
     </div>
   </div>
   <div class="meals">
     <div><b>Lunch:</b> Komachi-dori cafés/streetfood (matcha-soft, korokke, veggie-bento) ~¥1.500 p.p. · 🍡 <b>Kosuzu</b> warabimochi-stand (dagelijks 10:00–16/17:00), <b>Kamakura Beniya</b> bij Hachimangu — koop de cult-<b>Kurumicco</b> (walnoot-karamel-sandwich) 's ochtends, verkoopt uit · <b>Naniwaya</b> taiyaki (za ✓ open, bestel en wandel 10-20 min) · <b>Toshimaya honten</b> hato-sablé duifkoekjes (za ✓)</div>
-    <div><b>Dinner:</b> casual Kuramae — afscheidsdiner vervalt (Tofu Ukai gesloten), afscheidslunch op dag 19</div>
+    <div><b>Dinner:</b> casual Kuramae — Yuwaeru (za ✓ 17:00–21:30) of konbini/delivery · afscheidslunch op dag 19</div>
   </div>
   <div class="badges">
-    <span class="badge badge-tip">Alleen met dagtas + draagzak — grote koffers zijn gisteravond al via takkyubin naar Haneda T3 verstuurd</span>
+    <span class="badge badge-tip">Alleen met dagtas + draagzak — grote koffers blijven in het hotel</span>
     <span class="badge badge-tip">Suica/Pasmo werkt voor JR + Enoden + bus — geen aparte tickets nodig</span>
     <span class="badge badge-tip">Hase-dera koyo-piek ~20–30 nov, 21/11 zit goed</span>
   </div>
@@ -2522,7 +2525,7 @@ tr:last-child td { border-bottom:none; }
   <div class="transport-bar">
     <span class="transport-pill">Directe trein</span>
     <span>Kuramae → Haneda Airport T3 · Toei Asakusa-lijn/Keikyu through-service · ~45 min · ~¥700 p.p. · geen overstap</span>
-    <span class="transport-detail">Alleen daypacks + stroller — koffers zijn al bij Haneda (takkyubin vr 20/11)</span>
+    <span class="transport-detail">Koffers + stroller mee — directe trein, geen overstap · bij drukte of regen: taxi ~30–40 min, ~¥8.000</span>
   </div>
   <div class="activities">
     <div class="act-block">
@@ -2531,9 +2534,9 @@ tr:last-child td { border-bottom:none; }
       <p>Layover Doha slechts <strong>2u45</strong> (was 5u25 via Narita). Zelfde aankomst thuis: maandag 13:40. Strategie: peuter doet zijn <strong>volledige avondritueel + eerste slaap in het Haneda-hotel</strong>, wordt ~23:00 wakker gemaakt en slaapt door op de 11u-vlucht — die grotendeels zijn normale nacht is.</p>
     </div>
     <div class="act-block">
-      <h4>Ochtend + middag — bonusdag, hands-free</h4>
-      <div class="act-title">~11:00 uitchecken Poka · afscheidslunch · stroller-dut</div>
-      <p>Koffers zijn al onderweg/aangekomen bij Haneda (vrijdagavond verstuurd — check de tracking vanochtend even). Alleen daypacks + stroller mee. Venster voor iets leuks: <strong>~09:30–13:00 activiteit + afscheidslunch</strong>, daarna stroller-dut (~13:00–14:30) en om 16:15 de trein. Blijf in de NO-hoek (Kuramae/Asakusa/Ueno/Skytree) zodat de trein stress-vrij blijft. 🍡 Laatste omiyage bij <strong>Gransta</strong>: The Maple Mania + Fairycake Fair.</p>
+      <h4>Ochtend + middag — bonusdag</h4>
+      <div class="act-title">~11:00 uitchecken Poka · koffers achterlaten · afscheidslunch · stroller-dut</div>
+      <p>⚠️ <strong>Vraag Poka vooraf (per bericht, expliciet bevestigen) of de koffers na check-out tot ~15:45 in het appartement of de hal mogen blijven</strong> — self-check-in-apartments hebben niet altijd opslag. Backup: coin lockers Asakusa Station (grote maat ¥700–800) of Yamato Hands-Free-balie. Daarna hands-free op pad met alleen daypacks + stroller. Venster voor iets leuks: <strong>~09:30–13:00 activiteit + afscheidslunch</strong>, daarna stroller-dut (~13:00–14:30), ~15:45 koffers ophalen en om 16:15 de trein. Blijf in de NO-hoek (Kuramae/Asakusa/Ueno/Skytree) — dicht bij de bagage.</p>
     </div>
     <div class="act-block">
       <h4>⚪️ ~09:30–11:30 — Nog kiezen: afscheids-activiteit (geen wacht-dag!)</h4>
@@ -2541,7 +2544,8 @@ tr:last-child td { border-bottom:none; }
       <p><strong>A · Mokuhankan "Print Party"</strong> (Asakusa, 10 min) — zelf een houtblok-prent drukken in David Bull's beroemde ukiyo-e-studio, ~1u, ~¥2.500 p.p., je print gaat mee naar huis. Past perfect bij jullie workshop-lijn (kintsugi, stokjes) én is een tastbaar souvenir van de laatste dag.<br>
       <strong>B · Wagashi/nerikiri-workshop</strong> (Asakusa, meerdere aanbieders) — zelf Japanse sweets vormen + matcha; gezien de snack-liefde misschien wel dé afsluiter. ~1–1,5u.<br>
       <strong>C · Sumida Aquarium</strong> (Skytree Solamachi, 15 min) — compact, indoor, peuter-favoriet (kwallen + pinguïns op ooghoogte), walk-in-vriendelijk; lunch daarna in Solamachi.<br>
-      <strong>D · Asobono</strong> (Tokyo Dome City) — Tokyo's grootste indoor baby-speelparadijs: de laatste dag helemaal voor hém. Zondag = timed sessions, vooraf checken.</p>
+      <strong>D · Asobono</strong> (Tokyo Dome City) — Tokyo's grootste indoor baby-speelparadijs: de laatste dag helemaal voor hém. Zondag = timed sessions, vooraf checken. Wel verste optie van de bagage.<br>
+      <strong>E · Ueno Park koyo-rondje</strong> (Oedo-lijn Kuramae → Ueno-Okachimachi ~5 min, of 25 min wandelen) — herfstkleuren + Shinobazu-vijver + koikarpers, gratis en stroller-vriendelijk; peuter kan vrij rondlopen. Perfect als Ueno er op dag 16 (optie B) niet van gekomen is.</p>
     </div>
     <div class="act-block">
       <h4>⚪️ ~11:45 — Nog kiezen: afscheidslunch</h4>
@@ -2549,7 +2553,8 @@ tr:last-child td { border-bottom:none; }
       <p>Tof maar casual — geen tweede kaiseki (die hebben jullie al bij Konansou gehad), dashi is oké:<br>
       <strong>A · Sometaro</strong> (Asakusa) — zelf okonomiyaki bakken op een teppan in een houten huisje uit 1937, op tatami (peuter zit gewoon naast je), ~¥1.000–1.500 p.p. Sfeervolste casual-lunch van oost-Tokyo; opent 12:00, wees er bij opening.<br>
       <strong>B · Onigiri Yadoroku</strong> (Asakusa, bij Sumida Park) — Tokyo's oudste onigiri-zaak (1954, Bib Gourmand): made-to-order onigiri aan een mini-counter, of take-away voor een <em>Sumida-park-picknick</em> die naadloos overgaat in de stroller-dut. Alternatief in dezelfde geest: <b>Misojyu</b> (onigiri + luxe misosoep, modern, buggy-vriendelijk).<br>
-      <strong>C · Kura Sushi Global Flagship Asakusa</strong> — festival-themed kaiten-sushi met de Bikkurapon-game (elke 5 bordjes een prijsje — de peuter-magic uit het Osaka-plan alsnog verzilveren), touchscreen Engels, ~¥1.500 p.p.</p>
+      <strong>C · Sushiro Asakusa Rokku</strong> — beste grote kaiten-keten (kwalitatief boven Kura Sushi), touchscreen Engels, kinderstoelen, walk-in, ~¥1.500 p.p.<br>
+      <strong>D · Namiki Yabu Soba</strong> (bij Kaminarimon) — soba-instituut sinds 1913, zaru- en tempura-soba (dashi ✓), zo ✓ open 11:00–19:30 (do gesloten). Klein en snel = peuterproof, maar wees er bij opening 11:00; stroller buiten parkeren, baby op schoot. ~¥1.200–2.000 p.p.</p>
     </div>
     <div class="act-block">
       <h4>~16:15 — Directe trein naar Haneda T3</h4>
@@ -2557,8 +2562,8 @@ tr:last-child td { border-bottom:none; }
       <p>De Toei Asakusa-lijn rijdt door als Keikyu-airport-trein — instappen in Kuramae, uitstappen onder Terminal 3. Check op het perron dat de trein "Haneda Airport" als bestemming toont (through-service; anders 1 cross-platform-overstap bij Sengakuji).</p>
     </div>
     <div class="act-block">
-      <h4>~17:15 — T3: koffers ophalen + inchecken Villa Fontaine Grand</h4>
-      <div class="act-title">Yamato/JAL ABC-balie T3 (koffers) → hotel via loopbrug · babybed aangevraagd</div>
+      <h4>~17:15 — T3: inchecken Villa Fontaine Grand</h4>
+      <div class="act-title">Via loopbrug direct naar het hotel · babybed aanvragen</div>
       <p><strong>Villa Fontaine Grand Haneda Airport</strong> — in het Haneda Airport Garden-complex, via loopbrug direct aan Terminal 3 vast. Nacht 22/11 geboekt als "avondkamer": check-in ~17:15, gebruik tot ~23:00, geen late-checkout-gedoe. Bonus: rooftop-natuuronsen <strong>Izumi Tenku no Yu</strong> met zicht op de landingsbanen — het échte afscheids-onsen-moment, om beurten terwijl de ander bij de slapende peuter blijft. (Alternatief in T3 zelf: Royal Park Hotel Tokyo Haneda.)</p>
     </div>
     <div class="act-block">
@@ -2680,7 +2685,6 @@ tr:last-child td { border-bottom:none; }
       <tr><th>Route</th><th>Versturen op</th><th>Drop-off locatie</th><th>Aankomst</th><th>Kosten</th></tr>
       <tr><td>Osaka → Kyoto (YenSan Matsu)</td><td>Dag 5 (zo 8/11) ochtend op weg naar Nankai</td><td>FamilyMart / 7-Eleven / Lawson in Namba — Yamato-balie</td><td>Dag 6 (ma 9/11) of Dag 7 (di 10/11)</td><td>~¥2.500 per koffer</td></tr>
       <tr><td>Kyoto → Tokyo (Poka Kuramae)</td><td>Dag 11 (za 14/11) ochtend vóór shinkansen</td><td>FamilyMart / 7-Eleven / Lawson in Higashiyama — Yamato-balie</td><td>Dag 13 (ma 16/11)</td><td>~¥3.000 per koffer</td></tr>
-      <tr><td>Tokyo (Kuramae) → Haneda T3 bagagebalie</td><td>Dag 17 (vr 20/11) avond ~20:00 — 2 dagen buffer voor 1-dags-rit</td><td>Kuramae-konbini Yamato-balie (24/7) · airport-takkyubin-formulier: pickup zo 22/11 + vlucht QR813</td><td>Ophalen dag 19 (zo 22/11) ~17:15 bij Yamato/JAL ABC-balie T3</td><td>~¥2.500–3.000 per koffer</td></tr>
     </table>
     <div class="tip-box">
       <strong>⚠️ Self-service apartments — zelf naar de konbini:</strong> jullie hotels (Kokochiru, YenSan Matsu, Poka) hebben geen 24/7 receptie die de koffer voor je regelt. Geef ze daarom <strong>zelf af bij een konbini met Yamato-balie</strong> — vrijwel elke FamilyMart, 7-Eleven en Lawson in Japan accepteert takkyubin. Koffer + ingevuld adresformulier (Engels formulier vragen) + cash betalen. Reken 2 dagen levering — vrijdag opsturen = maandag aankomen, of zelfs zondag.<br><br>
@@ -2695,8 +2699,8 @@ tr:last-child td { border-bottom:none; }
       <tr><th>Tip</th><th>Waarom</th><th>Hoe</th></tr>
       <tr><td><strong>Suica/Pasmo op iPhone</strong></td><td>Geen fysieke kaart kopen of statiegeld terugvragen — direct tappen bij elke metro, trein, bus en konbini. Ook werkbaar met kapotte plastic kaart-ervaring.</td><td>Wallet app → "+" → Transit Card → Suica → bedrag opladen via Apple Pay (vanuit Zwitserland werkt). Werkt vanaf iPhone 8 / Apple Watch Series 3. Apple Watch ook handig — pols tappen met baby in armen.</td></tr>
       <tr><td><strong>Tabelog voor restaurants</strong></td><td>Google Maps reviews zijn in Japan onbetrouwbaar — toeristen rateren alles 4★+. Tabelog is de Japanse Yelp: lokalen zijn streng, een 3.5+ score is uitstekend, 3.8+ is top.</td><td>tabelog.com (Engelse versie). Filter op "vegetarian-friendly" of zoek "ベジタリアン". Reserveringen vaak alleen telefonisch — gebruik <strong>TableCheck of Pocket Concierge</strong> (Engelstalige boekingsplatforms) of Google Translate-call via je telefoon.</td></tr>
-      <tr><td><strong>Mid-range sushi: Sushi no Midori 寿司の美登利</strong></td><td>Familiebedrijf sinds 1956, beste mid-range sushi van Tokyo. Verse vis, generuze porties, ¥3.000–5.000 omakase i.p.v. ¥30.000 in Ginza. Zeer populair, vaak rij.</td><td>Vestiging <strong>Shibuya Mark City (4e verdieping)</strong> = beste optie met baby: warenhuis-locatie betekent stroller-toegang via lift, kinderstoelen, rustige sfeer. Ga 11:00 of 17:00 om de rij te vermijden — ticket trekken bij ingang.</td></tr>
-      <tr><td><strong>Mawari/kaiten-zushi 回転寿司 (lopende-band sushi)</strong></td><td>Perfecte sushi-stop met peuter: geen reservering, geen verplichting, je pakt wat je wilt en kunt elk moment vertrekken. ¥110–500 per bordje, baby kan kijken naar de belt = entertainment ingebouwd. Ideaal voor "korte hap, dan weg".</td><td>Goede ketens: <strong>Sushiro</strong> (¥120/bordje, overal vestigingen), <strong>Kura Sushi</strong> (gimmicky, Bikkurapon-prijzen-game elke 5 bordjes — kindvriendelijk), <strong>Hama-Sushi</strong>. Voor kwaliteits-kaiten: <strong>Uobei Shibuya</strong> (touchscreen + treintje brengt sushi rechtstreeks naar je tafel — letterlijk gemaakt voor kinderen). Bestel via tablet (Engels beschikbaar), af-tikken bij vertrek.</td></tr>
+      <tr><td><strong>Mid-range sushi: Sushi no Midori 寿司の美登利</strong></td><td>Familiebedrijf sinds 1956, beste mid-range sushi van Tokyo. Verse vis, generuze porties, ¥3.000–5.000 omakase i.p.v. ¥30.000 in Ginza. Zeer populair, vaak rij.</td><td>Beste match met jullie schema: <strong>Ginza-vestiging</strong> (Corridor-gai, Ginza 7-2-2) op dag 15 — ~7 min lopen van Ginza Six, ticket trekken bij aankomst. In Shibuya zijn jullie maar kort (dag 17-namiddag, Uobei al gepland) — Mark City hooguit als backup. Ga bij opening (11:00 / 17:00) om de rij te vermijden.</td></tr>
+      <tr><td><strong>Mawari/kaiten-zushi 回転寿司 (lopende-band sushi)</strong></td><td>Perfecte sushi-stop met peuter: geen reservering, geen verplichting, je pakt wat je wilt en kunt elk moment vertrekken. ¥110–500 per bordje, baby kan kijken naar de belt = entertainment ingebouwd. Ideaal voor "korte hap, dan weg".</td><td>Budget-tier: <strong>Sushiro</strong> (¥120/bordje, beste van de grote ketens) — dichtbij: <strong>Asakusa Azumabashi</strong> (~12 min langs de Sumida), <strong>Asakusa Rokku</strong>, <strong>Ueno</strong>; Osaka: <strong>Dotonbori</strong>. Kura Sushi = gimmicky maar kwalitatief minder — geskipt. Een niveau hoger (Reddit/Eater-favorieten, casual maar degelijk): <strong>Nemuro Hanamaru</strong> (Hokkaido-vis · KITTE Marunouchi 5F aan Tokyo Station — handig na Disney dag 14 · elektronische wachtrij, ticket trekken) en <strong>Katsu Midori</strong> (Seibu Shibuya 8F, 11:00–23:00). <strong>Uobei Shibuya</strong> (dag 17-stop) = treintje naar tafel, puur peuter-entertainment. Bestel via tablet (Engels), af-tikken bij vertrek.</td></tr>
       <tr><td><strong>Goshuin 御朱印 verzamelen</strong></td><td>Tempel- en heiligdom-stempels handgeschreven met inkt en kalligrafie — uniek souvenir van elke tempel. ¥300–500 per stempel, mooier dan elk magneetje.</td><td>Koop een <strong>goshuincho</strong> (stempelboekje, ¥1.500–3.000) meteen op dag 2 of 3 in Osaka. Beste opties: <strong>Namba Yasaka Shrine</strong> (難波八阪神社, leeuwenkop-podium, 5 min van hotel), <strong>Hozen-ji</strong> (法善寺, in Dotonbori) of <strong>Hokoku Shrine</strong> (豊國神社, in Osaka Castle Park op dag 3). Voor een echt mooi boekje: <strong>Sumiyoshi Taisha</strong> of <strong>Shitennō-ji</strong> hebben prachtige eigen ontwerpen. Geef boekje aan de monnik bij de "御朱印" balie. Nooit als notitieboekje gebruiken — dit is heilig.</td></tr>
       <tr><td><strong>Realistische koyo-verwachting</strong></td><td>2025 was uitzonderlijk laat — peak Kyoto 30 nov (ginkgo) / 15 dec (esdoorn), Tokyo 27 nov / 2 dec. Bij dezelfde timing in 2026 zien jullie in Kyoto 10–25% en Tokyo 20–40% kleuring. <strong>Beste koyo zit in Kawaguchiko</strong> (bergen kleuren ~17–25 nov). Klimaattrend = jaarlijks later. Mogelijk voordeel: iets minder druk dan in piekweek.</td><td>Eerste officiële forecast Japan Meteorological Corporation komt rond <strong>begin oktober 2026</strong>. Update ~3-4×, laatste eind oktober/begin november. Check tegen die tijd op japan-guide.com/koyo of tokyocheapo voor 2026-specifieke data.</td></tr>
       <tr><td><strong>Klein vuilniszakje meenemen</strong></td><td>Japan heeft bijna geen openbare prullenbakken (sinds de gifgas-aanslagen in 1995). Konbini-afval, luiers, fles-doppen — je draagt het uren mee tot je hotel.</td><td>Stop een opvouwbaar plastic zakje of klein dry-bag in de luiertas. Konbini's hebben soms wel afvalbakken — alleen voor spul dat je daar kocht. Hotelkamer = enige zekere afvalpunt.</td></tr>
@@ -2711,14 +2715,15 @@ tr:last-child td { border-bottom:none; }
       <tr><td>3 (6/11)</td><td>Osaka</td><td>Paprika Shokudo</td><td>Vegan buffet, kinderstoel, walk-in</td><td>~¥1.400</td></tr>
       <tr><td>3 (6/11)</td><td>Osaka</td><td>Daigen (Amerikamura)</td><td>🐙 Takoyaki snack op shopping-route, walk-in</td><td>~¥600</td></tr>
       <tr><td>3 (6/11)</td><td>Osaka</td><td>Houzenji Sanpei (Dotonbori)</td><td>Bib Gourmand okonomiyaki — ⚠️ online reserveren</td><td>~¥2.000</td></tr>
-      <tr><td>4 (7/11)</td><td>Osaka</td><td>Imai Honten (Dotonbori) of Kura Sushi Shinsekai 🚂</td><td>🐟 Kitsune-udon udon · OF kaiten-sushi met Bikkurapon-game (Optie B-namiddag)</td><td>~¥1.000–2.000</td></tr>
+      <tr><td>4 (7/11)</td><td>Osaka</td><td>Imai Honten (Dotonbori) of Sushiro Dotonbori 🚂</td><td>🐟 Kitsune-udon · OF beste kaiten-keten (Nakaza Kuidaore Bldg 2F, Optie B-namiddag)</td><td>~¥1.000–2.000</td></tr>
       <tr><td>opt</td><td>Osaka</td><td>Kuromon Ichiba Market</td><td>🐟🌱 Overdekte markt — uni, oester, dashimaki, fruit, mochi</td><td>varieert</td></tr>
       <tr><td>opt</td><td>Osaka</td><td>Kawafuku Honten</td><td>🌱 Zaru-udon sinds 1968, Engels menu, walk-in</td><td>~¥1.000</td></tr>
       <tr><td>opt</td><td>Osaka</td><td>Kushikatsu Daruma (Dotonbori)</td><td>🌱 Crispy skewers sinds 1929, veggie volop, walk-in</td><td>~¥1.500–2.500</td></tr>
       <tr><td>opt</td><td>Osaka</td><td>Wad theehuis (Minamisenba)</td><td>☕ Sencha + grilled mochi, cash only, walk-in</td><td>~¥1.500</td></tr>
+      <tr><td>opt</td><td>Osaka</td><td>Micasadeco &amp; Cafe (Namba)</td><td>🥞 Ricotta-soufflé pancakes · opent 9:00 — ga bij opening op weekdag = amper rij (Mog Namba = mega-rij, skip)</td><td>~¥1.500</td></tr>
       <tr><td>opt</td><td>Osaka</td><td>Akagakiya Namba</td><td>🐟 Standing izakaya — partner-solo nightcap (niet voor peuter)</td><td>~¥2.000–3.000</td></tr>
       <tr><td>6 (9/11)</td><td>Kyoto Station</td><td>Isetan B2 depachika</td><td>🍱 Lunch onderweg — bento/sushi/obanzai, walk-in</td><td>~¥1.500</td></tr>
-      <tr><td>6 (9/11)</td><td>Kyoto</td><td>UNO RAMEN Kyoto Station (10F)</td><td>🌱 100% vegan + glutenvrij · dagelijks 11:00–22:00 · (Vegans Cafe = permanent gesloten)</td><td>~¥1.500–2.000</td></tr>
+      <tr><td>6 (9/11)</td><td>Kyoto</td><td>UNO RAMEN Kyoto Station (10F)</td><td>🌱 100% vegan + glutenvrij · dagelijks 11:00–22:00</td><td>~¥1.500–2.000</td></tr>
       <tr><td>8 (11/11)</td><td>Nara</td><td>Onwa of Vegan Cafe Ramuna</td><td>🌱 Onwa: vegan machiya bij JR Nara (bel vooraf) · Ramuna: 5 min van Todai-ji</td><td>~¥1.500–2.000</td></tr>
       <tr><td>8 (11/11)</td><td>Kyoto</td><td>Ganko Sanjo Honten of Daimaru depachika</td><td>Familie-restaurant met kinderstoelen · of take-away naar machiya</td><td>~¥1.500–2.500</td></tr>
       <tr><td>9 (12/11)</td><td>Kyoto</td><td>Yudofu Sagano (Arashiyama)</td><td>🌱 Yudofu tempelstijl · walk-in · (Shigetsu = do gesloten, alleen bij dag-wissel)</td><td>~¥4.400</td></tr>
@@ -2729,18 +2734,24 @@ tr:last-child td { border-bottom:none; }
       <tr><td>11 (14/11)</td><td>Kyoto/transit</td><td>UNO RAMEN Kyoto Station / Isetan ekiben</td><td>🌱 Vegan ramen (10F) of ekiben voor shinkansen · (T's TanTan heeft geen Kyoto-vestiging)</td><td>~¥1.200–1.800</td></tr>
       <tr><td>opt</td><td>Kyoto</td><td>Kerala Kyoto</td><td>🌱 Zuid-Indiaas vegetarisch — backup-optie</td><td>~¥1.800</td></tr>
       <tr><td>opt</td><td>Kyoto</td><td>% Arabica Higashiyama / Kagizen / Tsujiri / Ippodo</td><td>☕ Café/sweets/matcha-stops · walk-in</td><td>~¥800–1.500</td></tr>
+      <tr><td>opt</td><td>Kyoto</td><td>A Happy Pancake (Kiyamachi/Shinkyogoku)</td><td>🥞 Soufflé pancakes · QR-ticketsysteem = geen fysieke rij (wachten in een winkelstraat) · weekdag-reservering online · daldip ~14:30</td><td>~¥1.500</td></tr>
       <tr><td>opt</td><td>Kyoto</td><td>Daimaru depachika / Fresco / Lawson</td><td>🍱 Take-away dinner-haul voor moe-peuter-avonden</td><td>~¥1.500–2.500</td></tr>
       <tr><td>11 (14/11)</td><td>Kawaguchiko</td><td>Konanso kaiseki</td><td>Vegetarisch kaiseki — inbegrepen</td><td>incl.</td></tr>
-      <tr><td>13 (16/11)</td><td>Tokyo</td><td>Kuramae-buurtzaak / konbini · (Ain Soph <b>Journey</b> Shinjuku-Sanchome als vegan uitstap — Ripple is dicht sinds 2020, past beter bij dag 17)</td><td>Aankomstdag simpel houden</td><td>~¥1.500–2.000</td></tr>
-      <tr><td>14 (17/11)</td><td>Tokyo</td><td>Soranoiro Tokyo Station</td><td>Veggie ramen</td><td>~¥1.400</td></tr>
-      <tr><td>15 (18/11)</td><td>Tokyo</td><td>Ginza Six 13F / Ain Soph Ginza</td><td>Restaurant-floor of vegan kaiseki, na TeamLab</td><td>~¥2.500</td></tr>
+      <tr><td>13 (16/11)</td><td>Tokyo</td><td>Yuwaeru honten (Kuramae, 3 min) / konbini · (Ain Soph <b>Journey</b> Shinjuku-Sanchome als vegan uitstap, past beter bij dag 17)</td><td>🌱 Nekase-genmai teishoku · ma ✓ diner 17:00–22:00 (zo dicht) · aankomstdag simpel houden</td><td>~¥1.500–2.500</td></tr>
+      <tr><td>14 (17/11)</td><td>Tokyo</td><td>Soranoiro Tokyo Station of Nemuro Hanamaru (KITTE 5F)</td><td>Veggie ramen · of beste kaiten van Tokyo (Hokkaido-vis) op de terugweg van Disney</td><td>~¥1.400–2.500</td></tr>
+      <tr><td>15 (18/11)</td><td>Tokyo</td><td>Ginza Six 13F / Ain Soph Ginza / Sushi no Midori Ginza</td><td>Restaurant-floor, vegan kaiseki óf top mid-range sushi (Corridor-gai — ticket trekken bij aankomst)</td><td>~¥2.500–5.000</td></tr>
       <tr><td>16 (19/11)</td><td>Tokyo</td><td>Vegan Gyoza YU (Negishi, bij Ueno)</td><td>🌱 100% vegan gyoza-café · wo–zo, do ✓ · combineer met Ueno</td><td>~¥1.500</td></tr>
       <tr><td>16 (19/11)</td><td>Tokyo</td><td>T's TanTan Ueno (Ecute, in JR-station)</td><td>🌱 Vegan tantanmen · heropend okt 2025 · op route naar huis</td><td>~¥1.200</td></tr>
+      <tr><td>16 opt</td><td>Tokyo</td><td>Isomaru Suisan (Ueno · ook Asakusa Kannon-dori)</td><td>🐟 Vis-izakaya, grill-je-eigen zeevruchten · casual-luidruchtig = babyproof · 24u, ga ~17:00</td><td>~¥2.000–3.000</td></tr>
+      <tr><td>opt</td><td>Tokyo</td><td>Misojyu (Asakusa)</td><td>🍙 Miso-soep + verse onigiri (bonito-dashi ok) · 08:00–19:00 · ontbijt/lunch bij Senso-ji · mom-en-pop</td><td>~¥1.000</td></tr>
+      <tr><td>opt</td><td>Tokyo</td><td>Sushiro Asakusa Azumabashi</td><td>🐟 Beste budget-kaiten dicht bij huis (~12 min langs de Sumida) · veggie + vis</td><td>~¥1.500</td></tr>
+      <tr><td>opt</td><td>Tokyo</td><td>Hoshino Coffee (Asakusa · Ueno · Solamachi/Skytree)</td><td>🥞 Kissaten-keten met dikke soufflé-pancakes · geen mega-rijen (Ueno soms waitlist) · kinderstoelen, kindvriendelijk</td><td>~¥1.000–1.500</td></tr>
       <tr><td>17 (20/11)</td><td>Tokyo</td><td>Uobei Shibuya 🚂🐟</td><td>Sushi-treintje, touchscreen Engels, walk-in, ~15:30 snelle hap</td><td>~¥1.500</td></tr>
       <tr><td>17 (20/11)</td><td>Tokyo</td><td>Okonomiyaki Yaiyai (Harajuku)</td><td>Tabelog 100 okonomiyaki, veggie-opties, children welcome</td><td>~¥3.000–4.000 (dinner)</td></tr>
       <tr><td>18 (21/11)</td><td>Kamakura</td><td>Komachi-dori cafés / streetfood</td><td>Matcha-soft, korokke, veggie-bento</td><td>~¥1.500</td></tr>
-      <tr><td>18 (21/11)</td><td>Tokyo</td><td>~~Tofu Ukai~~ → casual Kuramae</td><td>⚠️ Tofuya Ukai permanent gesloten (31/3/2026) · afscheidslunch → dag 19</td><td>~¥1.500–2.500</td></tr>
-      <tr><td>19 (22/11)</td><td>Tokyo</td><td>Afscheidslunch — Sometaro / Onigiri Yadoroku / Kura Sushi Asakusa flagship</td><td>Tof maar casual · zie keuzeblok dag 19 · ⚠️ zondag verifiëren</td><td>~¥1.000–1.500</td></tr>
+      <tr><td>18 (21/11)</td><td>Tokyo</td><td>Casual Kuramae — Yuwaeru (za ✓) of konbini/delivery</td><td>Rustige avond vóór vertrekdag · afscheidslunch → dag 19</td><td>~¥1.500–2.500</td></tr>
+      <tr><td>16 (19/11)</td><td>Tokyo</td><td>Daikokuya Tempura (Asakusa)</td><td>🐟 Tendon sinds 1887 · dagelijks 11:00–20:00 · bij opening gaan (rij tot 45 min) · ebi/veggie tempura</td><td>~¥2.000</td></tr>
+      <tr><td>19 (22/11)</td><td>Tokyo</td><td>Afscheidslunch — Sometaro / Onigiri Yadoroku / Namiki Yabu Soba / Sushiro Asakusa Rokku</td><td>Okonomiyaki, onigiri, soba (zo ✓, do dicht) of kaiten · zie keuzeblok dag 19 · ⚠️ zondag verifiëren</td><td>~¥1.000–2.000</td></tr>
     </table>
   </div>
 
@@ -2755,7 +2766,7 @@ tr:last-child td { border-bottom:none; }
       <li>~21 okt 2026: partner pre-order standaard menu heenvluchten (QR96 + QR802) via Manage booking</li>
       <li>~8 nov 2026: partner pre-order standaard menu terugvluchten via Manage booking · ⚠️ vluchtnummers eerst checken na de schedule-change/omboeking</li>
       <li>~~Skyliner~~ vervallen (Haneda-omboeking) — directe Toei Asakusa/Keikyu-trein Kuramae → Haneda T3, geen reservering nodig</li>
-      <li>🧳 Vr 20/11 avond: airport-takkyubin koffers → Haneda T3 (pickup zo 22/11, vlucht QR813) · weekend uit daypacks leven</li>
+      <li>⚠️ Poka host vragen: koffers na check-out zo 22/11 laten staan tot ~15:45 (self-check-in — expliciet bevestigen · backup: coin lockers Asakusa Station of Yamato Hands-Free)</li>
       <li>Late checkout Poka Tokyo aanvragen (12:00 i.p.v. 11:00)</li>
       <li>⚠️ YenSan Matsu host emailen (1+ week vooraf): <b>(1)</b> kunnen ze takkyubin-koffers ontvangen op zo 8/11 of ma 9/11 vóór onze inchecken? <b>(2)</b> early check-in op ~13:00 ipv 15:00 mogelijk (peuter-dut · aankomst realistisch 13:00-13:30)? Eventueel tegen meerprijs of via lockbox-toegang?</li>
       <li>⚠️ Poka host emailen (1+ week vooraf): kunnen ze takkyubin-koffers ontvangen op zo 15/11 of ma 16/11 vóór onze inchecken? Zo nee → Yamato Hands-Free locker bij Tokyo Station als alternatief</li>
@@ -2773,7 +2784,7 @@ tr:last-child td { border-bottom:none; }
       <li>⚠️ Houzenji Sanpei (Osaka, dag 3 vr 6/11 dinner ~17:30) — systeem opent rond <strong>begin oktober 2026</strong> (1 maand vooraf) · check eind sep/begin okt + reserveer dag 1 · Bib Gourmand okonomiyaki, weinig zitplaatsen, vraag kinderstoel (子供用椅子)</li>
       <li>Kaiyukan Aquarium tijdslot-ticket (dag 3 vr 6/11 om 10:00) — <strong>kaiyukan.com/eng</strong> · vrijdag in november vraagt vaak vooraf-boeking · ~¥2.400 p.p., baby gratis</li>
       <li>⚪️ Alleen bij dag 9↔10-wissel: Shigetsu (Tenryu-ji) lunch reserveren — 2–3 dagen vooraf via Tenryu-ji site/tel (do gesloten!) · anders Yudofu Sagano walk-in</li>
-      <li>~~Tofu Ukai afscheidsdiner~~ — permanent gesloten per 31/3/2026 · vervangen door casual afscheidslunch + activiteit dag 19 (keuzeblok in dag 19 — nog kiezen & verifiëren)</li>
+      <li>Dag 19 afscheidslunch + activiteit kiezen & verifiëren (keuzeblok in dag 19)</li>
       <li>Kintsugi workshop (Traveling Tokyo, Higashiyama) — boek 2 tickets dag 10 (vr 13/11): <b>Mandy 14:00 + Michael 15:00</b> (conform dag-10-schema), GYG #1153567 (niet #1147306) · ⚠️ bij dag 9↔10-wissel worden dit do 12/11-slots</li>
       <li>⚪️ Optioneel: kimono-rental dag 7 namiddag — vooraf shop met baby-maat zoeken (Yumeyakata Kids & Baby, Wargo, Okamoto)</li>
       <li>⚪️ Samurai Ninja Museum Kyoto boeken — optioneel, dag 9 do 12/11 namiddag (€18)</li>
