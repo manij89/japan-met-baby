@@ -749,6 +749,49 @@ tr:last-child td { border-bottom:none; }
 }
 .act-leg-text b { color:#555; font-weight:600; }
 
+/* ─── VERVOER-KAARTEN (v2) ─── */
+.act-leg.tr .act-leg-time { color:#111; font-weight:700; font-size:12px; padding-top:13px; font-variant-numeric:tabular-nums; }
+.act-leg.tr .act-leg-text { padding:6px 0 6px 18px; }
+.tr-card {
+  display:flex; align-items:center; gap:10px;
+  background:#fff; border:1px solid var(--line); border-left:4px solid var(--lijn, #bbb);
+  border-radius:8px; padding:8px 12px; color:#333; line-height:1.4;
+}
+.tr-icon { flex:0 0 auto; font-size:18px; line-height:1; }
+.tr-body { flex:1; min-width:0; }
+.tr-route { font-size:14px; font-weight:700; color:#111; }
+.tr-route span { color:#bbb; font-weight:400; padding:0 4px; }
+.tr-meta { font-size:12px; color:#777; margin-top:2px; }
+.tr-lijn { display:inline-block; font-size:10px; font-weight:700; letter-spacing:.5px; color:#fff; background:var(--lijn, #999); border-radius:3px; padding:1px 6px; margin-right:3px; vertical-align:1px; }
+.tr-dur { flex:0 0 auto; font-size:13px; font-weight:700; color:#111; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.tr-walk { --lijn:#9aa39a; }
+.tr-taxi { --lijn:#e0b400; }
+.tr-train { --lijn:#1f5fa8; }
+.tr-bus { --lijn:#4a8a3a; }
+
+/* ─── COMPACT-MODUS (telefoon): tijd + titel + meta + vervoer, tekst achter "meer" ─── */
+body.compact .day-entry.v2 .act-body p { display:none; }
+body.compact .day-entry.v2 .act-block.open .act-body p { display:block; }
+body.compact .day-entry.v2 .act-block.meer .act-title { cursor:pointer; }
+body.compact .day-entry.v2 .act-block.meer .act-title::after { content:"meer ▾"; font-size:11px; font-weight:400; color:#999; margin-left:8px; white-space:nowrap; }
+body.compact .day-entry.v2 .act-block.meer.open .act-title::after { content:"minder ▴"; }
+body.compact .day-entry.v2 .act-block.optioneel:not(.open) .act-meta { display:none; }
+body.compact .day-entry.v2 .act-block.optioneel .act-title { color:#888; font-weight:600; font-size:15px; }
+body.compact .day-entry.v2 .tip-box.meer:not(.open),
+body.compact .day-entry.v2 .choice-block.meer:not(.open) { max-height:3.6em; overflow:hidden; position:relative; cursor:pointer; }
+body.compact .day-entry.v2 .tip-box.meer:not(.open)::after,
+body.compact .day-entry.v2 .choice-block.meer:not(.open)::after {
+  content:"meer ▾"; position:absolute; right:12px; bottom:4px; font-size:11px; color:#999;
+  background:linear-gradient(90deg, rgba(246,244,238,0), #F6F4EE 35%); padding-left:36px;
+}
+body.compact .day-entry.v2 .act-block .act-title { font-size:16px; }
+body.compact .day-entry.v2 .act-block:not(.open) .act-meta { display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+body.compact .day-entry.v2:not(.notities-open) .badges,
+body.compact .day-entry.v2:not(.notities-open) .tip-box { display:none; }
+.notities-knop { display:none; font-size:11px; font-weight:700; color:var(--muted); background:#f4f2ec; border:1px solid var(--line); border-radius:999px; padding:7px 12px; margin:6px 0 0 60px; cursor:pointer; }
+body.compact .day-entry.v2 .notities-knop { display:inline-block; }
+@media(max-width:600px) { .notities-knop { margin-left:48px; } }
+
 @media(max-width:600px) {
   .act-time, .act-leg-time { flex:0 0 48px; padding-right:10px; font-size:11px; }
   .act-body { padding-left:14px; }
@@ -1317,7 +1360,7 @@ tr:last-child td { border-bottom:none; }
   </div>
 </div>
 
-<div class="day-entry" id="dag3">
+<div class="day-entry v2" id="dag3">
   <div class="day-headline">
     <div class="day-num-label">Dag 3 · vr 6 november</div>
     <h3>Aquarium · bed-dut · Shinsaibashi-shopping · Houzenji · neon naar huis</h3>
@@ -1331,7 +1374,7 @@ tr:last-child td { border-bottom:none; }
         <div class="act-meta">Jet-lag = vroeg wakker · konbini-haul of laat-ontbijt</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Daikokucho → Hommachi (Midosuji) → Osakako (Chuo) · ~30 min met overstap + lopen aan beide kanten</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~09:15</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#e5171f"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Daikokucho <span>→</span> Hommachi <span>→</span> Osakako</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#e5171f">Midosuji</span>overstap Hommachi <span class="tr-lijn" style="--lijn:#019a66">Chuo</span>· IC-kaart · lopen aan beide kanten</div></div><div class="tr-dur">~30 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">10:00</div>
       <div class="act-body">
@@ -1340,7 +1383,7 @@ tr:last-child td { border-bottom:none; }
         <p>Vrijdag-ochtend bij opening = rustigste moment van de dag, en peuter is op zijn alertst. <strong>Dut-flexibiliteit ingebouwd:</strong> jetlag oostwaarts schuift alles naar voren — grote kans dat de (tegen nov kortere) ochtenddut in week 1 vroeg valt en gewoon thuis in bed kan — ontbijt 08:30, korte dut, ~09:15 de deur uit — zodat 10:00 prima werkt. Valt de dut tóch laat: boek het 11:00-slot — konbini-lunch onderweg, bed-dut ~13:45, shopping + Houzenji blijven gewoon staan. Beslis op dag 2-avond, boek dan online. Walvishaai is dé attractie en je loopt 1 verdieping per keer in dalende spiraal — donker, gedempt, brede looprails voor stroller. Baby van 1 jaar reageert enorm op de grote vissen.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Osakako → Hommachi (Chuo) → Daikokucho (Midosuji) · ~30 min met overstap + 5 min lopen naar hotel · pak konbini-lunch onderweg of bij Daikokucho-station</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:10</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#019a66"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Osakako <span>→</span> Hommachi <span>→</span> Daikokucho</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#019a66">Chuo</span>overstap Hommachi <span class="tr-lijn" style="--lijn:#e5171f">Midosuji</span>· + 5 min lopen naar hotel · konbini-lunch bij Daikokucho</div></div><div class="tr-dur">~30 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~12:45</div>
       <div class="act-body">
@@ -1366,7 +1409,7 @@ tr:last-child td { border-bottom:none; }
         <div class="act-meta">Snack + verschonen · jas mee voor avondkoelte (zonsondergang ~16:55) · paspoorten mee voor tax-free</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Daikokucho → Shinsaibashi (Midosuji, 2 haltes, ~5 min) + 3 min lopen · vertrek ~15:15, snack in de buggy</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">15:15</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#e5171f"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Daikokucho <span>→</span> Shinsaibashi</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#e5171f">Midosuji</span>2 haltes · + 3 min lopen · snack in de buggy</div></div><div class="tr-dur">~8 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~15:30</div>
       <div class="act-body">
@@ -1377,7 +1420,7 @@ tr:last-child td { border-bottom:none; }
         Verschonen kan in <strong>Daimaru Shinsaibashi</strong> (ernaast, baby-room) · luiers bijkopen bij Matsumoto Kiyoshi op Shinsaibashi-suji (adressen: zie Tips voor Osaka · maten en merken: zie Algemeen).</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">2 min over Shinsaibashi-suji</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Uniqlo <span>→</span> New Balance</div><div class="tr-meta">over de Shinsaibashi-suji-arcade</div></div><div class="tr-dur">2 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~16:45</div>
       <div class="act-body">
@@ -1388,7 +1431,7 @@ tr:last-child td { border-bottom:none; }
         ⚪️ <em>Onderweg-snack: <strong>Rikuro Ojisan Namba honten</strong> (Ebisubashi-suji, warme jiggly cheesecake ¥965 voor een hele, gewone rij = minuten), ligt op de wandelroute naar het restaurant.</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Shinsaibashi-suji zuidwaarts → Ebisu-bashi (Glico-man) → Hozenji-yokocho · ~10 min · vertrek ~17:05</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">17:05</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Shinsaibashi-suji <span>→</span> Ebisu-bashi <span>→</span> Hozenji-yokocho</div><div class="tr-meta">zuidwaarts over de arcade · langs de Glico-man · Rikuro-snack onderweg</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~17:15</div>
       <div class="act-body">
@@ -1397,7 +1440,7 @@ tr:last-child td { border-bottom:none; }
         <p>Kleine sfeervolle tempel met een mossige stenen Boeddha (Mizukake-Fudo) waar bezoekers water overheen gieten; peuter mag ook een schepje gooien. Goshuin-stempel beschikbaar als jullie boekje al gehaald hebben. <strong>Meoto Zenzai</strong> (夫婦善哉, sinds 1883, rode-bonensoep in twee kommetjes, 10:00–22:00, cash) zit ernaast: te vol voor het eten, maar leuk als toetje erna als de peuter het trekt.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Houzenji-yokocho-steegje door · 2 min lopen</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Hozen-ji <span>→</span> Houzenji Sanpei</div><div class="tr-meta">door het yokocho-steegje</div></div><div class="tr-dur">2 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">17:30</div>
       <div class="act-body">
@@ -1406,7 +1449,7 @@ tr:last-child td { border-bottom:none; }
         <p>Verstopt in een Dotonbori-steegje. Voor Mandy (pescetarisch — vis/schaaldieren prima): zowel de <strong>scallop + shimeji + cheese</strong>-signature als de <strong>bamboe + groente</strong>-okonomiyaki kan. De koks bakken en serveren op de hete teppan die in je tafel zit — 60-75 min voor een complete maaltijd is realistisch.<br><br>👶 <strong>Kid-check (jul 2026):</strong> baby's zijn officieel welkom (buggy mag, ingeklapt), maar het is klein (26 plekken: 8 counter + ~4 tafels) en <strong>de teppan blijft de hele maaltijd gloeiend heet op arm-afstand</strong>. Vraag bij reservering een tafel (geen counter), zet de peuter aan de muurkant en verdeel de rollen: één eet, één bewaakt. Kinderstoel onbevestigd — vraag ernaar (子供用椅子), reken op schoot.<br><br><strong>✓ Geboekt — vr 6/11 · 17:30 · 3p incl. 1 kind · "Seats only" (geen counter-keuze bij reservering — controleer ter plekke dat jullie aan een tafel zitten, niet aan de counter).</strong> Backup walk-in: <strong>Kushikatsu Daruma Dotonbori</strong> (veggie-skewers volop, kinderstoel ✓) — vinden jullie het teppan-risico te gedoe, dan is Daruma ook prima als hoofdkeuze.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Neon-tourtje op de terugweg · Glico-man + kanaal (~15 min) → Ebisubashi-suji → Namba → hotel · totaal ~25 min te voet, geen metro</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~18:45</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Dotonbori <span>→</span> Ebisubashi-suji <span>→</span> Namba <span>→</span> hotel</div><div class="tr-meta">neon-tourtje langs het kanaal (~15 min) · geen metro</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~18:45</div>
       <div class="act-body">
@@ -3234,7 +3277,7 @@ tr:last-child td { border-bottom:none; }
 </div>
 
 <div class="footer">
-  Japan met Baby · November 2026 · Qatar Airways ZRH→KIX (QR96/QR802) / HND→ZRH via Doha (QR813/QR95, vertrek ma 23/11 01:35) · 2101 CHF · 17 nachten + Haneda-avondkamer · 4–23 november · geüpdatet 18 oktober 2026 (Qatar schedule change: QR96 → DOH 23:30 / QR95 DOH 08:15 · nieuwe sectie Algemeen + "Tips voor Osaka/Kyoto/Tokyo" boven de dag-schema's · dag 3: Uniqlo 75 min, NB als korte ⚪️ stop)
+  Japan met Baby · November 2026 · Qatar Airways ZRH→KIX (QR96/QR802) / HND→ZRH via Doha (QR813/QR95, vertrek ma 23/11 01:35) · 2101 CHF · 17 nachten + Haneda-avondkamer · 4–23 november · geüpdatet 18 oktober 2026 (Qatar schedule change: QR96 → DOH 23:30 / QR95 DOH 08:15 · nieuwe sectie Algemeen + "Tips voor Osaka/Kyoto/Tokyo" boven de dag-schema's · dag 3: Uniqlo 75 min, NB als korte ⚪️ stop · dag 3 = proef compact-modus + vervoer-kaarten)
 </div>
 
 <script>
@@ -3355,6 +3398,53 @@ document.querySelectorAll('table').forEach(function(t){
   window.addEventListener('scroll', function(){
     top.classList.toggle('zichtbaar', window.scrollY > 600);
   }, { passive: true });
+})();
+
+/* Compact-modus (proef op dag 3 = .day-entry.v2): knop in de dag-strip, standaard aan op telefoon */
+(function(){
+  var strip = document.querySelector('.day-strip');
+  if (!strip) return;
+  var knop = document.createElement('button');
+  strip.insertBefore(knop, strip.children[1] || null);
+  var KEY = 'jmb-compact', opgeslagen = null;
+  try { opgeslagen = localStorage.getItem(KEY); } catch(e){}
+  var aan = opgeslagen === null ? window.matchMedia('(max-width:600px)').matches : opgeslagen === '1';
+  function zet(v){
+    aan = v;
+    document.body.classList.toggle('compact', aan);
+    knop.textContent = aan ? 'volledig' : 'compact';
+  }
+  zet(aan);
+  knop.addEventListener('click', function(){
+    zet(!aan);
+    try { localStorage.setItem(KEY, aan ? '1' : '0'); } catch(e){}
+  });
+  function isCompact(){ return document.body.classList.contains('compact'); }
+  document.querySelectorAll('.day-entry.v2').forEach(function(d){
+    d.querySelectorAll('.act-block').forEach(function(b){
+      var t = b.querySelector('.act-title');
+      if (b.querySelector('.act-body p') || b.querySelector('.act-meta')) {
+        b.classList.add('meer');
+        if (t) t.addEventListener('click', function(){ if (isCompact()) b.classList.toggle('open'); });
+      }
+      if (t && /^\s*⚪️/.test(t.textContent)) b.classList.add('optioneel');
+    });
+    d.querySelectorAll('.tip-box, .choice-block').forEach(function(x){
+      x.classList.add('meer');
+      x.addEventListener('click', function(e){ if (isCompact() && !e.target.closest('a')) x.classList.toggle('open'); });
+    });
+    var act = d.querySelector('.activities');
+    if (act && d.querySelector('.badges, .tip-box')) {
+      var nk = document.createElement('button');
+      nk.className = 'notities-knop';
+      nk.textContent = 'notities & plan B ▾';
+      act.parentNode.insertBefore(nk, act.nextSibling);
+      nk.addEventListener('click', function(){
+        var open = d.classList.toggle('notities-open');
+        nk.textContent = open ? 'notities & plan B ▴' : 'notities & plan B ▾';
+      });
+    }
+  });
 })();
 </script>
 </body>
