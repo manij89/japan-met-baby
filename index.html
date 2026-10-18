@@ -770,16 +770,18 @@ tr:last-child td { border-bottom:none; }
 .tr-bus { --lijn:#4a8a3a; }
 
 /* ─── COMPACT-MODUS (telefoon): tijd + titel + meta + vervoer, tekst achter "meer" ─── */
-body.compact .day-entry.v2 .act-body p { display:none; }
-body.compact .day-entry.v2 .act-block.open .act-body p { display:block; }
+body.compact .day-entry.v2 .act-block p { display:none; }
+body.compact .day-entry.v2 .act-block.open p { display:block; }
 body.compact .day-entry.v2 .act-block.meer .act-title { cursor:pointer; }
 body.compact .day-entry.v2 .act-block.meer .act-title::after { content:"meer ▾"; font-size:11px; font-weight:400; color:#999; margin-left:8px; white-space:nowrap; }
 body.compact .day-entry.v2 .act-block.meer.open .act-title::after { content:"minder ▴"; }
 body.compact .day-entry.v2 .act-block.optioneel:not(.open) .act-meta { display:none; }
 body.compact .day-entry.v2 .act-block.optioneel .act-title { color:#888; font-weight:600; font-size:15px; }
 body.compact .day-entry.v2 .tip-box.meer:not(.open),
+body.compact .day-entry.v2 .meals.meer:not(.open),
 body.compact .day-entry.v2 .choice-block.meer:not(.open) { max-height:3.6em; overflow:hidden; position:relative; cursor:pointer; }
 body.compact .day-entry.v2 .tip-box.meer:not(.open)::after,
+body.compact .day-entry.v2 .meals.meer:not(.open)::after,
 body.compact .day-entry.v2 .choice-block.meer:not(.open)::after {
   content:"meer ▾"; position:absolute; right:12px; bottom:4px; font-size:11px; color:#999;
   background:linear-gradient(90deg, rgba(246,244,238,0), #F6F4EE 35%); padding-left:36px;
@@ -791,6 +793,12 @@ body.compact .day-entry.v2:not(.notities-open) .tip-box { display:none; }
 .notities-knop { display:none; font-size:11px; font-weight:700; color:var(--muted); background:#f4f2ec; border:1px solid var(--line); border-radius:999px; padding:7px 12px; margin:6px 0 0 60px; cursor:pointer; }
 body.compact .day-entry.v2 .notities-knop { display:inline-block; }
 @media(max-width:600px) { .notities-knop { margin-left:48px; } }
+body.compact .overview-block.inklapbaar > h3 { cursor:pointer; }
+body.compact .overview-block.inklapbaar > h3::after { content:" ▾"; color:#999; font-weight:400; font-size:13px; }
+body.compact .overview-block.inklapbaar.open > h3::after { content:" ▴"; }
+body.compact .overview-block.inklapbaar:not(.open) > h3 { margin-bottom:0; }
+body.compact .overview-block.inklapbaar:not(.open) > :not(h3) { display:none; }
+body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
 
 @media(max-width:600px) {
   .act-time, .act-leg-time { flex:0 0 48px; padding-right:10px; font-size:11px; }
@@ -1205,7 +1213,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   <div class="city-meta">4 november · Zurich → Osaka</div>
 </div>
 
-<div class="day-entry" id="dag1">
+<div class="day-entry v2" id="dag1">
   <div class="day-headline">
     <div class="day-num-label">Dag 1 · wo 4 november</div>
     <h3>Reisdag Zurich → Osaka</h3>
@@ -1281,7 +1289,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag2">
+<div class="day-entry v2" id="dag2">
   <div class="day-headline">
     <div class="day-num-label">Dag 2 · do 5 november</div>
     <h3>Aankomst Osaka · konbini-haul · vroeg slapen</h3>
@@ -1300,7 +1308,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Na 24u reizen is rust prioriteit. Peuter is moe-maar-wired — bioritme zegt ~08:25 Zwitserse tijd (JST is +8u in november), dus zijn lichaam denkt dat het ochtend is.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text"><b>Nankai Rapi:t</b> KIX → Namba · ~39 min · ¥1.670 p.p. · peuter mogelijk doezelig op de trein — laat hem maar</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~17:15</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">KIX <span>→</span> Namba</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Nankai</span>Rapi:t · elke 30 min · ¥1.670 p.p. (ticketless ~¥1.520) · de JR Haruka stopt níét in Namba · peuter mag doezelen</div></div><div class="tr-dur">39 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~18:30</div>
       <div class="act-body">
@@ -1378,8 +1386,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">10:00</div>
       <div class="act-body">
-        <div class="act-title">🐳 Kaiyukan Aquarium — richttijd 10:00, slot kiezen op dag 2-avond</div>
-        <div class="act-meta"><b>Open</b> 10:00–20:00 (LE 19:00) · ¥2.400 · baby gratis · 2u rondgang · liften aanwezig · ⚠️ tijdslot online boeken (kaiyukan.com/eng) — <b>pas op dag 2-avond in Osaka</b>, als je het echte jetlag-ritme hebt gezien</div>
+        <div class="act-title">🐳 Kaiyukan Aquarium</div>
+        <div class="act-meta">richttijd 10:00, slot kiezen op dag 2-avond · <b>Open</b> 10:00–20:00 (LE 19:00) · ¥2.400 · baby gratis · 2u rondgang · liften aanwezig · ⚠️ tijdslot online boeken (kaiyukan.com/eng) — <b>pas op dag 2-avond in Osaka</b>, als je het echte jetlag-ritme hebt gezien</div>
         <p>Vrijdag-ochtend bij opening = rustigste moment van de dag, en peuter is op zijn alertst. <strong>Dut-flexibiliteit ingebouwd:</strong> jetlag oostwaarts schuift alles naar voren — grote kans dat de (tegen nov kortere) ochtenddut in week 1 vroeg valt en gewoon thuis in bed kan — ontbijt 08:30, korte dut, ~09:15 de deur uit — zodat 10:00 prima werkt. Valt de dut tóch laat: boek het 11:00-slot — konbini-lunch onderweg, bed-dut ~13:45, shopping + Houzenji blijven gewoon staan. Beslis op dag 2-avond, boek dan online. Walvishaai is dé attractie en je loopt 1 verdieping per keer in dalende spiraal — donker, gedempt, brede looprails voor stroller. Baby van 1 jaar reageert enorm op de grote vissen.</p>
       </div>
     </div>
@@ -1413,8 +1421,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~15:30</div>
       <div class="act-body">
-        <div class="act-title">🛍️ Uniqlo Shinsaibashi flagship — eerst de must</div>
-        <div class="act-meta">Shinsaibashi-suji 1-2-17, tegenover H&amp;M · dagelijks 11:00–21:00 · ~¥15.000–25.000 voor Heatech-set voor drie · tax-free balie boven, paspoort mee</div>
+        <div class="act-title">🛍️ Uniqlo Shinsaibashi flagship</div>
+        <div class="act-meta">eerst de must · Shinsaibashi-suji 1-2-17, tegenover H&amp;M · dagelijks 11:00–21:00 · ~¥15.000–25.000 voor Heatech-set voor drie · tax-free balie boven, paspoort mee</div>
         <p>Japans eerste <em>global flagship</em> (2010), in 2023 helemaal Osaka-gethematiseerd: neon, Hanshin Tigers-geel-zwart, Osaka-dialect op de borden ("maido", "ōkini"), omroep door een Tigers-coach. 5–6 verdiepingen, liften. Vrijdag 16:00 is rustiger dan zaterdagmiddag.<br><br>
         <strong>Boodschappenlijst:</strong> Heatech onderlagen voor alle drie (Koyasan dag 5 + Kawaguchiko ~5°C 's avonds) · Uniqlo Baby/Kids (maat 80–90) · eventueel de <strong>Osaka-only UT-T-shirts</strong> op 4F (lokale-artiesten-collab, leuk souvenir). Reken op <strong>~75 min (tot ~16:45)</strong>, met de tax-free balie boven als laatste stap. Dit is de must van de middag; alles daarna is optioneel.<br><br>
         Verschonen kan in <strong>Daimaru Shinsaibashi</strong> (ernaast, baby-room) · luiers bijkopen bij Matsumoto Kiyoshi op Shinsaibashi-suji (adressen: zie Tips voor Osaka · maten en merken: zie Algemeen).</p>
@@ -1424,8 +1432,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~16:45</div>
       <div class="act-body">
-        <div class="act-title">⚪️ 👟 New Balance Shinsaibashi — sneakers, als er tijd is</div>
-        <div class="act-meta">Shinsaibashi-suji 1-4-18 (Maring Shinsaibashi Bldg) · dagelijks 10:00–20:00 · tax-free vanaf ¥5.500 · uiterlijk 17:05 weg</div>
+        <div class="act-title">⚪️ 👟 New Balance Shinsaibashi</div>
+        <div class="act-meta">sneakers, als er tijd is · Shinsaibashi-suji 1-4-18 (Maring Shinsaibashi Bldg) · dagelijks 10:00–20:00 · tax-free vanaf ¥5.500 · uiterlijk 17:05 weg</div>
         <p>Model staat al vast: kleur kiezen, passen, betalen — <strong>~15–20 min</strong>. Eén past, de ander loopt met de buggy over de arcade. Loopt Uniqlo uit, dan vervalt NB gewoon: de Heatech is de must, de sneakers niet.<br><br>
         ⚪️ <em>Specifiek op zoek naar <strong>Made in USA/UK</strong> (990, 991, 1500, 576)? Dat is <strong>New Balance Horie</strong> (Kitahorie 1-6-2, lifestyle-concept sinds dec 2024, 11:00–19:00), ~10 min west via Amerikamura. Past niet vóór 17:30.</em><br><br>
         ⚪️ <em>Onderweg-snack: <strong>Rikuro Ojisan Namba honten</strong> (Ebisubashi-suji, warme jiggly cheesecake ¥965 voor een hele, gewone rij = minuten), ligt op de wandelroute naar het restaurant.</em></p>
@@ -1473,7 +1481,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag4">
+<div class="day-entry v2" id="dag4">
   <div class="day-headline">
     <div class="day-num-label">Dag 4 · za 7 november</div>
     <h3>Kuromon · Castle Park · bed-dut · 🐻 Kuma no Te · Shinsekai</h3>
@@ -1633,7 +1641,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   <span class="koyo-note">Koyo ~30–50% (800m hoogte, eerder dan Wakayama-laagland) · cedersfeer altijd aanwezig</span>
 </div>
 
-<div class="day-entry" id="dag5">
+<div class="day-entry v2" id="dag5">
   <div class="day-headline">
     <div class="day-num-label">Dag 5 · zo 8 november</div>
     <h3>Osaka → Koyasan · Tempelverblijf Eko-in</h3>
@@ -1648,7 +1656,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Koyasan is in november ~5–10°C 's avonds (800m hoogte). Heatech onderlagen + warme jas voor baby — pak die bovenop in de rugzak. Toiletspullen + 1 setje extra kleren peuter. Grote koffers dicht: die geef je hieronder af bij het Yamato-depot pal tegenover het station. Geen haast: de trein gaat pas om 10:00 (op zon-/feestdagen rijdt de Koya-LE om 08:00, 10:00 en 11:15 — géén 09:xx).</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~08:45 taxi (~5 min, ~¥600) of 10 min lopen → <b>ヤマト運輸 なんば駅前営業所</b> (大阪市中央区難波4-4-4 難波御堂筋センタービル 1F, tegenover Nankai Namba · metro-uitgang 10 heeft een lift)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~08:45</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">Kokochiru <span>→</span> Yamato なんば駅前営業所</div><div class="tr-meta">taxi ~¥600 of 10 min lopen · tegenover Nankai Namba · metro-uitgang 10 heeft een lift</div></div><div class="tr-dur">5–10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">09:00</div>
       <div class="act-body">
@@ -1657,7 +1665,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>YenSan Matsu kan geen koffers ontvangen, dus bestemming = een Yamato-depot in Kyoto: <b>ヤマト運輸 京都祇園センター止め</b>, 〒605-0074 京都市東山区四条通大和大路東入祇園町南側570-262. Zeg aan de balie: <b>"Kyoto Gion Center tome, eigyosho-dome"</b> — zij zoeken de 6-cijferige depotcode op. Naam ontvanger exact als in paspoort (NIJSSEN MANDY) + jullie telefoonnummer. Aankomst Gion: zo 8/11, bewaartermijn 7 dagen. <b>Bewaar het verzendbewijs (tracking-nummer)</b>, dat heb je morgen nodig.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~09:20 oversteken naar Nankai Namba (2 min) · aan het loket <b>World Heritage Ticket mét LE-stoelen</b> (¥4.910) kopen en meteen reserveren: Koya 5 vandaag 10:00 + Rinkan 8 morgen 08:12 (neem je morgen de gewone trein, dan kost die ongebruikte stoel ~¥465)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~09:20</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Yamato <span>→</span> Nankai Namba (loket)</div><div class="tr-meta">World Heritage Ticket mét LE-stoelen ¥4.910 kopen + meteen reserveren: Koya 5 vandaag 10:00 + Rinkan 8 morgen 08:12 (ongebruikte stoel kost ~¥465)</div></div><div class="tr-dur">2 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">10:00</div>
       <div class="act-body">
@@ -1666,7 +1674,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Bergroute door Wakayama-prefectuur. Limited Express geeft je gereserveerde stoel + minder overstap = beter met peuter. Boek via Nankai-app of bij Namba-loket. De rit langs riviertjes en bergdorpjes is op zich al een beleving.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Kabelbaan Gokurakubashi → Koyasan-station · 5 min · ¥500 p.p. · steile helling tot 30%</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">11:46</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚠</div><div class="tr-body"><div class="tr-route">Gokurakubashi <span>→</span> Koyasan-station</div><div class="tr-meta">kabelbaan · ¥500 p.p. (in WH-ticket) · helling tot 30%</div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">11:46</div>
       <div class="act-body">
@@ -1675,7 +1683,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>De steilste kabelbaan van Japan — peuter vindt dit geweldig. Aansluitend: bus naar het dorpscentrum.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus 1 of 2 vanaf kabel-bovenstation → Senjuinbashi-halte · ~10 min · ¥290 p.p. (inbegrepen bij World Heritage Ticket)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~11:55</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Koyasan-station <span>→</span> Senjuinbashi</div><div class="tr-meta">bus 1 of 2 · ¥290 p.p. (in WH-ticket)</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~12:10</div>
       <div class="act-body">
@@ -1684,7 +1692,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Drop je rugzak bij Eko-in receptie, ze houden 'm vast tot inchecken. Dorp is compact en stil — alles binnen 15 min lopen.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">5 min lopen naar lunch-spot</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Eko-in <span>→</span> lunch</div><div class="tr-meta">door het dorp</div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~12:25</div>
       <div class="act-body">
@@ -1693,7 +1701,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Koyasan-restaurants serveren bijna allemaal shojin-light: tofu, sesame-tofu, mountain-vegetables, miso. Hanabishi is de verfijndere klassieker; Chuo Shokudo Sanbo en Bononsha zijn casual shojin-lunchzaken. Alle walk-in maar beperkte capaciteit — direct vanaf de bus doorlopen, rugzak kan ook ná de lunch bij Eko-in af. <em>(Tentenan geschrapt — niet terug te vinden op Tabelog of elders, bestaat vermoedelijk niet onder die naam.)</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">10 min lopen naar Ichinohashi-bruggetje (ingang Okunoin)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">lunch <span>→</span> Ichinohashi (ingang Okunoin)</div><div class="tr-meta"></div></div><div class="tr-dur">10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~13:30</div>
       <div class="act-body">
@@ -1702,7 +1710,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>200.000 grafstenen verspreid onder eeuwenoude ceders — mossig, mistig en sprookjesachtig. Het pad gaat vanaf Ichinohashi-brug naar Kobo Daishi-mausoleum (heen ~30 min, terug ~30 min). Overdag heel rustig in november (toeristenpiek is in zomer en herfst-weekenden). De night-tour staat geen baby's toe, dus overdag is jullie kans.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Lopen terug naar Eko-in · ~15 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Okunoin <span>→</span> Eko-in</div><div class="tr-meta"></div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">14:30</div>
       <div class="act-body">
@@ -1719,7 +1727,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Boeddhistische ademmeditatie in een kleine zaal. Eén persoon kan gaan terwijl de ander bij baby blijft, of skip helemaal als peuter een rust nodig heeft.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">5 min lopen door dorpscentrum</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Eko-in <span>→</span> Kongobu-ji / Danjo Garan</div><div class="tr-meta"></div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">16:00</div>
       <div class="act-body">
@@ -1728,7 +1736,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Kongobu-ji = hoofdkwartier van Shingon-boeddhisme, beroemde steentuin Banryutei (grootste van Japan). Danjo Garan = sacrale tempelcomplex met de iconische rode Konpon Daito-pagode. Beide 5 min lopen vanaf Eko-in. Als jullie te moe zijn: skip — vanaf buiten zien jullie de pagode al in de schemer.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Lopen terug Eko-in voor diner</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Kongobu-ji <span>→</span> Eko-in</div><div class="tr-meta">diner 17:30</div></div><div class="tr-dur">~5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">17:30</div>
       <div class="act-body">
@@ -1845,7 +1853,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag6">
+<div class="day-entry v2" id="dag6">
   <div class="day-headline">
     <div class="day-num-label">Dag 6 · ma 9 november</div>
     <h3>Koyasan → Kyoto · Aankomst + Gion</h3>
@@ -1859,8 +1867,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">06:00</div>
       <div class="act-body">
-        <div class="act-title">🕯️ Ochtendceremonie Eko-in — Mandy gaat sowieso · partner + baby optioneel</div>
-        <div class="act-meta">Boeddhistisch ritueel ~30 min · stilte · monniken chanteren bij wierook</div>
+        <div class="act-title">🕯️ Ochtendceremonie Eko-in</div>
+        <div class="act-meta">Mandy gaat sowieso · partner + baby optioneel · Boeddhistisch ritueel ~30 min · stilte · monniken chanteren bij wierook</div>
         <p>Mandy gaat altijd — dit is een van de redenen om in Koyasan te overnachten. Partner blijft bij de baby: als de peuter goed sliep en rustig in de carrier blijft, kunnen ze aansluiten; anders gewoon uitslapen tot 07:30 en direct naar het ontbijt.</p>
       </div>
     </div>
@@ -1872,16 +1880,16 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">Senjuinbashi-halte 2 min lopen · bus #2 of #1 → Koyasan-station kabelbaan (~10 min, ¥290) · <b>optie A (vroeg)</b>: ontbijt direct na de ceremonie, uitchecken 07:40, bus 07:45, kabelbaan 08:02, Rinkan 8 08:12 → Namba 09:42 → Kyoto ~10:45 (dan 2u eerder in Kyoto; koffers ophalen en lunch in Gion, machiya pas 13:00)</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Kabelbaan Koyasan → Gokurakubashi · 5 min · steile afdaling</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚠</div><div class="tr-body"><div class="tr-route">Koyasan-station <span>→</span> Gokurakubashi</div><div class="tr-meta">kabelbaan · steile afdaling</div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~09:40</div>
       <div class="act-body">
-        <div class="act-title">🚞 Nankai Koya Line — Gokurakubashi → Namba (default B: gewone trein)</div>
-        <div class="act-meta">⚠️ Op weekdagen rijdt de LE vanaf Gokurakubashi alleen om 06:26, <b>08:12 (Rinkan 8)</b> en 11:46 — een ~09:30 LE bestaat niet · default: 各停 Gokurakubashi → Hashimoto (~40 min) + 快速急行 Hashimoto → Namba (~50 min, start daar dus zitplaats) ≈ <b>Namba ~11:20</b> · zit in het World Heritage Ticket</div>
+        <div class="act-title">🚞 Nankai Koya Line</div>
+        <div class="act-meta">Gokurakubashi → Namba (default B: gewone trein) · ⚠️ Op weekdagen rijdt de LE vanaf Gokurakubashi alleen om 06:26, <b>08:12 (Rinkan 8)</b> en 11:46 — een ~09:30 LE bestaat niet · default: 各停 Gokurakubashi → Hashimoto (~40 min) + 快速急行 Hashimoto → Namba (~50 min, start daar dus zitplaats) ≈ <b>Namba ~11:20</b> · zit in het World Heritage Ticket</div>
         <p>Bergroute terug naar Osaka. Rustige maandagochtend, de overstap in Hashimoto is cross-platform. Wie om 08:12 de Rinkan 8 haalt, heeft de gereserveerde stoel (optie A hierboven).</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Namba → Umeda · Midosuji-lijn ~8 min · 5 min lopen naar JR Osaka Station</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#e5171f"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Namba <span>→</span> Umeda <span>→</span> JR Osaka Station</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#e5171f">Midosuji</span>~8 min · 5 min lopen naar JR Osaka Station</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~11:50</div>
       <div class="act-body">
@@ -1899,7 +1907,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Geen restaurant-stop met klok-stress — pak verse bento + drank, taxi direct naar hotel, eet relaxed in machiya tijdens dut.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Taxi → ヤマト運輸 京都祇園センター (〒605-0074 京都市東山区四条通大和大路東入祇園町南側570-262 · dagelijks 08–21 · dichtstbijzijnde volwaardige depot bij de machiya, ~1,3 km · pal bij Maruyama Park = handig voor plan B) · koffers ophalen met <b>paspoort + tracking-nummer</b> · taxi laten wachten of nieuwe nemen → YenSan Matsu ~7 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:40</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">Kyoto Station <span>→</span> Yamato 京都祇園センター <span>→</span> YenSan Matsu</div><div class="tr-meta">taxi ~12 min · koffers ophalen met paspoort + tracking-nummer · taxi laten wachten · ~7 min naar de machiya · totaal ~¥2.000 · depot dagelijks 08–21, pal bij Maruyama Park</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~13:15</div>
       <div class="act-body">
@@ -1942,8 +1950,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~17:30</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner — gezellig casual, dichtbij · kies op de dag</div>
-        <div class="act-meta">Bewust níéts gereserveerd op de aankomstdag — na de Koyasan-transit beslist het peuter-humeur · het tempura-uitje zit op dag 9 (Ten no Meshi-lunch)</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner</div>
+        <div class="act-meta">gezellig casual, dichtbij · kies op de dag · Bewust níéts gereserveerd op de aankomstdag — na de Koyasan-transit beslist het peuter-humeur · het tempura-uitje zit op dag 9 (Ten no Meshi-lunch)</div>
         <div class="choice-block"><strong>A · Gion Tanto</strong> (~10-12 min lopen, langs de Gion-gracht) · casual okonomiyaki + yakisoba aan de teppan · vegan kaart + vis-opties · gezellig hole-in-the-wall · ma ✓ open (do dicht) · <em>doe je Tanto vandaag, dan schuift die van het dag 7-lijstje af.</em></div>
         <div class="choice-block"><strong>B · UNO RAMEN -Sanjo-</strong> (~6-7 min lopen) · 100% vegan ramen in 100 jaar oude machiya met tuin · sfeervol-casual comfort-food na een transitdag.</div>
         <div class="choice-block"><strong>C · Fresco/depachika-bento thuis</strong> (default na transit) · supermarkt op 1 min · eten op tatami terwijl de peuter vrij rondkruipt · gegarandeerd 19:30 in bed.</div>
@@ -1951,7 +1959,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p><em>⚪️ Tóch zin in een avondje uit? <b>Piopiko</b> (Ace Hotel, design-taco-lounge — fish tacos, sofa's, peuter-bewezen om 17:30, ¥3.200-5.500) is een taxi van ~10 min; op een maandag lukt walk-in rond 17:00 meestal, of last-minute via TableCheck.</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Lopen terug hotel · ~10 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Gion <span>→</span> machiya</div><div class="tr-meta"></div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~19:15</div>
       <div class="act-body">
@@ -1967,7 +1975,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag7">
+<div class="day-entry v2" id="dag7">
   <div class="day-headline">
     <div class="day-num-label">Dag 7 · di 10 november</div>
     <h3>Fushimi Inari vroeg · rustdag · 🍁 Eikando + Nanzen-ji namiddag · ⚪️ Uji-optie</h3>
@@ -1985,7 +1993,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">Konbini-style snelle hap · deur-tot-torii is ~30 min → om 07:35 bij de poorten · peuter is toch om ~06:30 wakker, dus dit kost niks</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">10-12 min lopen naar Keihan Shichijo (dichtstbijzijnde station) → Keihan 2 stops ~5 min naar Fushimi-Inari (~¥170 p.p.) → 5 min lopen naar de poorten</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">07:05</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Keihan Shichijo <span>→</span> Fushimi-Inari</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span>10–12 min lopen · 2 haltes ~5 min · ¥170 p.p. · 5 min lopen naar de poorten</div></div><div class="tr-dur">~30 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">07:35</div>
       <div class="act-body">
@@ -1999,18 +2007,18 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~09:30</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>Beslismoment bij Inari Station — kies met je benen</div>
-        <div class="act-meta">Vanaf Fushimi lig je letterlijk naast de JR Nara-lijn richting Uji · beslis hier op energie, niet vooraf</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>Beslismoment bij Inari Station</div>
+        <div class="act-meta">kies met je benen · Vanaf Fushimi lig je letterlijk naast de JR Nara-lijn richting Uji · beslis hier op energie, niet vooraf</div>
         <div class="choice-block"><strong>Default · Naar huis — rustdag</strong> · Keihan terug (~30 min deur-tot-deur) · thuis ~10:15 · peuter speelt, vroege lunch thuis of Fresco om de hoek · <strong>echte bed-dut ~12:30–14:30</strong> (geen stroller-compromis vandaag).</div>
         <div class="choice-block"><strong>⚪️ Uji-branch — alleen als iedereen nog fris is</strong> · <em>Waarom Uji wél de moeite is: dé matcha-hoofdstad van Japan, een wereld rustiger dan centraal Kyoto — geen tourbussen, geen rijen op straat. <b>Byodoin</b> (het 10-yen-munt-gebouw) spiegelt in zijn vijver; de ~100–200 esdoorns eromheen zijn op 10/11 nog groen — Uji kleurt pas eind nov/begin dec (forecast 2026 Koshoji/Kotozaka: begin december), dus Uji is een rust- en hojicha-uitje, géén koyo-uitje; het terrein is volledig vlak en stroller-vriendelijk, zeldzaam voor historische tempels. En de peuter kan langs de Uji-rivier vrij rondlopen zonder verkeer of drukte — matcha-soba is bovendien perfecte peuter-lunch.</em><br>Logistiek: JR Inari → Uji 15-20 min (¥240) · Byodoin ¥700 (Phoenix Hall-interieur +¥300 — met peuter skippen) · open 08:30–17:30 · lunch: Nakamura Tokichi Honten is iconisch maar rij 45-90 min, met peuter beter <b>Itoh Kyuemon honten</b> (Tabelog 3,54, bij JR Uji Station, op de terugroute) · 🍵 probeer hojicha-ijs of -latte op Byodoin Omotesando · stroller-dut onderweg · JR terug ~13:45 → Kyoto Station ~14:20 + bus/taxi ~15 min · <em>sluit dan hieronder aan bij de namiddag.</em><br>⚠️ <strong>Uji en Eikando concurreren om dezelfde namiddag:</strong> doe je Uji, dan vervalt Eikando vandaag — de reserve is dag 9 ochtend in plaats van Kinkaku-ji (zie de Eikando-wissel bij dag 9).</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Default-pad: Keihan Fushimi-Inari → Shichijo + 10-12 min lopen · thuis ~10:15</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~09:30</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Fushimi-Inari <span>→</span> Shichijo <span>→</span> machiya</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span>2 haltes + 10–12 min lopen · thuis ~10:15 · optie Uji: JR Nara-lijn vanaf Inari Station</div></div><div class="tr-dur">~30 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~15:00</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>🍁 Namiddag — default: Eikando + Nanzen-ji (koyo-middag, 10 min van huis)</div>
-        <div class="act-meta">Default-pad: peuter komt net uit een echte bed-dut = beste humeur van de dag · Uji-branch: jullie zijn ~14:45 terug in Higashiyama — dan vervalt Eikando (reserve: dag 9-wissel) en kies je B · niets moet</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>🍁 Namiddag</div>
+        <div class="act-meta">default: Eikando + Nanzen-ji (koyo-middag, 10 min van huis) · Default-pad: peuter komt net uit een echte bed-dut = beste humeur van de dag · Uji-branch: jullie zijn ~14:45 terug in Higashiyama — dan vervalt Eikando (reserve: dag 9-wissel) en kies je B · niets moet</div>
         <div class="choice-block"><strong>A · Eikando (Zenrin-ji) + Nanzen-ji</strong> (default) · <em>"Momiji no Eikando": ~3.000 esdoorns rond de Hojo-vijver, de overdekte Garyoro-gang tegen de helling en de Tahoto-pagode met uitzicht over de stad — dé koyo-klassieker van Higashiyama en de beste vroege gok van Kyoto: ook bij 30% kleuring is er zichtbaar rood, terwijl de Tsutenkyo-brug van Tofuku-ji zonder kleur een brug over een groene vallei is.</em> ⏰ Vandaag is de <b>laatste reguliere dag</b>: ¥1.000 p.p., 09:00–16:00 laatste toegang (sluit 17:00) — vanaf wo 11/11 start de herfst-寺宝展 (¥1.500 + drukker). Avondverlichting loopt pas 20/11–6/12, die missen jullie sowieso.<br><strong>Tijdlijn:</strong> ~14:45 wakker → 15:00 taxi (~10-12 min, ~¥1.800) → 15:15 Eikando, ruim vóór laatste toegang 16:00 · stroller parkeren bij de ingang, peuter in de carrier (gangen met trappen, pagode-trap) · ~16:30 eruit, 5 min lopen naar <b>Nanzen-ji</b>: Sanmon-poort en het bakstenen <b>Suirokaku-aquaduct</b> — gratis terrein, breed grindpad dus stroller weer uit · zonsondergang 16:50 = schemer tussen de pijlers · ~17:10 taxi terug (~10 min) → diner-keuze hieronder.<br><em>Gion &amp; Shirakawa-strolling (de vorige default) zit al op dag 6 (schemer via Yasaka/Shirakawa) en dag 9 (blue-hour-wandeling naar huis) — je verliest niets.</em></div>
         <div class="choice-block"><strong>B · Gion &amp; Shirakawa-strolling</strong> (lage-energie-fallback, alles op 5–15 min lopen) · <b>Shirakawa-kanaal</b> met de wilgen en de <b>Tatsumi-brug</b>, <b>Hanamikoji-dori</b>, <b>Yasaka Shrine</b> en uitbollen in <b>Maruyama Park</b> (peuter mag los) · géén plan, zoete stops onderweg, afbreken kan altijd.</div>
         <div class="choice-block"><strong>C · Kyoto Botanical Gardens</strong> (peuter-favoriet) · ¥500 (incl. kas, tarief 2025+) · open 09:00–17:00 (LE 16:00) · enorme vlakke oase met esdoorns en ginkgo's (in een laat jaar als 2026 is half november ook hier nog vroeg — ga voor de ruimte, niet voor de kleur), rosarium, vijvers. Geasfalteerde brede paden = écht stroller-droom. Peuter mag rondkruipen op het gras. <strong>Bonus op de terugweg:</strong> bij Demachiyanagi Station de <strong>Kamogawa-stapstenen</strong> (schildpad- en pijlpuntstenen door de rivier) — 15 min stop, gratis.<br>↳ <em>Reis: Demachiyanagi Station via Keihan vanaf Kyoto centrum</em></div>
@@ -2021,15 +2029,15 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~17:30</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner — nog niets vast · kies één (alle dichtbij)</div>
-        <div class="act-meta">Bewust niets gereserveerd — beslis op peuter-humeur · vandaag dé avond om vroeg (~17:00) en zonder haast te eten · verifieer openingstijden vóór vertrek (Kyoto-restaurants veranderen vaak)</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner</div>
+        <div class="act-meta">nog niets vast · kies één (alle dichtbij) · Bewust niets gereserveerd — beslis op peuter-humeur · vandaag dé avond om vroeg (~17:00) en zonder haast te eten · verifieer openingstijden vóór vertrek (Kyoto-restaurants veranderen vaak)</div>
         <div class="choice-block"><strong>A · UNO RAMEN -Sanjo-</strong> (2 min van Keihan Sanjo, ~6-7 min lopen) · ✓ geverifieerd: geopend maart 2025, 100% vegan én glutenvrij, 100 jaar oude machiya met tuin · sojamelk-ramen "Hana" + vegan sushi + house-made tofu · sfeervol-casual, comfort-food. <em>Er is ook een 2e vestiging op Kyoto Station 10F (ramen-verdieping) — handig voor dag 11.</em></div>
         <div class="choice-block"><strong>B · Gion Tanto</strong> (~10-12 min lopen, langs Gion-gracht) · super-casual okonomiyaki + yakisoba aan teppan-plaat · aparte vegan menukaart · gloeiend-heet voor je neus bereid · gezellig hole-in-the-wall vibe.</div>
         <div class="choice-block"><strong>C · Daimaru depachika take-away</strong> (default, peuter-veilig) · obanzai + inari-sushi + tempura · Daimaru Shijo (~10 min metro) of pak onderweg · eet thuis op tatami · ~¥2.000 voor 2 p. · gegarandeerd 19:30 in bed.</div>
         <div class="choice-block"><strong>D · Food delivery thuis</strong> (laagste energie) · Uber Eats Japan, Demae-can 出前館 of Wolt · vegan/veggie Kyoto-restaurants leveren naar machiya · YenSan-adres + self-check-in-instructies meegeven aan bezorger · ~¥2.500–3.500.</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Lopen terug Higashiyama · ~10 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">diner <span>→</span> machiya</div><div class="tr-meta"></div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~19:15</div>
       <div class="act-body">
@@ -2055,7 +2063,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag8">
+<div class="day-entry v2" id="dag8">
   <div class="day-headline">
     <div class="day-num-label">Dag 8 · wo 11 november</div>
     <h3>Dagtrip Nara — herten &amp; grote Boeddha · zonder wekker</h3>
@@ -2069,14 +2077,14 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~08:15</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>Rustig opstaan — géén wekker vandaag · ontbijt kies één</div>
-        <div class="act-meta">Geen koffers · alleen luiers, snacks, dagrugzak · de trein gaat elke 20–30 min, dus er valt niets te missen</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>Rustig opstaan</div>
+        <div class="act-meta">géén wekker vandaag · ontbijt kies één · Geen koffers · alleen luiers, snacks, dagrugzak · de trein gaat elke 20–30 min, dus er valt niets te missen</div>
         <div class="choice-block"><strong>A · 🥞 Sakura Cafe Hanon</strong> (Sakura Terrace 2F, Shijo-Kawaramachi bij de rivier — open 08:30) · soufflé-pancakes made-to-order: mixed berry met huisgemaakte slagroom, of hartig Egg &amp; Meat · moderne café-vibe · ⚠️ populair: wees er om 08:30 bij opening, of reserveer vooraf een slot (AutoReserve/TableCheck — met peuter wel zo relaxed) · daarna bus/taxi ~10 min naar Kyoto Station. <em>Eindelijk eens chill uit ontbijten.</em></div>
         <div class="choice-block"><strong>B · Ontbijt thuis</strong> — zoals de andere dagen, vertrek wanneer het uitkomt.</div>
         <div class="choice-block"><em>Backup zonder omweg: <strong>Inoda Coffee Porta</strong> (B1 ónder Kyoto Station, v.a. 08:00) — retro-kissaten-instituut sinds 1940 met complete "Kyoto Breakfast"-set; geen pancake-vibe, wél nul logistiek.</em></div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bij optie A: bus 207 vanaf halte Umamachi naar Shijo-Kawaramachi ~12-15 min (of taxi ~8 min), pancakes 08:30–09:30, dan bus/taxi ~10 min naar Kyoto Station · bij optie B: bus #100/#206 Higashiyama → Kyoto Station ~15 min ¥230</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~08:15</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Kyoto Station</div><div class="tr-meta">optie A: bus 207 Umamachi → Shijo-Kawaramachi 12–15 min (of taxi 8 min), pancakes 08:30–09:30, dan bus/taxi ~10 min naar Kyoto Station · optie B: bus #100/#206 Higashiyama → Kyoto Station ~15 min, ¥230</div></div><div class="tr-dur">15 min (B)</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~10:00</div>
       <div class="act-body">
@@ -2084,7 +2092,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta"><b>Miyakoji Rapid</b> ~45 min · ¥720 p.p. enkele reis · vertrekt elke 20-30 min · geen reservering mogelijk/nodig — gewoon Suica-tap, mis je er één dan pak je de volgende · stroller in eind-wagon</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Nara Station → Nara Park entree · ~15 min lopen oost via Sanjo-dori winkelstraat · of bus #2 5 min · 🍡 onderweg: <b>Nakatanidou</b> (hoek Sanjo-dori × Higashimuki-arcade) — warme yomogi-mochi ¥200 + de beroemde high-speed mochi-pounding shows (~11:00–15:00, onregelmatig) · en <b>Daibutsu-purin</b> (potje met Boeddha-deksel) B1 Kintetsu Nara Station</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Nara Station <span>→</span> Nara Park</div><div class="tr-meta">~15 min lopen via Sanjo-dori · of bus #2 5 min · 🍡 Nakatanidou (hoek Sanjo-dori × Higashimuki): warme yomogi-mochi ¥200 + mochi-pounding shows ~11:00–15:00 · Daibutsu-purin B1 Kintetsu Nara Station</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~11:15</div>
       <div class="act-body">
@@ -2093,7 +2101,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Zodra je het park binnenloopt staan ze al langs de paden. Koop hertenkoekjes (¥200/pak) bij een kraampje — ⚠️ <strong>laat baby kijken, niet zelf geven</strong>: herten worden gulzig en kunnen aan kleren trekken. Beste demonstratie: koekje vasthouden + buigen, hert buigt terug. Baby reageert fantastisch op dieren van zo dichtbij.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">10 min lopen oost door park</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Nara Park <span>→</span> Todai-ji</div><div class="tr-meta"></div></div><div class="tr-dur">10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~12:00</div>
       <div class="act-body">
@@ -2102,7 +2110,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Japan's grootste bronzen Boeddha (15m hoog), in 's werelds grootste houten gebouw. Iconische Nandaimon-poort met enorme Niō-bewakers. Veel herten rond het terrein.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">5 min lopen terug westwaarts</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Todai-ji <span>→</span> lunch</div><div class="tr-meta"></div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~13:00</div>
       <div class="act-body">
@@ -2128,7 +2136,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Slenter terug via de machiya-straatjes van <b>Naramachi</b>, of doe nog een rondje herten. Op de terugweg langs <b>Nakatanidou</b> (hoek Sanjo-dori × Higashimuki): warme yomogi-mochi ¥200 — met wat geluk vang je de high-speed mochi-pounding show. Trein elke 20–30 min, dus vertrek is gewoon "als het op is".</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Lopen terug Nara Station · ~15 min · stroller-blijft-rijden als de dut nog loopt</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Nara Park <span>→</span> Nara Station</div><div class="tr-meta">stroller blijft rijden als de dut nog loopt</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~16:00</div>
       <div class="act-body">
@@ -2136,16 +2144,16 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">~45 min · aankomst Kyoto Station ~16:45 · eerder of later mag — niets hangt eraan vast</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Kyoto Station → Sanjo-Keihan (metro/bus ~15 min) voor Ganko · of Karasuma-lijn 2 stops naar Shijo voor Daimaru depachika</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~17:00</div><div class="act-leg-text"><div class="tr-card tr-metro"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kyoto Station <span>→</span> Sanjo-Keihan (Ganko)</div><div class="tr-meta">metro/bus ~15 min · of Karasuma-lijn 2 haltes → Shijo voor Daimaru depachika</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~17:15</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner — nog niets vast · Ganko Sanjo Honten · depachika take-away · ⚪️ Musashi-kaiten</div>
-        <div class="act-meta">Bewust niets gereserveerd — drie opties afhankelijk van energie · na een Nara-dag is "helemaal niet uit eten" (optie 2) een prima uitkomst</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Vrije avond</span>🍱 Diner</div>
+        <div class="act-meta">nog niets vast · Ganko Sanjo Honten · depachika take-away · ⚪️ Musashi-kaiten · Bewust niets gereserveerd — drie opties afhankelijk van energie · na een Nara-dag is "helemaal niet uit eten" (optie 2) een prima uitkomst</div>
         <p><strong>Optie 1 — Ganko Sanjo Honten</strong>: groot familie-restaurant (Famiresu) bij Sanjo Station, hele Kyoto-keuken (sushi, tempura, soba, udon) · 👶 kid-check volledig bevestigd: baby's welkom, kinderstoelen én kindermenu, 400+ stoelen met tatami-privékamers — dé nul-stress-avond van Kyoto. Walk-in, dagelijks 11:30–22:00.<br><br><strong>Optie 2 — Daimaru depachika take-away</strong>: stop op Shijo, pak Obanzai (Kyoto-bijgerechtjes, vegetarisch), inari-sushi, tempura. Of nog simpeler: konbini op de route. Eet thuis op tatami, peuter kruipt vrij rond, 19:30-bedtijd-garantie.<br><br><strong>⚪️ Optie 3 — Sushi no Musashi Sanjo honten</strong> (寿しのむさし, Kawaramachi-Sanjo, 3 min van Ganko): hét Kyoto-kaiten-instituut sinds 1977 — koks in het midden, bordjes op een écht rondlopende band (Sushiro-urban en Uobei hebben dat niet meer), lokale vis, ~¥165 per bordje · dagelijks 11:00–21:45, alleen 1/1 dicht · om 17:05 binnen = vóór de toeristenrij. ⚠️ Vooral counter: 1F 36 counterplekken, 2F één box + 8 counterplekken — peuter op schoot naast een bewegende band vraagt handen erbij; vraag bij binnenkomst naar de box op 2F, en is die bezet of de rij &gt;15 min → Ganko om de hoek. Box-alternatief 7 min verderop: <b>Sushiro Kawaramachi-Takoyakushi</b> (kinderstoelen, tablet in het Engels, kindermenu, wachtnummer via app) — comfortabeler, maar bestelling komt via een eigen baan, geen band-beleving.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus/metro terug Higashiyama · ~15 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Sanjo <span>→</span> machiya</div><div class="tr-meta">bus/metro</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~18:45</div>
       <div class="act-body">
@@ -2162,7 +2170,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag9">
+<div class="day-entry v2" id="dag9">
   <div class="day-headline">
     <div class="day-num-label">Dag 9 · do 12 november</div>
     <h3>Kinkaku-ji · Ten no Meshi-lunch ✓ · Kintsugi samen ✓ · 🏮 Kodai-ji bij nacht</h3>
@@ -2180,7 +2188,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">Bij Kinkaku-ji opening om 09:00 = rustigst · daarna heeft de dag bewust lucht — geen haast-schema</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">08:15 taxi Higashiyama → Kinkaku-ji · ~25 min · ~¥3.500 · aankomst ~08:45 (poort opent 09:00)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">08:15</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Kinkaku-ji</div><div class="tr-meta">taxi ~¥3.500 (GO-app) · aankomst ~08:45, poort opent 09:00</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~09:00</div>
       <div class="act-body">
@@ -2189,16 +2197,16 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Het drieverdiepingen gouden paviljoen spiegelt in het omringende ven. Bij opening = warm ochtendlicht + minder drukte. Vlakke tuin met enkele kleine trappen, stroller prima.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Kinkaku-ji → Ichiwa · ~15 min lopen of korte taxi richting Imamiya Shrine</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Kinkaku-ji <span>→</span> Ichiwa</div><div class="tr-meta">alleen bij optie Ichiwa · ~15 min lopen of korte taxi richting Imamiya Shrine</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~10:00</div>
       <div class="act-body">
-        <div class="act-title">⚪️ Ichiwa (Ichimonjiya Wasuke) — aburi-mochi · alleen als de ochtend vanzelf loopt</div>
-        <div class="act-meta">10:00–17:00 · ⚠️ wo gesloten — vandaag do ✓ open · vegetarisch · buitenbankjes, stroller ernaast · <b>15 min lopen vanaf Kinkaku-ji, élke richting</b> → kost ~30-40 min extra</div>
+        <div class="act-title">⚪️ Ichiwa (Ichimonjiya Wasuke)</div>
+        <div class="act-meta">aburi-mochi · alleen als de ochtend vanzelf loopt · 10:00–17:00 · ⚠️ wo gesloten — vandaag do ✓ open · vegetarisch · buitenbankjes, stroller ernaast · <b>15 min lopen vanaf Kinkaku-ji, élke richting</b> → kost ~30-40 min extra</div>
         <p><strong>Wat het is:</strong> een van de oudste eetzaken ter wereld — zelfde familie, zelfde plek, sinds ~het jaar 1000 (25e generatie), met precies één menu-item: houtskool-gegrilde kinako-mochi met witte-miso-glazuur, bij de poort van Imamiya Shrine (met eeuwige rivaal Kazariya ertegenover). Je eet er dus vooral duizend jaar geschiedenis; de mochi zelf is lekker maar klein.<br><br><strong>De eerlijke afweging:</strong> het is een detour van 30-40 min op een ochtend die op tijd terug moet zijn voor de 11:30-lunch (met de detour heb je thuis nog ~20 min lucht) — en mochi/dango-momenten heb je deze reis nog genoeg (Arashiyama, Kasagi-ya, Gion Tokuya, Nakatanidou in Nara). Trekt het duizend-jaar-verhaal je? Doen. Anders: skip zonder spijt, direct naar huis = maximale lucht.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Ichiwa → Higashiyama · taxi ~25 min ~¥3.500 · of bus + metro ~40 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">Ichiwa / Kinkaku-ji <span>→</span> machiya</div><div class="tr-meta">taxi ~¥3.500 · of bus + metro ~40 min</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~10:15</div>
       <div class="act-body">
@@ -2215,7 +2223,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p><strong>Waarom deze:</strong> levendig frituur-theater — de chef bakt vlak voor je neus, entertainment-personeel, verse pot-rijst — en precies daarom baby-proof: in de vrolijke drukte hoort níemand een 14-maander, en zonder vooruitbetaling blijft de gok klein — kosteloos verzetten/annuleren kan tot daags ervoor (same-day kan een fee hebben). De omakase-lunch (5 gangen) eindigt op een rijstkom (ten-toji/tendon-stijl) = vullend; te licht? À la carte bijbestellen kan tijdens lunch (¥880–1.320/stuk).<br><br><strong>Praktisch:</strong> ⚠️ counter naast hete olie — peuter op schoot aan de veilige kant, vraag de 1F · pescetarisch melden bij reserveren (courses bevatten standaard kip/wagyu-items — swappen kan) · ⚠️ het merk heeft ook sukiyaki-, tonkatsu- en omusubi-zaken in Gion: kies de <b>Tempura · Gion honten</b>.<br><br><strong>✓ Geboekt</strong> via <a href="https://booking.ebica.jp/webrsv/plan_search/e014009386/32799?language=en" target="_blank" class="gyg-link">ebica</a>: do 12/11 om 11:30, 2 couverts · tel. 075-744-6102 · geen vooruitbetaling, maar wijzigingen uiterlijk daags ervoor — same-day annuleren kan een fee hebben · nog doorgeven (ebica-account of telefoon): pescetarisch · infant (14 mnd) op schoot, veilige kant/1F · waar kan de stroller?<br><br><em>Afgevallen: Endo Yasaka (privékamer-splurge, 2×¥7.700 +18% ≈ ¥18.200 prepaid) — te veel gok op de baby-mood. Wordt het tóch zo'n gouden dag en wil je ooit upgraden: <a href="https://www.tablecheck.com/en/shops/honten-endo/reserve" target="_blank" class="gyg-link">TableCheck honten</a> / 075-551-1488, maar privékamers lopen in november vol.</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~12:40 lunch klaar · terug: bus 206 vanaf halte Gion of taxi ~10 min (moe kind = taxi) · thuis ~12:55 · klaarmaken voor dut</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:40</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Gion <span>→</span> machiya</div><div class="tr-meta">bus 206 vanaf halte Gion · of taxi ~10 min (moe kind = taxi) · thuis ~12:55, klaarmaken voor dut</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~13:05</div>
       <div class="act-body">
@@ -2224,16 +2232,16 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Thuis ~13:00 na de lunch, peuter direct in bed. Iedereen rust uit — niemand vertrekt mid-dut; hij wordt natuurlijk wakker (~14:45), snack, en dan pas samen de deur uit. <em>Slaap primeert over golden hour — bewuste keuze.</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Samen vertrek ~15:30 met stroller · Keihan Shichijo → Sanjo + stukjes lopen ~25 min, of bus 206/taxi ~10 min · geen haast — het slot is pas om 16:00</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~15:30</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Sanjo (kintsugi)</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span>Shichijo → Sanjo + stukjes lopen ~25 min · of bus 206/taxi ~10 min · geen haast, het slot is 16:00</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">16:00</div>
       <div class="act-body">
-        <div class="act-title">🏺 Kintsugi-workshop — sámen · 16:00–17:00 · ✓ GEBOEKT</div>
-        <div class="act-meta">2 plekken geboekt · Traveling Tokyo · studio 禅 Zen Kyoto Annex 6F (Kawaramachi-Sanjō) · 1u · gratis annuleren tot 24u · peuter mee in de buggy — ⚠️ nog bevestigen via GYG-bericht aan de organisator</div>
+        <div class="act-title">🏺 Kintsugi-workshop</div>
+        <div class="act-meta">sámen · 16:00–17:00 · ✓ GEBOEKT · 2 plekken geboekt · Traveling Tokyo · studio 禅 Zen Kyoto Annex 6F (Kawaramachi-Sanjō) · 1u · gratis annuleren tot 24u · peuter mee in de buggy — ⚠️ nog bevestigen via GYG-bericht aan de organisator</div>
         <p>Kapotte keramiek repareren met goudlak en goudpoeder — samen, naast elkaar. De peuter blijft het hele uur <strong>in de buggy</strong> (natte urushi-lak is giftig + overal breekbaar werk): snacks en een boekje mee. Een review van sep 2026 beschrijft personeel dat een meegebrachte baby entertainde terwijl beide ouders meededen — stuur toch even een GYG-bericht ter bevestiging ("we bring our 14-month-old in his stroller, he won\'t participate"). <em>Zegt de studio onverhoopt nee → gratis omboeken naar twee wissel-slots (15:00 + 16:00).</em></p>
       </div>
     </div>
-<div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">17:00 klaar · taxi ~8 min (~¥1.200, GO-app) naar Kodai-ji · OV = 5 min lopen naar Sanjo-Keihan + bus 206 (Higashiyama-Sanjo → Higashiyama-Yasui, 3 haltes) ~20 min — met buggy is de taxi het waard · receptie boven aan de Daidokoro-zaka-trap</div></div>
+<div class="act-leg tr"><div class="act-leg-time">17:00</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">kintsugi <span>→</span> Kodai-ji</div><div class="tr-meta">taxi ~¥1.200 (GO-app) · OV: 5 min lopen naar Sanjo-Keihan + bus 206 (3 haltes → Higashiyama-Yasui) ~20 min · receptie boven aan de Daidokoro-zaka-trap</div></div><div class="tr-dur">~8 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~17:20</div>
       <div class="act-body">
@@ -2242,7 +2250,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Zen-tempel van Nene (weduwe van Hideyoshi, 1606) op de helling tussen Ninenzaka en Yasaka. Drie dingen die ook zonder rood blad werken: de <strong>Garyochi-vijver</strong> die de verlichte bomen en de overdekte Garyoro-gang spiegelt (hét Kodai-ji-beeld), de <strong>projectie-show "KODAI-JI — Momoyama Ryoran"</strong> op de zandtuin vóór de Hojo (loopt in een lus van een paar minuten, zittend vanaf de veranda — peuter-magneet) en het <strong>verlichte bamboepad</strong> achter de theehuisjes van Rikyu als afdaling naar de uitgang. Om 17:20 op een donderdag begin november sta je nauwelijks in de rij; de piek is rond 18:00, dus niet treuzelen vóór de ingang. Warm aankleden: ~10°C en je staat stil bij de vijver. Combiticket met Entoku-in (¥900) overslaan — één tempel is genoeg. <em>Carrier dus vanochtend al in de dagtas.</em> Geen puf meer na de workshop? Dan gewoon de blue-hour-wandeling naar huis via Shirakawa en Gion (~30 min) en om 17:30 eten — Kodai-ji is tot 13/12 elke avond open, dus om beurten na 20:00 kan altijd nog.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~18:10 eruit · 8 min lopen naar huis via Nene-no-michi en Ninenzaka · Fresco/Lawson onderweg</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~18:10</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Kodai-ji <span>→</span> machiya</div><div class="tr-meta">via Nene-no-michi en Ninenzaka · Fresco/Lawson onderweg</div></div><div class="tr-dur">8 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~18:20</div>
       <div class="act-body">
@@ -2277,7 +2285,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag10">
+<div class="day-entry v2" id="dag10">
   <div class="day-headline">
     <div class="day-num-label">Dag 10 · vr 13 november</div>
     <h3>Arashiyama · Bamboo Grove · Otagi Tempel</h3>
@@ -2295,7 +2303,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">Om 08:00 in het bos = leeg · met OV (via Kyoto Station) ben je ~1u kwijt en moet je om 07:00 weg — taxi wint</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Taxi Higashiyama → Bamboo Grove · ~25 min · ~¥3.500 · (OV-alternatief: bus/taxi naar Kyoto Station + JR Sanin-lijn 15 min ¥240 + 12 min lopen = ~1u deur-tot-bos)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">07:30</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Bamboo Grove</div><div class="tr-meta">taxi ~¥3.500 · OV-alternatief: Kyoto Station + JR Sanin-lijn 15 min ¥240 + 12 min lopen = ~1u deur-tot-bos</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~08:00</div>
       <div class="act-body">
@@ -2304,7 +2312,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Dichte bamboetunnel die het licht gefilterd doorlaat. <strong>Eerlijk verwachtingsmanagement:</strong> het pad is ~500 m en in 10–15 min uitgelopen — zie het als sfeervolle opwarmer van Arashiyama, niet als hoofdact. Om 08:00 is het vrijwel leeg (en kans op mist); vanaf ~09:30 wordt het een photo-op-file. De rivier en de Togetsukyo-brug later vandaag zijn minstens zo goed.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">5 min lopen zuid naar Tenryu-ji noord-ingang</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Bamboo Grove <span>→</span> Tenryu-ji (noord-ingang)</div><div class="tr-meta"></div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~08:45</div>
       <div class="act-body">
@@ -2313,7 +2321,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>UNESCO-tempel met een tuin ontworpen om de bergwand van Arashiyama als achtergrond te gebruiken (shakkei). Vlak terrein, stroller bij ingang parkeren. Sogenchi-vijver is de hoofd-foto. Geen zin in nóg een tempel? Loop gewoon door naar de rivier.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus #62 of #72 vanaf Tenryu-ji-mae · ~15 min naar Otagi-dera-mae · of taxi (~10 min, ~¥1.500)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Tenryu-ji-mae <span>→</span> Otagi-dera-mae</div><div class="tr-meta">bus #62 of #72 · of taxi ~10 min ~¥1.500</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~09:45</div>
       <div class="act-body">
@@ -2322,7 +2330,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Verborgen tempel met 1200 unieke mossige stenen figuren — elk met een ander gezicht (sommige glimlachen, andere mediteren, eentje speelt tennis). Bijna geen toeristen door uithoek-locatie. Lichte trappen — stroller bij ingang, peuter in carrier.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus terug Tenryu-ji · ~15 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Otagi-dera-mae <span>→</span> Tenryu-ji</div><div class="tr-meta"></div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~11:30</div>
       <div class="act-body">
@@ -2331,7 +2339,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Casual opties, allemaal walk-in: <strong>soba/udon-zaakjes rond Saga-Arashiyama Station</strong> (kitsune-udon of zaru-soba ~¥1.000), of <strong>bakkerij/konbini-picknick aan de rivier</strong> bij de Togetsukyo-brug — bankjes met bergwand-uitzicht, peuter kruipt vrij rond. Snack-stops eX cafe + Koto Imo Honpo staan hieronder bij de brug.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">5 min lopen naar Togetsukyo-brug en rivier</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Tenryu-ji <span>→</span> Togetsukyo-brug</div><div class="tr-meta"></div></div><div class="tr-dur">5 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~13:30</div>
       <div class="act-body">
@@ -2340,7 +2348,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Lange rustige wandeling langs de Hozugawa-rivier met de bergwand op de achtergrond — peuter dut <strong>in de stroller</strong> terwijl jullie hobbelen. Geen rush terug voor bed-dut. Optioneel: rickshaw-rit langs de rivier (¥4.000 voor 12 min) — leuk voor peuter als hij wakker is.<br><br>🍡 <strong>Snack-stops Arashiyama:</strong> <b>eX cafe</b> (1 min van Randen-station, villa met tuin) — "Hokuhoku Odango"-set ¥1.650: zelf dango grillen op een tafel-shichirin, mét matcha; vóór 11:00 geen rij. Of <b>Koto Imo Honpo</b> op de hoofdstraat: getorchte mitarashi-dango ¥280 + zoete-aardappel-softijs, walk-up stand.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">JR Sanin-lijn Saga-Arashiyama → Kyoto Station · 15 min · stroller-dut gaat door</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Saga-Arashiyama <span>→</span> Kyoto Station</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">JR</span>Sanin-lijn · ¥240 · stroller-dut gaat door</div></div><div class="tr-dur">15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~15:15</div>
       <div class="act-body">
@@ -2352,8 +2360,8 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">16:00</div>
       <div class="act-body">
-        <div class="act-title">⚔️ Samurai Ninja Museum Kyoto — 16:00-sessie · ✓ GEBOEKT</div>
-        <div class="act-meta">Teramachi · 1u sessie · €20 p.p. · 4.7★ · GYG #1079387 · indoor + overdekt</div>
+        <div class="act-title">⚔️ Samurai Ninja Museum Kyoto</div>
+        <div class="act-meta">16:00-sessie · ✓ GEBOEKT · Teramachi · 1u sessie · €20 p.p. · 4.7★ · GYG #1079387 · indoor + overdekt</div>
         <p>Interactief: samurai-armor passen + ninja-sterren gooien · stroller buiten parkeren of carrier. Klaar om 17:00 — Engine Ramen zit ~2 min lopen verderop (via de overdekte arcade, dus ook droog bij regen), dus het diner sluit er naadloos op aan en er valt geen gat-uur vóór bedtijd.<br><br><strong>⚪️ Skip-clausule:</strong> gratis annuleren tot do 12/11 16:00 (24u vooraf). Stort de Arashiyama-ochtend pas op de dag zelf in, dan kost skippen €40 — maar het is indoor en maar 1u, dus meestal haalbaar.</p>
       </div>
     </div>
@@ -2369,7 +2377,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="choice-block"><strong>B · Mumokuteki Cafe KYOTO</strong> (Teramachi, 2F — ⚠️ ingang aan de Gokomachi-kant, niet in de arcade; lift aanwezig, vraag anders het personeel) · ✓ heropend als volledig vegan · relaxed · walk-in of familie-plek via TableCheck · ~¥1.800 p.p. · 11:30–20:00, ⚠️ wo gesloten (vandaag vr ✓) · 👶 best uitgeruste zaak van de hele reis: familiehoek met boekjes/speelgoed, vegan kids-omurice ¥800, kinderstoelen, aparte verschoon-/voedingsruimte, eigen babyvoeding mag mee · simpel + zeker.</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus/metro terug Higashiyama · ~15 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~19:00</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Teramachi <span>→</span> machiya</div><div class="tr-meta">bus/metro</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~19:00</div>
       <div class="act-body">
@@ -2387,7 +2395,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag11">
+<div class="day-entry v2" id="dag11">
   <div class="day-headline">
     <div class="day-num-label">Dag 11 · za 14 november</div>
     <h3>Relaxte ochtend → station · ⚪️ Nishiki optioneel · Kyoto → Kawaguchiko</h3>
@@ -2411,13 +2419,13 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~09:00</div>
       <div class="act-body">
-        <div class="act-title">⚪️ Nishiki Market — optioneel als de ochtend lekker loopt</div>
-        <div class="act-meta">Backup, geen plan A · rustig opstaan, ontbijten · vertrek richting station wanneer iedereen klaar is</div>
+        <div class="act-title">⚪️ Nishiki Market</div>
+        <div class="act-meta">optioneel als de ochtend lekker loopt · Backup, geen plan A · rustig opstaan, ontbijten · vertrek richting station wanneer iedereen klaar is</div>
         <p>Koffers zijn al weg via takkyubin — geen pakstress. Rustig ontbijten en klaarmaken. <strong>Als iedereen vroeg wakker en in goede stemming is:</strong> bus #100/#206 naar Shijo (~10 min) + 5 min lopen naar Nishiki. Draagzak (geen stroller — zaterdag-drukte), snelle proeverij: tamagoyaki, matcha gelato, pickles. <strong>Izuju Gion-detour</strong> (5 min via Shijo-dori): take-away saba-zushi + inari-zushi in bamboe-verpakking voor in de Shinkansen — veel beter dan station-bento. <strong>Aritsugu pickles</strong> als souvenir pakken. Dan terug richting station.<br><br><strong>Als de ochtend niet vlot loopt of de baby moeilijk doet:</strong> direct richting Kyoto Station. Izuju heeft ook een kleine balie bij Takashimaya Station Store (Kyoto Station) als snel backup. <em>Nishiki is de bonus, niet de reden voor het tijdschema.</em></p>
         <p>⚠️ <strong>IJzeren regel:</strong> om 11:40 staan jullie op Kyoto Station. Nishiki moet dat nooit in gevaar brengen.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Taxi/bus naar Kyoto Station · ⚠️ uiterlijk 11:40 aanwezig</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Kyoto Station</div><div class="tr-meta">taxi of bus · ⚠️ uiterlijk 11:40 op het station</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~11:30</div>
       <div class="act-body">
@@ -2426,7 +2434,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Lunch in de Shinkansen: <strong>Izuju saba-zushi + inari-zushi</strong> uit bamboe-verpakking (al opgepikt bij Nishiki-detour). Of als backup: <strong>UNO RAMEN Kyoto Station</strong> (10F ramen-verdieping, 100% vegan, dagelijks 11:00–22:00 — T's TanTan heeft géén Kyoto-vestiging), of ekiben uit Isetan B2 depachika (~¥1.300–1.800).<br><br>⚠️ <em>Halen jullie de 12:07 niet: <b>Kodama 824 · 12:10 → Mishima 14:49</b> (ook direct, geen overstap · 2u39) + bus 15:20 → Kawaguchiko 16:50 → ryokan ~17:15 (kaiseki eventueel naar 18:30 vragen). Kodama rijdt elk uur om :10 (11:10 → 13:49 · 13:10 → 15:49). Met SmartEX gratis omboeken tot 4 min vóór vertrek.</em></p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Hikari 706 Kyoto 12:07 → Mishima 13:57 · 1u50 · stroller-dut peuter mogelijk</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">12:07</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚄</div><div class="tr-body"><div class="tr-route">Kyoto <span>→</span> Mishima</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Hikari 706</span>wagen 16, stoel 1D + 1E · ✓ geboekt · stroller-dut mogelijk</div></div><div class="tr-dur">1u50</div></div></div></div>
     <div class="act-block">
       <div class="act-time">13:57</div>
       <div class="act-body">
@@ -2434,7 +2442,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta"><b>Fujikyu "Mishima–Kawaguchiko Liner"</b> 14:20 vertrek vanaf Mishima-zuiduitgang 南口 (23 min na de Hikari · elk uur :20 · 15:20 als buffer) · 1u30 → Kawaguchiko 15:50 (via Yamanakako + Fuji-Q) · ¥2.500 p.p. WEB-tarief (¥2.700 aan het loket) · <b>予約制・全席指定 = reservering verplicht, alle stoelen gereserveerd</b> (geen Fujikyu-loket in Mishima!) — ✓ <b>geboekt 15/10</b> via <a href="https://www.fujiyamaconnect.jp/bus/" target="_blank">Fujiyama Connect</a> (bus 0015 · reserveringsnr <b>3107343</b> / AR0000094355 · ¥5.000 totaal · PDF in Downloads) · ⚠️ <b>QR-ticket met tijdstempel, "screenshots not allowed"</b>: op de dag de live ticketlink uit de bevestigingsmail openen (internet nodig), PDF is alleen backup · <b>stoelen: 03A + 03B</b> (links = Fuji-kant, rij 3 = buffer-stoel vóór de peuter, ver van toilet rij 11) · <b>gemist = ticket vervalt</b>, vóór 14:20 wél gratis omboekbaar via de site → bij Kodama-scenario in de trein omboeken naar 15:20 · perron → 南口 perron 2 ≈ 5 min lopen</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus door bergachtig landschap · peuter slaapt waarschijnlijk</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">14:20</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Mishima (zuiduitgang) <span>→</span> Kawaguchiko Station</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#4a8a3a">Fujikyu Liner</span>bus 0015 · ✓ geboekt · door de bergen, peuter slaapt waarschijnlijk</div></div><div class="tr-dur">~1u45</div></div></div></div>
     <div class="act-block">
       <div class="act-time">15:50</div>
       <div class="act-body">
@@ -2442,7 +2450,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <div class="act-meta">Konanso shuttle: gratis vanaf Kawaguchiko Station · bel 30 min vooraf vanaf bus (~15:20, rond halte Yamanakako) · ⚠️ koyo-zaterdag: bus kan 10–20 min vertraging hebben rond Fuji-Q</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Konanso shuttle ~10 min · check-in ~16:30</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~16:15</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚐</div><div class="tr-body"><div class="tr-route">Kawaguchiko Station <span>→</span> Konansou</div><div class="tr-meta">hotel-shuttle · check-in ~16:30</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~16:30</div>
       <div class="act-body">
@@ -2484,7 +2492,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   <span class="koyo-note">🎯 Beste koyo van de trip · bergen kleuren als Nagano (peak ~17–25 nov) · Fuji-kans ~85–90%</span>
 </div>
 
-<div class="day-entry" id="dag12">
+<div class="day-entry v2" id="dag12">
   <div class="day-headline">
     <div class="day-num-label">Dag 12 · zo 15 november</div>
     <h3>Zonsopgang Fuji · Meer · Kubota Museum</h3>
@@ -2508,7 +2516,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Park aan de noordoever van Lake Kawaguchi met <strong>iconische Fuji-foto-spot</strong> (Fuji weerspiegelt in het meer). November = laatste herfstkleuren. Lavendel-velden zijn in juli, maar gras + bergen + meer = alsnog magisch. ~1u rondwandelen, peuter kan rondkruipen op grasveld.<br><br>🍡 <strong>Snack ter plekke: Hanaterasu</strong> — vlak, stroller-perfect natuurstenen plein-complex ín Oishi Park: <b>Budouya Kofu</b> raisin-butter-sandwiches + druivensweets met terras en frontaal Fuji-over-meer-zicht (~10:00–17:30, dagelijks). En bij de Ropeway-basis (namiddag-optie A): <b>Fujiyama Cookie</b> — Fuji-vormige boterkoekjes, in-house gebakken, 10:00–17:00.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Bus terug richting Kawaguchiko Station-buurt voor lunch · ~10 min</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:15</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚌</div><div class="tr-body"><div class="tr-route">Oishi Park <span>→</span> Kawaguchiko Station (lunch)</div><div class="tr-meta"></div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~12:30</div>
       <div class="act-body">
@@ -2625,7 +2633,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag13">
+<div class="day-entry v2" id="dag13">
   <div class="day-headline">
     <div class="day-num-label">Dag 13 · ma 16 november</div>
     <h3>Kawaguchiko → Tokyo · aankomst · ⚡ Akihabara-neon</h3>
@@ -2644,12 +2652,12 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <div class="act-block">
       <div class="act-time">~10:00</div>
       <div class="act-body">
-        <div class="act-title">⚪️ Chureito Pagoda — alleen bij energie, geen must</div>
-        <div class="act-meta">~2u venster tot de shuttle · maandagochtend = rustiger dan weekend</div>
+        <div class="act-title">⚪️ Chureito Pagoda</div>
+        <div class="act-meta">alleen bij energie, geen must · ~2u venster tot de shuttle · maandagochtend = rustiger dan weekend</div>
         <p>Taxi vanaf Konansou ~15 min ~¥3.000 (sneller dan shuttle + bus + lopen) · iconische foto van pagode + Fuji op achtergrond · ⚠️ <strong>~400 trappen omhoog</strong> = draagzak verplicht. <em>📿 Bonus: Arakura Fuji Sengen Jinja onder de pagode verkoopt prachtige goshuincho met Fuji-door-torii-design.</em> Terug bij Konansou ~11:30, koffers ophalen, shuttle naar station. Geen zin? Gewoon rustig blijven hangen rond Konansou/het station tot de shuttle.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~11:45 Konansou shuttle naar Kawaguchiko Station · ~10 min · zonder Chureito: hoto-lunch ~11:00 bij het station, mét Chureito: onigiri uit de stationswinkel voor in de bus</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~11:45</div><div class="act-leg-text"><div class="tr-card tr-bus"><div class="tr-icon">🚐</div><div class="tr-body"><div class="tr-route">Konansou <span>→</span> Kawaguchiko Station</div><div class="tr-meta">hotel-shuttle · zonder Chureito: hoto-lunch ~11:00 bij het station · mét Chureito: onigiri uit de stationswinkel voor in de bus</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">12:30</div>
       <div class="act-body">
@@ -2658,7 +2666,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Directe bus, geen overstap, buggy ingeklapt in het bagageruim — de trein (Fuji Excursion) heeft op maandag pas om 14:08 een vertrek en eindigt in Shinjuku. Peuter dut waarschijnlijk onderweg (~13:00–14:30). ⚠️ File op de Chuo-snelweg bij Chofu/Takaido kan op maandagmiddag 15–20 min kosten — check-in 15:00 niet strak plannen. Nihonbashi Exit ligt aan de noordkant van de Yaesu-zijde: taxistandplaats pal voor de deur, en <strong>Nihombashi Station (Asakusa-lijn) op 5 min lopen</strong> = 4 haltes direct naar Kuramae. Met alleen rugzakken + buggy zijn beide prima.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Nihonbashi Exit → Kuramae · taxi ~15 min ~¥2.000, óf 5 min lopen naar Nihombashi Station + Asakusa-lijn 4 haltes (~¥180 p.p.) · daarna koffers ophalen bij Yamato Kotobuki (3 min van Kuramae A5)</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~14:40</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Tokyo Station (Nihonbashi Exit) <span>→</span> Kuramae</div><div class="tr-meta">taxi ~15 min ~¥2.000 · óf 5 min lopen naar Nihombashi + <span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>4 haltes (~¥180 p.p.) · daarna koffers bij Yamato Kotobuki (3 min van Kuramae A5)</div></div><div class="tr-dur">~20 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~15:00</div>
       <div class="act-body">
@@ -2667,12 +2675,12 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
         <p>Uitpakken voor 6 nachten Tokyo. Heeft de peuter in de bus geslapen, dan rustig spelen terwijl jullie installeren; zo niet, laat dut 15:15–16:30. Kuramae is rustig + hip — leerlooierijwijk-revival met designwinkels en cafés. Kakimori (notebook-atelier), Koffee Mameya, en de Sumida-rivier-promenade zijn allemaal binnen 10 min lopen.</p>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">~16:45 naar Akihabara · Asakusabashi (1 halte Asakusa-lijn) + 1 JR-stop, of ~20 min lopen</div></div>
+    <div class="act-leg tr"><div class="act-leg-time">~16:45</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Akihabara</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>1 halte Asakusabashi + 1 JR-stop · of ~20 min lopen</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
       <div class="act-time">~16:45</div>
       <div class="act-body">
-        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>⚡ Akihabara Electric Town — eerste avond-neon (default)</div>
-        <div class="act-meta">10 min van huis · neon vanaf ~17:00 (zonsondergang 16:30) · bewust kort: ~1,5u</div>
+        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>⚡ Akihabara Electric Town</div>
+        <div class="act-meta">eerste avond-neon (default) · 10 min van huis · neon vanaf ~17:00 (zonsondergang 16:30) · bewust kort: ~1,5u</div>
         <p>Peuter is fris van de late dut — perfect venster voor Electric Town als "welkom in Tokyo". Wandel de <strong>Chuo-dori</strong> af onder de anime-billboards, duik <strong>Yodobashi-Akiba</strong> in (6F speelgoed-verdieping, liften overal, buggy ✓) en pik <strong>Radio Kaikan</strong> (10 verdiepingen figures & merch, liften) of een paar gacha-zaken mee. <strong>Super Potato</strong> (retro-games, 3 krappe verdiepingen) alleen met draagzak. Maid cafés en pachinko-hallen overslaan — luid, rokerig, niks voor een peuter. ⚠️ Sensorisch intens: bij overprikkeling gewoon bailen, jullie zijn in 10 min thuis. <em>Fallback bij lage energie na de busreis: korte buurtwandeling Kuramae of Sumida-rivier-promenade zoals vanouds — Akihabara schuift dan naar do-avond (dag 16).</em></p>
       </div>
     </div>
@@ -2703,7 +2711,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
   </div>
 </div>
 
-<div class="day-entry" id="dag14">
+<div class="day-entry v2" id="dag14">
   <div class="day-headline">
     <div class="day-num-label">Dag 14 · di 17 november</div>
     <h3>Tokyo Disneyland ✓ GEBOEKT</h3>
@@ -2713,22 +2721,30 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="transport-pill">JR Keiyo Line</span>
     <span>Tokyo Station → Maihama · ~15 min · ¥220 p.p. · ⚠️ Keiyo-perrons liggen 15-20 min lopen ondergronds vanaf de Yaesu-kant — reken die tijd erbij</span>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
+    <div class="act-leg tr"><div class="act-leg-time">~07:40</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#ec6e65"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Tokyo Station <span>→</span> Maihama</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>→ Nihombashi + lopen · <span class="tr-lijn" style="--lijn:#c9252f">JR Keiyo</span>~15 min · ¥220 p.p. · ⚠️ Keiyo-perrons 15–20 min lopen ondergronds vanaf de Yaesu-kant</div></div><div class="tr-dur">~50 min</div></div></div></div>
     <div class="act-block">
-      <h4>08:30</h4>
-      <div class="act-title">Aanwezig bij opening (09:00)</div>
-      <p>Tokyo Disneyland is consequent verkozen tot 's werelds beste Disney-park. Kom vroeg — rijen voor populaire attracties verdubbelen na 11:00. Stroller beschikbaar voor verhuur ¥1.000/dag.</p>
+      <div class="act-time">08:30</div>
+      <div class="act-body">
+        <div class="act-title">Aanwezig bij opening (09:00)</div>
+        <p>Tokyo Disneyland is consequent verkozen tot 's werelds beste Disney-park. Kom vroeg — rijen voor populaire attracties verdubbelen na 11:00. Stroller beschikbaar voor verhuur ¥1.000/dag.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Ochtend</h4>
-      <div class="act-title">It's a Small World · Jungle Cruise</div>
-      <p>It's a Small World is het absolute highlight voor baby (1 jaar) — kleurrijke poppen, muziek, rustige bootrit. Jungle Cruise en Western River Railroad zijn eveneens baby-vriendelijk en vroeg in de ochtend zonder lange wachttijd.</p>
+      <div class="act-time">Ochtend</div>
+      <div class="act-body">
+        <div class="act-title">It's a Small World · Jungle Cruise</div>
+        <p>It's a Small World is het absolute highlight voor baby (1 jaar) — kleurrijke poppen, muziek, rustige bootrit. Jungle Cruise en Western River Railroad zijn eveneens baby-vriendelijk en vroeg in de ochtend zonder lange wachttijd.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Middag</h4>
-      <div class="act-title">Pooh's Hunny Hunt · Baby Center · nap</div>
-      <p>Pooh's Hunny Hunt via Standby Pass in app (reserveer om 09:00 direct bij opening). Baby Center in World Bazaar: magnetron, flessenwarmer, verschoontafel, luiers en babyvoeding te koop.</p>
+      <div class="act-time">Middag</div>
+      <div class="act-body">
+        <div class="act-title">Pooh's Hunny Hunt · Baby Center · nap</div>
+        <p>Pooh's Hunny Hunt via Standby Pass in app (reserveer om 09:00 direct bij opening). Baby Center in World Bazaar: magnetron, flessenwarmer, verschoontafel, luiers en babyvoeding te koop.</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">avond</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#c9252f"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Maihama <span>→</span> Tokyo Station <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#c9252f">JR Keiyo</span><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>diner onderweg bij Tokyo Station (Soranoiro / Nemuro Hanamaru KITTE)</div></div><div class="tr-dur">~45 min</div></div></div></div>
   </div>
   <div class="meals">
     <div><b>Lunch:</b> Queen of Hearts Banquet Hall (Fantasyland) — kies de officieel gemarkeerde <b>plant-based items</b> (bv. kikkererwt-aardappelkroketten met tomaat-sojamelk-saus ¥1.680; gewone salades/pasta zijn niet gegarandeerd veggie) · ook Eastside Cafe + Blue Bayou hebben plant-based gerechten · reserveer via Disney app · ~¥2.000 p.p.</div>
@@ -2740,38 +2756,56 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="badge badge-tip">⚠️ Eigen eten mag officieel NIET het park in (picknick-area buiten de poort) — babyvoeding/allergie-maaltijden wél · mik op de officieel gemarkeerde plant-based menu-items</span>
   </div>
 </div>
-
-<div class="day-entry" id="dag15">
+<div class="day-entry v2" id="dag15">
   <div class="day-headline">
     <div class="day-num-label">Dag 15 · wo 18 november</div>
     <h3>Pancakes · Kappabashi-mes · TeamLab</h3>
     <div class="sleep-note">🏨 Tokyo</div>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
     <div class="act-block">
-      <h4>Ochtend (~08:30) — 🥞 fluffy pancakes, traag op gang</h4>
-      <div class="act-title">Iriya Plus Café @ Custom Soko — dé pancake-brunch van de reis</div>
-      <p>Disney was een lange dag — de ochtend blijft traag, maar mét beloning: <b>Iriya Plus Café @ Custom Soko</b>, bijna om de hoek in Kuramae — dikke fluffy pancakes (incl. Daifuku-pancake met mochi) in een verbouwd magazijn, weekdag-ochtend relaxed. Koffie erbij of erna: <strong>Leaves Coffee Roasters</strong> (top-brander, 5 min van het hotel), <strong>Camera</strong> (koffie + bakes op Misuji-dori) of <strong>Higuma Doughnuts</strong>. De virale soufflé-jiggly van <b>Benizuru</b> laten we eerlijk links liggen (TikTok-rijen vanaf de vroege ochtend voor 08:30-tickets); de jiggly-fix zit al op de dag 18-route: <b>Micasadeco Jingumae</b> — tweede pancake-kans. ⚪️ <strong>T-HOUSE New Balance</strong> (Nihonbashi-Hamacho, kura-pakhuis uit 1902) past vandaag niet meer naast Kappabashi — ligt op de dag 16-terugroute (2 stops vóór Kuramae), evt. daar tussenvoegen. 🍡 Kuramae-buurt-extra's voor de namiddag (beide ✓ open): <strong>Dandelion Chocolate Kuramae</strong> (bean-to-bar hot chocolate, 1F counter sneller dan 2F café) en <strong>Kashiya Shinonome</strong> (burnt-butter poundcake + scones, take-away 12:00–19:00, 5 min van het hotel).</p>
+      <div class="act-time">~08:30</div>
+      <div class="act-body">
+        <div class="act-title">Iriya Plus Café @ Custom Soko</div>
+        <div class="act-meta">dé pancake-brunch van de reis · 🥞 fluffy pancakes, traag op gang</div>
+        <p>Disney was een lange dag — de ochtend blijft traag, maar mét beloning: <b>Iriya Plus Café @ Custom Soko</b>, bijna om de hoek in Kuramae — dikke fluffy pancakes (incl. Daifuku-pancake met mochi) in een verbouwd magazijn, weekdag-ochtend relaxed. Koffie erbij of erna: <strong>Leaves Coffee Roasters</strong> (top-brander, 5 min van het hotel), <strong>Camera</strong> (koffie + bakes op Misuji-dori) of <strong>Higuma Doughnuts</strong>. De virale soufflé-jiggly van <b>Benizuru</b> laten we eerlijk links liggen (TikTok-rijen vanaf de vroege ochtend voor 08:30-tickets); de jiggly-fix zit al op de dag 18-route: <b>Micasadeco Jingumae</b> — tweede pancake-kans. ⚪️ <strong>T-HOUSE New Balance</strong> (Nihonbashi-Hamacho, kura-pakhuis uit 1902) past vandaag niet meer naast Kappabashi — ligt op de dag 16-terugroute (2 stops vóór Kuramae), evt. daar tussenvoegen. 🍡 Kuramae-buurt-extra's voor de namiddag (beide ✓ open): <strong>Dandelion Chocolate Kuramae</strong> (bean-to-bar hot chocolate, 1F counter sneller dan 2F café) en <strong>Kashiya Shinonome</strong> (burnt-butter poundcake + scones, take-away 12:00–19:00, 5 min van het hotel).</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~10:15</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Iriya Plus Café <span>→</span> Kappabashi</div><div class="tr-meta">~15 min lopen of korte taxi</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
-      <h4>~10:30–12:15 — 🔪 Kappabashi Dougu-gai · mes kopen</h4>
-      <div class="act-title">Japans kookgerei-walhalla — slenteren + hét mes voor thuis</div>
-      <p>Vanaf het pancake-café ~15 min wandelen (of korte taxi): <strong>Kappabashi Dougu-gai</strong>, de 800m lange kookgerei-straat waar Tokyo's restaurants hun messen, pannen, keramiek en sampuru (nep-eten, leuk souvenir) inslaan. Brede stoep, alles op straatniveau — buggy prima; dit is een slenter-straat, geen drukte-spot. <strong>Het mes: Kama-Asa</strong> (sinds 1908) is de default — Engelstalige service, rustige uitleg (santoku of gyuto voor thuis), <strong>tax-free met paspoort</strong> en naam-gravure (meestal gratis, ~15–30 min — wandel intussen de straat verder af). Alternatieven: <strong>Tsubaya</strong> (grootste keuze, pro-sfeer) en <strong>Kamata Hakensha</strong> (scherp geprijsd). ⚠️ <strong>Het mes gaat mee in de rúimbagage</strong> — nooit in handbagage/daypack. ⚠️ Openingstijden ~10:00–17:30, per winkel herbevestigen. 🍡 Onderweg: <strong>Kagetsudo</strong> (jumbo-melonpan ¥250 warm uit de oven, westkant Senso-ji) ligt ~5 min van het noordeinde · <strong>Coffee Tengoku</strong> (retro-kissaten, hotcake met ingebrand 天国-stempel, Nishi-Asakusa) opent ~12:00 — perfecte zit-stop ná het shoppen, wo ✓ (di dicht), klein zaakje: buggy vouwen.</p>
+      <div class="act-time">~10:30</div>
+      <div class="act-body">
+        <div class="act-title">🔪 Kappabashi Dougu-gai · mes kopen</div>
+        <div class="act-meta">~10:30–12:15 · Japans kookgerei-walhalla: slenteren + hét mes voor thuis</div>
+        <p>Vanaf het pancake-café ~15 min wandelen (of korte taxi): <strong>Kappabashi Dougu-gai</strong>, de 800m lange kookgerei-straat waar Tokyo's restaurants hun messen, pannen, keramiek en sampuru (nep-eten, leuk souvenir) inslaan. Brede stoep, alles op straatniveau — buggy prima; dit is een slenter-straat, geen drukte-spot. <strong>Het mes: Kama-Asa</strong> (sinds 1908) is de default — Engelstalige service, rustige uitleg (santoku of gyuto voor thuis), <strong>tax-free met paspoort</strong> en naam-gravure (meestal gratis, ~15–30 min — wandel intussen de straat verder af). Alternatieven: <strong>Tsubaya</strong> (grootste keuze, pro-sfeer) en <strong>Kamata Hakensha</strong> (scherp geprijsd). ⚠️ <strong>Het mes gaat mee in de rúimbagage</strong> — nooit in handbagage/daypack. ⚠️ Openingstijden ~10:00–17:30, per winkel herbevestigen. 🍡 Onderweg: <strong>Kagetsudo</strong> (jumbo-melonpan ¥250 warm uit de oven, westkant Senso-ji) ligt ~5 min van het noordeinde · <strong>Coffee Tengoku</strong> (retro-kissaten, hotcake met ingebrand 天国-stempel, Nishi-Asakusa) opent ~12:00 — perfecte zit-stop ná het shoppen, wo ✓ (di dicht), klein zaakje: buggy vouwen.</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:15</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Kappabashi <span>→</span> Kuramae</div><div class="tr-meta">lichte lunch onderweg of thuis</div></div><div class="tr-dur">~15 min</div></div></div></div>
     <div class="act-block">
-      <h4>Middag — bed-nap</h4>
-      <div class="act-title">Lichte lunch + echte bed-nap thuis (~13:15–15:00)</div>
-      <p>De pancakes waren groot — lichte lunch onderweg of thuis. Beste zit-opties bij Kappabashi: <b>Onigiri Yadoroku</b> (Tokyo's oudste onigiri-zaak, 1954, Bib Gourmand — 16 stoelen, om ~11:15 aansluiten of take-away · ⚠️ wo-opening herchecken, zo dicht) ~¥1.000 · <b>Misojyu</b> (miso-soep + verse onigiri, 3 min van Senso-ji, 08:00–19:00 — klein: buggy vouwen) ~¥1.000–1.500 · 📍 pin: <b>Tonkatsu Juroku</b> (Tawaramachi, 4.7★ — vooral varken/kip → vooral Michael, check ebi-katsu) · of gewoon konbini/bezorg-bento. Daarna baby in eigen bedje voor een volwaardige dut (stroller-dut mag ook als hij onderweg al omvalt — dan gewoon eerder richting TeamLab-kant slenteren).</p>
+      <div class="act-time">~13:15</div>
+      <div class="act-body">
+        <div class="act-title">Lichte lunch + echte bed-nap thuis</div>
+        <div class="act-meta">~13:15–15:00</div>
+        <p>De pancakes waren groot — lichte lunch onderweg of thuis. Beste zit-opties bij Kappabashi: <b>Onigiri Yadoroku</b> (Tokyo's oudste onigiri-zaak, 1954, Bib Gourmand — 16 stoelen, om ~11:15 aansluiten of take-away · ⚠️ wo-opening herchecken, zo dicht) ~¥1.000 · <b>Misojyu</b> (miso-soep + verse onigiri, 3 min van Senso-ji, 08:00–19:00 — klein: buggy vouwen) ~¥1.000–1.500 · 📍 pin: <b>Tonkatsu Juroku</b> (Tawaramachi, 4.7★ — vooral varken/kip → vooral Michael, check ebi-katsu) · of gewoon konbini/bezorg-bento. Daarna baby in eigen bedje voor een volwaardige dut (stroller-dut mag ook als hij onderweg al omvalt — dan gewoon eerder richting TeamLab-kant slenteren).</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~14:50</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Higashi-Ginza <span>→</span> Kamiyacho (Azabudai Hills)</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>overstap <span class="tr-lijn" style="--lijn:#8f8f8f">Hibiya</span>· of taxi ~20 min ~¥3.000</div></div><div class="tr-dur">~30–35 min</div></div></div></div>
     <div class="act-block">
-      <h4>Namiddag (~15:30–17:30)</h4>
-      <div class="act-title">TeamLab Borderless — Azabudai Hills · ✓ GEBOEKT</div>
-      <p>10.000m² immersief digitaal kunstmuseum. Baby is uitgerust van bed-nap = volle aandacht voor de spiegelende kleurenwereld. Donker, gedempt, indoor — perfect na een echte dut. ⚠️ <strong>Strollers mogen NIET de galleries in</strong> (gratis stroller-parking/lockers bij de ingang, géén leen-buggy's) — <strong>draagzak mee is verplicht</strong>. Let op: spiegelvloeren + donker + hard geluid — sommige peuters vinden het overweldigend, ga op eigen tempo. Baby gratis. <strong>✓ Tickets geboekt</strong> — tijdslot 15:30. Kuramae → Azabudai Hills: ~25 min metro (Toei Asakusa → Hibiya-lijn via Higashi-Ginza) of taxi.</p>
+      <div class="act-time">~15:30</div>
+      <div class="act-body">
+        <div class="act-title">TeamLab Borderless</div>
+        <div class="act-meta">Azabudai Hills · ~15:30–17:30 · ✓ GEBOEKT</div>
+        <p>10.000m² immersief digitaal kunstmuseum. Baby is uitgerust van bed-nap = volle aandacht voor de spiegelende kleurenwereld. Donker, gedempt, indoor — perfect na een echte dut. ⚠️ <strong>Strollers mogen NIET de galleries in</strong> (gratis stroller-parking/lockers bij de ingang, géén leen-buggy's) — <strong>draagzak mee is verplicht</strong>. Let op: spiegelvloeren + donker + hard geluid — sommige peuters vinden het overweldigend, ga op eigen tempo. Baby gratis. <strong>✓ Tickets geboekt</strong> — tijdslot 15:30. Kuramae → Azabudai Hills: ~25 min metro (Toei Asakusa → Hibiya-lijn via Higashi-Ginza) of taxi.</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~17:30</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#8f8f8f"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kamiyacho <span>→</span> Higashi-Ginza <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#8f8f8f">Hibiya</span>overstap <span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>· of taxi ~20 min · thuis ~18:15</div></div><div class="tr-dur">~30–35 min</div></div></div></div>
     <div class="act-block">
-      <h4>~17:30 — Direct naar huis · rustig diner Kuramae</h4>
-      <div class="act-title">Terug naar Kuramae — avond blijft laag-tempo</div>
-      <p>Vanaf TeamLab (Kamiyacho, direct verbonden met Azabudai Hills): Hibiya-lijn → overstap Higashi-Ginza → Asakusa-lijn naar Kuramae — <strong>~30-35 min deur-tot-deur</strong>, of taxi ~20 min (~¥3.000). Thuis ~18:15, diner <strong>Ootoya Asakusabashi</strong> om de hoek (kinderstoelen, kindermenu) of delivery/konbini op tatami. <strong>19:30 bed</strong> — Disney-recovery compleet. <em>Ginza hoeft vanavond niet meer: de rooftop + depachika zitten nu vast in de dag 16-ochtend, gekoppeld aan de Tsukiji-markt.</em></p>
+      <div class="act-time">~17:30</div>
+      <div class="act-body">
+        <div class="act-title">Terug naar Kuramae</div>
+        <div class="act-meta">direct naar huis · rustig diner Kuramae · avond blijft laag-tempo</div>
+        <p>Vanaf TeamLab (Kamiyacho, direct verbonden met Azabudai Hills): Hibiya-lijn → overstap Higashi-Ginza → Asakusa-lijn naar Kuramae — <strong>~30-35 min deur-tot-deur</strong>, of taxi ~20 min (~¥3.000). Thuis ~18:15, diner <strong>Ootoya Asakusabashi</strong> om de hoek (kinderstoelen, kindermenu) of delivery/konbini op tatami. <strong>19:30 bed</strong> — Disney-recovery compleet. <em>Ginza hoeft vanavond niet meer: de rooftop + depachika zitten nu vast in de dag 16-ochtend, gekoppeld aan de Tsukiji-markt.</em></p>
+      </div>
     </div>
   </div>
   <div class="tip-box">Trage pancake-ochtend, mes kopen op wandeltempo, échte bed-nap, daarna 1 indoor activiteit — en 's avonds gewoon thuis. Alles vóór TeamLab is op loopafstand: geen metro, geen tickets, geen klok. Stuk minder zwaar dan TeamLab inproppen op de volle zaterdag (dag 18).</div>
@@ -2781,43 +2815,65 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="badge badge-tip">⚪️ Speelruimte: Hamarikyu Gardens (5 min van TeamLab, ¥300 — historisch park met vijver en ruim grasveld) of Sumida Park (gratis, 10 min langs de rivier)</span>
   </div>
 </div>
-
-<div class="day-entry" id="dag16">
+<div class="day-entry v2" id="dag16">
   <div class="day-headline">
     <div class="day-num-label">Dag 16 · do 19 november</div>
     <h3>Tsukiji-vismarkt · Ginza · Senso-ji bij avondlicht</h3>
     <div class="sleep-note">🏨 Tokyo</div>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
+    <div class="act-leg tr"><div class="act-leg-time">07:45</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Higashi-Ginza <span>→</span> Tsukiji</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>direct · + 10 min lopen · op de markt ~08:15</div></div><div class="tr-dur">~25 min</div></div></div></div>
     <div class="act-block">
-      <h4>Vroeg ochtend (07:45–10:15) — 🐟 Tsukiji Outer Market</h4>
-      <div class="act-title">Ontbijt op de vismarkt — draagzak-missie</div>
-      <p>Om 07:45 de deur uit: Asakusa-lijn <strong>direct</strong> Kuramae → Higashi-Ginza (~15 min) + 10 min lopen — jullie staan ~08:15 op de markt, precies in het beste venster (08:00–10:00, vanaf ~09:30 stromen de tours binnen). De groothandel verhuisde in 2018 naar Toyosu, maar de <strong>buitenmarkt</strong> bleef: ~300 kraampjes en eetzaakjes in smalle steegjes. <strong>Ontbijt al slenterend:</strong> vers gebakken <b>tamagoyaki-spies</b> (Yamachou of Marutake — warm, zoet, hét peuterhapje), <b>kaisendon</b> of verse sushi voor jullie, <b>Matcha Stand Maruni</b> en aardbei-daifuku bij <b>Soratsuki</b>. Zitten met tafel: <b>Sushi Zanmai honten</b> (24u open, ⚠️ kinderstoel ter plekke vragen). <em>📍 Pin-notitie: Ramen Oyster And Shell zit hier — counter-zaak zonder kinderstoel, alleen als daluren-stop of solo.</em><br><br>⚠️ <strong>Praktisch:</strong> smalle drukke gangen → <strong>draagzak, buggy blijft thuis</strong> · niet lopend eten (eet bij het kraampje) · veel zaken sluiten v.a. ~14:00 · <strong>check de marktkalender (tsukiji.or.jp) voor do 19/11</strong> — donderdag is normaliter een veilige dag, woensdagen zijn de wisselvallige.</p>
+      <div class="act-time">07:45</div>
+      <div class="act-body">
+        <div class="act-title">🐟 Tsukiji Outer Market</div>
+        <div class="act-meta">07:45–10:15 · ontbijt op de vismarkt, draagzak-missie</div>
+        <p>Om 07:45 de deur uit: Asakusa-lijn <strong>direct</strong> Kuramae → Higashi-Ginza (~15 min) + 10 min lopen — jullie staan ~08:15 op de markt, precies in het beste venster (08:00–10:00, vanaf ~09:30 stromen de tours binnen). De groothandel verhuisde in 2018 naar Toyosu, maar de <strong>buitenmarkt</strong> bleef: ~300 kraampjes en eetzaakjes in smalle steegjes. <strong>Ontbijt al slenterend:</strong> vers gebakken <b>tamagoyaki-spies</b> (Yamachou of Marutake — warm, zoet, hét peuterhapje), <b>kaisendon</b> of verse sushi voor jullie, <b>Matcha Stand Maruni</b> en aardbei-daifuku bij <b>Soratsuki</b>. Zitten met tafel: <b>Sushi Zanmai honten</b> (24u open, ⚠️ kinderstoel ter plekke vragen). <em>📍 Pin-notitie: Ramen Oyster And Shell zit hier — counter-zaak zonder kinderstoel, alleen als daluren-stop of solo.</em><br><br>⚠️ <strong>Praktisch:</strong> smalle drukke gangen → <strong>draagzak, buggy blijft thuis</strong> · niet lopend eten (eet bij het kraampje) · veel zaken sluiten v.a. ~14:00 · <strong>check de marktkalender (tsukiji.or.jp) voor do 19/11</strong> — donderdag is normaliter een veilige dag, woensdagen zijn de wisselvallige.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~10:15</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Tsukiji <span>→</span> Ginza 4-chome</div><div class="tr-meta">~15 min lopen · of 1 halte Hibiya-lijn</div></div><div class="tr-dur">~15 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">10:30</div>
+      <div class="act-body">
+        <div class="act-title">Ginza Six dak-gras + Mitsukoshi baby-hub</div>
+        <div class="act-meta">10:30–12:15 · Ginza-combo · het elastiek van de dag</div>
+        <p>Van de markt naar Ginza 4-chome is ~15 min wandelen (of 1 stop Hibiya-lijn). Twee ankers, kies op energie: <strong>Ginza Six</strong> — 13F dakterras met 4.000 m² gras (gratis, liften, dé renplek na een uur draagzak) + Yayoi Kusama-atrium + B2 sweets; en <strong>Ginza Mitsukoshi</strong> — 9F baby-lounge (voedingscabines, heet water, kindertoilet) + gratis dak-tuin + <b>Minori Café</b> (relaxedste peuter-lunch van Ginza). 🍡 <b>HIGASHIYA GINZA</b> hitokuchi-gashi (date-butter!) to-go onderweg. ⚪️ Sushi-lunch-zin? <b>Sushi no Midori Ginza</b>: om ~11:00 ticket trekken en Ginza Six doen tot jullie beurt (👶 kindermenu ✓, buggy mag). ⚪️ Alternatief i.p.v. Ginza (reisjunk-tip): 15 min lopen over de Kachidoki-brug naar de <b>Tsukishima monja-straat</b> — monjayaki (romiger broertje van okonomiyaki, bv. <b>Moheji</b>) op tafelbakplaat, opent ~11:00.<br><br><em><strong>Dit blok is het elastiek van de dag:</strong> loopt de markt uit of zakt de energie → skip Ginza volledig en neem de Asakusa-lijn direct naar huis; de depachika/baby-hub krijg je zaterdag bij Isetan alsnog. ⚪️ En route terug: T-HOUSE New Balance (kura-pakhuis, 2 stops vóór Kuramae) — alleen als lief nog fris is.</em></p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:20</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Higashi-Ginza <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>direct</div></div><div class="tr-dur">~15 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~12:45</div>
+      <div class="act-body">
+        <div class="act-title">Dut thuis</div>
+        <div class="act-meta">thuis ~12:45 · dut ~13:15–15:00 · daarna niksen op tempo</div>
+        <p>Terug via Higashi-Ginza → Kuramae, <strong>direct, ~15 min</strong>. Dut in eigen bedje is de default, maar geen wet — valt hij in de metro of buggy al om, prima: dan wordt het een stroller-dut en winnen jullie een uur Sumida-promenade. Namiddag vrij: rivierwandeling, Kuramae-cafés (Dandelion hot chocolate) of gewoon spelen in het appartement.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~16:35</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Asakusa</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>1 halte</div></div><div class="tr-dur">~8 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~16:45</div>
+      <div class="act-body">
+        <div class="act-title">⛩️ Senso-ji + Nakamise bij avondverlichting</div>
+        <div class="act-meta">~16:45–17:45 · Tokyo's oudste tempel zonder de bussen</div>
+        <p>1 halte Asakusa-lijn (~8 min). Tokyo's oudste tempel (645 na Chr.) is <strong>24/7 open</strong> en na 16:30 gebeurt er iets moois: de toeristenbussen zijn weg, en de Kaminarimon-lampion, vijf-verdiepingen-pagode en hoofdhal gaan in warm licht — fotogenieker dan overdag én buggy-vriendelijk over de lege Nakamise-dori. Bonus als de winkeltjes hun luiken sluiten: de rolluiken zelf zijn beschilderd met ukiyo-e-taferelen ("Nakamise-schilderijengalerij"). Snack-kraampjes sluiten rond 17:00–18:00 — wat nog open is, is bonus; de volle snack-route + goshuin-stempels (kantoor sluit ~16:30) staan bij de dag 19-Asakusa-opties.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Ochtend (10:30–12:15) — Ginza-combo</h4>
-      <div class="act-title">Ginza Six dak-gras + Mitsukoshi baby-hub — het elastiek van de dag</div>
-      <p>Van de markt naar Ginza 4-chome is ~15 min wandelen (of 1 stop Hibiya-lijn). Twee ankers, kies op energie: <strong>Ginza Six</strong> — 13F dakterras met 4.000 m² gras (gratis, liften, dé renplek na een uur draagzak) + Yayoi Kusama-atrium + B2 sweets; en <strong>Ginza Mitsukoshi</strong> — 9F baby-lounge (voedingscabines, heet water, kindertoilet) + gratis dak-tuin + <b>Minori Café</b> (relaxedste peuter-lunch van Ginza). 🍡 <b>HIGASHIYA GINZA</b> hitokuchi-gashi (date-butter!) to-go onderweg. ⚪️ Sushi-lunch-zin? <b>Sushi no Midori Ginza</b>: om ~11:00 ticket trekken en Ginza Six doen tot jullie beurt (👶 kindermenu ✓, buggy mag). ⚪️ Alternatief i.p.v. Ginza (reisjunk-tip): 15 min lopen over de Kachidoki-brug naar de <b>Tsukishima monja-straat</b> — monjayaki (romiger broertje van okonomiyaki, bv. <b>Moheji</b>) op tafelbakplaat, opent ~11:00.<br><br><em><strong>Dit blok is het elastiek van de dag:</strong> loopt de markt uit of zakt de energie → skip Ginza volledig en neem de Asakusa-lijn direct naar huis; de depachika/baby-hub krijg je zaterdag bij Isetan alsnog. ⚪️ En route terug: T-HOUSE New Balance (kura-pakhuis, 2 stops vóór Kuramae) — alleen als lief nog fris is.</em></p>
+      <div class="act-time">~18:00</div>
+      <div class="act-body">
+        <div class="act-title">🍽️ Diner in Asakusa</div>
+        <div class="act-meta">aansluitend op de tempel · thuis ~19:15, bed 19:30</div>
+        <p><strong>A · Daikokuya Tempura</strong> (tendon-instituut sinds 1887, vlak bij Senso-ji, tot 20:00 — ebi + veggie tempura · 👶 vraag het ruimere <b>bekkan</b> om de hoek: 2F-zashiki waar de peuter los op tatami zit) ~¥2.000 p.p. · <strong>B · Isomaru Suisan Asakusa Shin-Nakamise</strong> (vis-izakaya, om 18:00 nog rustig, 221 stoelen, rolstoel/buggy-toegankelijk · ⚠️ tafel-grill is gloeiend heet: box kiezen, peuter aan de buitenkant, of sashimi/kaisendon zonder grill) ~¥2.000–3.000 p.p. · <strong>C · Asakusa Mugitoro honten</strong> (tororo-teishoku sinds 1929, ~10 min richting huis — zashiki + privékamers, rustigst zittend) ~¥1.000–2.000 · <strong>D · Magurobito Shin-Nakamise</strong> (tonijn-specialist, counter/tafel-sushi, vroege avond prima — ⚠️ de standing-only zusterzaken niet met peuter).</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~19:00</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Asakusa <span>→</span> Kuramae</div><div class="tr-meta">1 halte Asakusa-lijn of ~15 min lopen · thuis ~19:15</div></div><div class="tr-dur">~10 min</div></div></div></div>
     <div class="act-block">
-      <h4>Middag — dut + vrije namiddag</h4>
-      <div class="act-title">Thuis ~12:45 · dut ~13:15–15:00 · daarna niksen op tempo</div>
-      <p>Terug via Higashi-Ginza → Kuramae, <strong>direct, ~15 min</strong>. Dut in eigen bedje is de default, maar geen wet — valt hij in de metro of buggy al om, prima: dan wordt het een stroller-dut en winnen jullie een uur Sumida-promenade. Namiddag vrij: rivierwandeling, Kuramae-cafés (Dandelion hot chocolate) of gewoon spelen in het appartement.</p>
-    </div>
-    <div class="act-block">
-      <h4>~16:45–17:45 — ⛩️ Senso-ji + Nakamise bij avondverlichting</h4>
-      <div class="act-title">Tokyo's oudste tempel op z'n mooist — zonder de bussen</div>
-      <p>1 halte Asakusa-lijn (~8 min). Tokyo's oudste tempel (645 na Chr.) is <strong>24/7 open</strong> en na 16:30 gebeurt er iets moois: de toeristenbussen zijn weg, en de Kaminarimon-lampion, vijf-verdiepingen-pagode en hoofdhal gaan in warm licht — fotogenieker dan overdag én buggy-vriendelijk over de lege Nakamise-dori. Bonus als de winkeltjes hun luiken sluiten: de rolluiken zelf zijn beschilderd met ukiyo-e-taferelen ("Nakamise-schilderijengalerij"). Snack-kraampjes sluiten rond 17:00–18:00 — wat nog open is, is bonus; de volle snack-route + goshuin-stempels (kantoor sluit ~16:30) staan bij de dag 19-Asakusa-opties.</p>
-    </div>
-    <div class="act-block">
-      <h4>Avond (~18:00) — diner in Asakusa</h4>
-      <div class="act-title">Aansluitend op de tempel — thuis ~19:15, bed 19:30</div>
-      <p><strong>A · Daikokuya Tempura</strong> (tendon-instituut sinds 1887, vlak bij Senso-ji, tot 20:00 — ebi + veggie tempura · 👶 vraag het ruimere <b>bekkan</b> om de hoek: 2F-zashiki waar de peuter los op tatami zit) ~¥2.000 p.p. · <strong>B · Isomaru Suisan Asakusa Shin-Nakamise</strong> (vis-izakaya, om 18:00 nog rustig, 221 stoelen, rolstoel/buggy-toegankelijk · ⚠️ tafel-grill is gloeiend heet: box kiezen, peuter aan de buitenkant, of sashimi/kaisendon zonder grill) ~¥2.000–3.000 p.p. · <strong>C · Asakusa Mugitoro honten</strong> (tororo-teishoku sinds 1929, ~10 min richting huis — zashiki + privékamers, rustigst zittend) ~¥1.000–2.000 · <strong>D · Magurobito Shin-Nakamise</strong> (tonijn-specialist, counter/tafel-sushi, vroege avond prima — ⚠️ de standing-only zusterzaken niet met peuter).</p>
-    </div>
-    <div class="act-block">
-      <h4>⚪️ Inhaalslot — Akihabara (alleen als het er op ma niet van kwam)</h4>
-      <div class="act-title">Electric Town i.p.v. Senso-ji-avond</div>
-      <p>Kwam Akihabara er op de aankomstavond (dag 13) niet van, dan is dít het reserve-slot: 16:45–18:15 Electric Town (zie dag 13 voor de route en spots), diner op de terugweg bij <b>Ootoya Asakusabashi</b> of Yodobashi 8F-restaurantverdieping — of 2 JR-stops naar <b>T's TanTan</b> (100% vegan ramen, JR Ueno Station 3F áchter de poortjes, perronkaartje ~¥150; baby-room op dezelfde verdieping). Senso-ji-bij-avondlicht schuift dan naar vr-avond na Kamakura (thuis 17:30, het is maar 1 halte) of zo-ochtend 08:30 vroeg.</p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">⚪️ Inhaalslot Akihabara</div>
+        <div class="act-meta">alleen als het er op ma niet van kwam · Electric Town i.p.v. Senso-ji-avond</div>
+        <p>Kwam Akihabara er op de aankomstavond (dag 13) niet van, dan is dít het reserve-slot: 16:45–18:15 Electric Town (zie dag 13 voor de route en spots), diner op de terugweg bij <b>Ootoya Asakusabashi</b> of Yodobashi 8F-restaurantverdieping — of 2 JR-stops naar <b>T's TanTan</b> (100% vegan ramen, JR Ueno Station 3F áchter de poortjes, perronkaartje ~¥150; baby-room op dezelfde verdieping). Senso-ji-bij-avondlicht schuift dan naar vr-avond na Kamakura (thuis 17:30, het is maar 1 halte) of zo-ochtend 08:30 vroeg.</p>
+      </div>
     </div>
   </div>
   <div class="meals">
@@ -2832,8 +2888,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="badge badge-tip">⚪️ Speeltuin: Sumida Park (pal naast Senso-ji, gratis — ruim grasveld met uitzicht op Skytree + speeltoestellen voor peuters, perfect als buffer na de drukte van de tempel)</span>
   </div>
 </div>
-
-<div class="day-entry" id="dag17">
+<div class="day-entry v2" id="dag17">
   <div class="day-headline">
     <div class="day-num-label">Dag 17 · vr 20 november</div>
     <h3>Dagtrip Kamakura · Great Buddha · rustige avond Kuramae</h3>
@@ -2843,51 +2898,74 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="transport-pill">JR Yokosuka Line</span>
     <span>Tokyo Station → Kamakura · ~1u · vertrekt elke 10–15 min · ¥940 p.p. enkele reis · stroller in brede gangpad-wagons</span>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
     <div class="act-block">
-      <h4>Vroeg (~08:30)</h4>
-      <div class="act-title">Vertrek Kuramae → Tokyo Station → Kamakura</div>
-      <p>Kuramae → Tokyo Station via Toei Asakusa-lijn + lopen (~15 min) of metro-overstap. Aankomst Kamakura ~10:00. Koffers blijven in hotel — alleen dagtas + draagzak + stroller.</p>
+      <div class="act-time">~08:30</div>
+      <div class="act-body">
+        <div class="act-title">Vertrek Kuramae → Tokyo Station → Kamakura</div>
+        <p>Kuramae → Tokyo Station via Toei Asakusa-lijn + lopen (~15 min) of metro-overstap. Aankomst Kamakura ~10:00. Koffers blijven in hotel — alleen dagtas + draagzak + stroller.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~08:30</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#1f5fa8"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Tokyo Station <span>→</span> Kamakura</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>~15 min + lopen · <span class="tr-lijn" style="--lijn:#1f5fa8">JR Yokosuka</span>~1u · IC · aankomst ~10:00 · 15 min lopen naar het heiligdom</div></div><div class="tr-dur">~1u30</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~10:00</div>
+      <div class="act-body">
+        <div class="act-title">Tsurugaoka Hachimangu</div>
+        <p>15 min lopen vanaf Kamakura Station via de brede laan met drie torii-poorten. Belangrijkste shinto-heiligdom van Kamakura, gesticht in 1063. Vlak terrein tot aan de hoofdtempel (paar trappen omhoog naar het altaar — carrier voor het laatste deel). Ginkgo-bomen in het complex zijn in november vaak goudgeel. ¥0, ~45 min.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Ochtend (~10:00)</h4>
-      <div class="act-title">Tsurugaoka Hachimangu</div>
-      <p>15 min lopen vanaf Kamakura Station via de brede laan met drie torii-poorten. Belangrijkste shinto-heiligdom van Kamakura, gesticht in 1063. Vlak terrein tot aan de hoofdtempel (paar trappen omhoog naar het altaar — carrier voor het laatste deel). Ginkgo-bomen in het complex zijn in november vaak goudgeel. ¥0, ~45 min.</p>
+      <div class="act-time">~11:30</div>
+      <div class="act-body">
+        <div class="act-title">Komachi-dori straat</div>
+        <p>Terug richting station via Komachi-dori — overdekte/halfoverdekte souvenir- en eetstraat met matcha-soft, mochi, dango, korokke en veggie-vriendelijke cafés. Stroller doable vóór 12:00, daarna drukker. Lunch hier of meeneem-snack om bij Hase te eten.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Lunch (~11:30)</h4>
-      <div class="act-title">Komachi-dori straat</div>
-      <p>Terug richting station via Komachi-dori — overdekte/halfoverdekte souvenir- en eetstraat met matcha-soft, mochi, dango, korokke en veggie-vriendelijke cafés. Stroller doable vóór 12:00, daarna drukker. Lunch hier of meeneem-snack om bij Hase te eten.</p>
+      <div class="act-time">~12:30</div>
+      <div class="act-body">
+        <div class="act-title">Enoden-tram Kamakura → Hase</div>
+        <p>Bij Kamakura Station overstappen op de Enoden — een schilderachtige smalspoorlijn uit 1902 die langs huizen, tuintjes en de kustlijn slingert. ~5 min naar Hase Station, ¥200 p.p. Vrijdag = veel rustiger dan het koyo-weekend, maar rond de middag kan het alsnog vol zijn: stroller inklappen bij drukte.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:30</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#2e8b57"><div class="tr-icon">🚋</div><div class="tr-body"><div class="tr-route">Kamakura <span>→</span> Hase</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#2e8b57">Enoden</span>¥200 p.p. · 5 min lopen naar Kotoku-in</div></div><div class="tr-dur">5 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~13:00</div>
+      <div class="act-body">
+        <div class="act-title">Great Buddha — Kotoku-in</div>
+        <p>5 min lopen vanaf Hase Station. Bronzen Boeddha uit 1252, 13.4m hoog en 121 ton — Japan's tweede grootste, en sinds een tsunami in 1498 staat hij in de open lucht (de tempel eromheen werd weggespoeld). Volledig vlak terrein, stroller prima. ¥300 p.p., baby gratis. ~30 min.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Kotoku-in <span>→</span> Hase-dera</div><div class="tr-meta"></div></div><div class="tr-dur">10 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~13:45</div>
+      <div class="act-body">
+        <div class="act-title">Hase-dera</div>
+        <p>10 min lopen vanaf Kotoku-in. Tempelcomplex op een heuvel met zee-uitzicht en herfstbladeren — november-koyo zit hier op piek. ⚠️ Trappen omhoog naar het bovendek → carrier nodig (stroller beneden parkeren). Boven: 9.18m houten Kannon-beeld, observatieterras met Sagami-baai-uitzicht, en de Jizo-beeldjes-tuin. ¥400 p.p., ~45 min.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Middag (~12:30)</h4>
-      <div class="act-title">Enoden-tram Kamakura → Hase</div>
-      <p>Bij Kamakura Station overstappen op de Enoden — een schilderachtige smalspoorlijn uit 1902 die langs huizen, tuintjes en de kustlijn slingert. ~5 min naar Hase Station, ¥200 p.p. Vrijdag = veel rustiger dan het koyo-weekend, maar rond de middag kan het alsnog vol zijn: stroller inklappen bij drukte.</p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">⚪️ Hokoku-ji bamboe-tempel</div>
+        <div class="act-meta">alleen als energie + tijd · "Arashiyama van Kamakura"</div>
+        <p>Klein zen-tempelcomplex met ~2.000 moso-bamboestelen en theehuisje (matcha + wagashi ¥600 met uitzicht op het bos). Sereen en weinig toeristen.<br><br><strong>Bereikbaarheid:</strong> ligt in Kamakura's oost-uithoek, niet aan de Enoden-route. Vanaf Hase moet je terug naar Kamakura Station (~5 min Enoden) en daar bus #5 nemen richting Kanazawa-Hakkei (~12 min, ¥210, halte "Jomyoji"). Dan 2 min lopen. Vanaf Kotoku-in/Hase-dera totaal ~30–40 min reizen één kant op. ¥400 entree, ~45 min ter plekke. Sluit 16:00 (laatste entry 15:45).<br><br><strong>Eerlijke afweging:</strong> jullie hebben Arashiyama bamboe-grove al gehad in Kyoto (dag 10), dus je ziet hier vooral een rustigere variant. Het kost ~1u extra reizen heen+terug en maakt de terugreis (en bedtijd) later. <strong>Skip-advies tenzij:</strong> jullie willen écht een tweede bamboe-moment, of het lukt om Hase-dera te skippen en Hokoku-ji ervoor in de plaats te doen.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Middag (~13:00)</h4>
-      <div class="act-title">Great Buddha — Kotoku-in</div>
-      <p>5 min lopen vanaf Hase Station. Bronzen Boeddha uit 1252, 13.4m hoog en 121 ton — Japan's tweede grootste, en sinds een tsunami in 1498 staat hij in de open lucht (de tempel eromheen werd weggespoeld). Volledig vlak terrein, stroller prima. ¥300 p.p., baby gratis. ~30 min.</p>
+      <div class="act-time">~15:30</div>
+      <div class="act-body">
+        <div class="act-title">Terug naar Tokyo</div>
+        <p>Hase → Kamakura (Enoden, 5 min) → Tokyo Station (JR Yokosuka, ~1u). Aankomst Tokyo ~17:00, hotel ~17:30. Even opfrissen voor diner.</p>
+      </div>
     </div>
+    <div class="act-leg tr"><div class="act-leg-time">~15:30</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#1f5fa8"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Hase <span>→</span> Kamakura <span>→</span> Tokyo Station <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#2e8b57">Enoden</span>5 min · <span class="tr-lijn" style="--lijn:#1f5fa8">JR Yokosuka</span>~1u · <span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>· hotel ~17:30</div></div><div class="tr-dur">~2u</div></div></div></div>
     <div class="act-block">
-      <h4>Middag (~13:45)</h4>
-      <div class="act-title">Hase-dera</div>
-      <p>10 min lopen vanaf Kotoku-in. Tempelcomplex op een heuvel met zee-uitzicht en herfstbladeren — november-koyo zit hier op piek. ⚠️ Trappen omhoog naar het bovendek → carrier nodig (stroller beneden parkeren). Boven: 9.18m houten Kannon-beeld, observatieterras met Sagami-baai-uitzicht, en de Jizo-beeldjes-tuin. ¥400 p.p., ~45 min.</p>
-    </div>
-    <div class="act-block">
-      <h4>⚪️ Optioneel — Hokoku-ji bamboe-tempel</h4>
-      <div class="act-title">"Arashiyama van Kamakura" — alleen als energie + tijd</div>
-      <p>Klein zen-tempelcomplex met ~2.000 moso-bamboestelen en theehuisje (matcha + wagashi ¥600 met uitzicht op het bos). Sereen en weinig toeristen.<br><br><strong>Bereikbaarheid:</strong> ligt in Kamakura's oost-uithoek, niet aan de Enoden-route. Vanaf Hase moet je terug naar Kamakura Station (~5 min Enoden) en daar bus #5 nemen richting Kanazawa-Hakkei (~12 min, ¥210, halte "Jomyoji"). Dan 2 min lopen. Vanaf Kotoku-in/Hase-dera totaal ~30–40 min reizen één kant op. ¥400 entree, ~45 min ter plekke. Sluit 16:00 (laatste entry 15:45).<br><br><strong>Eerlijke afweging:</strong> jullie hebben Arashiyama bamboe-grove al gehad in Kyoto (dag 10), dus je ziet hier vooral een rustigere variant. Het kost ~1u extra reizen heen+terug en maakt de terugreis (en bedtijd) later. <strong>Skip-advies tenzij:</strong> jullie willen écht een tweede bamboe-moment, of het lukt om Hase-dera te skippen en Hokoku-ji ervoor in de plaats te doen.</p>
-    </div>
-    <div class="act-block">
-      <h4>Namiddag (~15:30)</h4>
-      <div class="act-title">Terug naar Tokyo</div>
-      <p>Hase → Kamakura (Enoden, 5 min) → Tokyo Station (JR Yokosuka, ~1u). Aankomst Tokyo ~17:00, hotel ~17:30. Even opfrissen voor diner.</p>
-    </div>
-    <div class="act-block">
-      <h4>Avond (~18:00)</h4>
-      <div class="act-title">Rustig diner Kuramae · 19:30 in bed</div>
-      <p>Casual eten in de buurt — <strong>Ootoya Asakusabashi</strong> (gegrilde vis-teishoku, kinderstoelen + kindermenu, tot 22:00), <strong>Yuwaeru</strong> (za-avond ✓ 17:30–22:00 · ⚠️ met peuter 's avonds alleen in de privé-horigotatsu, ¥2.000 — vooraf reserveren), buurtzaak, konbini of delivery — en peuter op tijd in bed. Het <strong>afscheidsmoment zit op dag 19</strong> (bonusdag): tof-maar-casual afscheidslunch + activiteit — zie het keuzeblok bij dag 19.</p>
+      <div class="act-time">~18:00</div>
+      <div class="act-body">
+        <div class="act-title">Rustig diner Kuramae · 19:30 in bed</div>
+        <p>Casual eten in de buurt — <strong>Ootoya Asakusabashi</strong> (gegrilde vis-teishoku, kinderstoelen + kindermenu, tot 22:00), <strong>Yuwaeru</strong> (za-avond ✓ 17:30–22:00 · ⚠️ met peuter 's avonds alleen in de privé-horigotatsu, ¥2.000 — vooraf reserveren), buurtzaak, konbini of delivery — en peuter op tijd in bed. Het <strong>afscheidsmoment zit op dag 19</strong> (bonusdag): tof-maar-casual afscheidslunch + activiteit — zie het keuzeblok bij dag 19.</p>
+      </div>
     </div>
   </div>
   <div class="meals">
@@ -2902,54 +2980,81 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="badge badge-tip">⚪️ Speelruimte: Yuigahama-strand (15 min bus van het Great Buddha — november is fris maar het strand is ruim en leeg, ideaal voor rennen) of de open tuin bij Kotoku-in voor het Great Buddha-terrein</span>
   </div>
 </div>
-
-<div class="day-entry" id="dag18">
+<div class="day-entry v2" id="dag18">
   <div class="day-headline">
     <div class="day-num-label">Dag 18 · za 21 november</div>
     <h3>Meiji Jingu · Gyoen · Tocho · Shibuya bij neon</h3>
     <div class="sleep-note">🏨 Tokyo</div>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
+    <div class="act-leg tr"><div class="act-leg-time">~07:45</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#b6007a"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Aoyama-itchome <span>→</span> Omotesando <span>→</span> Meiji Jingu</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#b6007a">Oedo</span>direct ~30 min · <span class="tr-lijn" style="--lijn:#f39700">Ginza-lijn</span>1 halte · 10 min lopen</div></div><div class="tr-dur">~45 min</div></div></div></div>
     <div class="act-block">
-      <h4>Vroeg (~08:30)</h4>
-      <div class="act-title">Meiji Jingu — vóór de toeristenbussen</div>
-      <p>Rustgevend Shinto-heiligdom te midden van dicht bos in hartje Tokyo. <strong>Vóór 09:30 nog rustig, vanaf 10:00 vol</strong> — daarom vroeg, zeker op zaterdag. Mistig ochtendlicht in het bos is bovendien mooier. <strong>Zaterdag-bonus:</strong> kans op een traditionele Shinto-bruiloftsprocessie op het binnenplein. Vanaf Kuramae ~35 min metro (Toei Asakusa + Ginza Line via Omotesando).</p>
+      <div class="act-time">~08:30</div>
+      <div class="act-body">
+        <div class="act-title">Meiji Jingu — vóór de toeristenbussen</div>
+        <p>Rustgevend Shinto-heiligdom te midden van dicht bos in hartje Tokyo. <strong>Vóór 09:30 nog rustig, vanaf 10:00 vol</strong> — daarom vroeg, zeker op zaterdag. Mistig ochtendlicht in het bos is bovendien mooier. <strong>Zaterdag-bonus:</strong> kans op een traditionele Shinto-bruiloftsprocessie op het binnenplein. Vanaf Kuramae ~35 min metro (Toei Asakusa + Ginza Line via Omotesando).</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Ochtend (~09:30–11:15)</h4>
-      <div class="act-title">Harajuku — Cat Street &amp; Omotesando (Takeshita geschrapt)</div>
-      <p><em>Takeshita Street bewust geschrapt: op een driedaags-weekend-zaterdag een krappe tiener-crush, met peuter het minst waardevolle stuk Harajuku.</em> Start in plaats daarvan op <strong>Cat Street</strong> (rustig, vintage shops, koffiezaakjes) richting <strong>Omotesando</strong> — de "Champs-Élysées van Tokyo" met brede ginkgo-laan en designer-architectuur (Tadao Ando's Omotesando Hills, Herzog &amp; de Meuron's Prada-glasgebouw). Stroller-vriendelijk over de hele route. <em>⚪️ New Balance Harajuku flagship ligt pal aan deze route — maar alléén relevant als de sneaker-koop in Osaka (dag 3) er niet van kwam; anders gewoon doorlopen.</em> Koffie/ontbijt onderweg: Streamer Coffee of Crisscross op Cat Street · ☕ <b>Café Reissue</b> (Harajuku-zijstraat) — barista tekent je cappuccino vol met 3D-latte-art (dieren, karakters, zelfs portretten van een foto): gimmick, maar wél een leuke — ⚠️ cash only, ma dicht (za ✓), buiten de piekuren gaan.<br><br>🍡 <strong>Sweets op deze route:</strong> <b>Number Sugar</b> (Cat Street-rand, Jingumae 5-11-11) — handgemaakte karamels No.1–12 (No.2 zeezout, No.7 earl grey), piepklein maar zero toeristen-energie, 11:00–19:00 · <b>HIGASHIYA man Aoyama</b> (5 min van Omotesando Station) — vers gestoomde manju + hitokuchi-gashi met dadel-boter, di gesloten — vandaag za ✓.<br><br><strong>📸 Purikura met baby (optioneel):</strong> <strong>Moreru Mignon</strong> zit in LaForet, aan het bégin van Takeshita — in-en-uit zonder de straat in te hoeven. ¥400–500, ~10 min, baby in draagzak, print + digitale download via QR. Kitscherig en typisch Japans souvenir.</p>
+      <div class="act-time">~09:30</div>
+      <div class="act-body">
+        <div class="act-title">Harajuku — Cat Street &amp; Omotesando (Takeshita geschrapt)</div>
+        <div class="act-meta">~09:30–11:15</div>
+        <p><em>Takeshita Street bewust geschrapt: op een driedaags-weekend-zaterdag een krappe tiener-crush, met peuter het minst waardevolle stuk Harajuku.</em> Start in plaats daarvan op <strong>Cat Street</strong> (rustig, vintage shops, koffiezaakjes) richting <strong>Omotesando</strong> — de "Champs-Élysées van Tokyo" met brede ginkgo-laan en designer-architectuur (Tadao Ando's Omotesando Hills, Herzog &amp; de Meuron's Prada-glasgebouw). Stroller-vriendelijk over de hele route. <em>⚪️ New Balance Harajuku flagship ligt pal aan deze route — maar alléén relevant als de sneaker-koop in Osaka (dag 3) er niet van kwam; anders gewoon doorlopen.</em> Koffie/ontbijt onderweg: Streamer Coffee of Crisscross op Cat Street · ☕ <b>Café Reissue</b> (Harajuku-zijstraat) — barista tekent je cappuccino vol met 3D-latte-art (dieren, karakters, zelfs portretten van een foto): gimmick, maar wél een leuke — ⚠️ cash only, ma dicht (za ✓), buiten de piekuren gaan.<br><br>🍡 <strong>Sweets op deze route:</strong> <b>Number Sugar</b> (Cat Street-rand, Jingumae 5-11-11) — handgemaakte karamels No.1–12 (No.2 zeezout, No.7 earl grey), piepklein maar zero toeristen-energie, 11:00–19:00 · <b>HIGASHIYA man Aoyama</b> (5 min van Omotesando Station) — vers gestoomde manju + hitokuchi-gashi met dadel-boter, di gesloten — vandaag za ✓.<br><br><strong>📸 Purikura met baby (optioneel):</strong> <strong>Moreru Mignon</strong> zit in LaForet, aan het bégin van Takeshita — in-en-uit zonder de straat in te hoeven. ¥400–500, ~10 min, baby in draagzak, print + digitale download via QR. Kitscherig en typisch Japans souvenir.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~11:15</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#7fb800"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Harajuku <span>→</span> Shinjuku</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#7fb800">JR Yamanote</span>2 haltes · of metro naar Shinjuku-sanchome (Isetan ondergronds bereikbaar)</div></div><div class="tr-dur">~10 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~11:30</div>
+      <div class="act-body">
+        <div class="act-title">Isetan Shinjuku 6F</div>
+        <div class="act-meta">Latte Chano-mama 👶 · hét baby-café van Tokyo · relaxte lunch</div>
+        <p>JR Yamanote Harajuku → Shinjuku (2 stops) of metro naar Shinjuku-sanchome (Isetan direct ondergronds bereikbaar). <strong>Latte Chano-mama</strong> op de complete baby/kids-verdieping (6F) is gemáákt voor deze leeftijd: matras-zitjes waar de peuter naast je ligt of zit, babyvoeding welkom, baby-lounge en kindertoilet op dezelfde verdieping. <strong>Eerlijk: je komt hier voor het comfort, niet de keuken</strong> (Tabelog 3,20 — prima, geen ster). ⚠️ Za = drukker: bij opening ~11:00 naam laten noteren.<br><br><em>Beter eten, minder baby-comfort: <strong>Ohitsuzen Tanbo Yoyogi</strong> (gegrilde vis-teishoku, Tabelog 3,51 — klein, vóór 11:45, baby op schoot). Of: bento uit de Isetan-depachika (dé benchmark van Japan, B1) mee naar Gyoen als picknick — beste eten én meeste ruimte. Kies op de dag.</em></p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~12:45</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Isetan <span>→</span> Shinjuku Gyoen (Shinjuku Gate)</div><div class="tr-meta"></div></div><div class="tr-dur">~8 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~12:45</div>
+      <div class="act-body">
+        <div class="act-title">Shinjuku Gyoen 🛌 stroller-dut</div>
+        <div class="act-meta">park als dut-locatie · geen klok</div>
+        <p><strong>Shinjuku Gyoen = perfect dut-park</strong>: enorm, vlak, brede paden, drie tuinstijlen (za ✓ open, ma gesloten). Isetan → ingang Shinjuku Gate ~8 min lopen. Wandel het rond terwijl baby in de stroller dut — je doet de Japanse tuin + vijver + Engelse rozentuin in 1.5–2 uur zonder haast. ¥500 entree. Dit is bewust het rust-blok van de dag: duurt de dut langer, dan schuift alles hierna gewoon op.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~14:45</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#b6007a"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Shinjuku <span>→</span> Tochomae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#b6007a">Oedo</span>~10 min · of ~20 min wandelen door Nishi-Shinjuku</div></div><div class="tr-dur">~10 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~15:00</div>
+      <div class="act-body">
+        <div class="act-title">Tocho North Observatory 45F</div>
+        <div class="act-meta">de gratis Shibuya Sky · Tokyo Metropolitan Government Building</div>
+        <p>Vanaf Gyoen: Oedo-lijn Shinjuku → Tochomae (~10 min) of ~20 min wandelen door Nishi-Shinjuku. <strong>Gratis, 202m, directe lift naar 45F, geen reservering, geen tijdslot — en de buggy mag gewoon mee.</strong> 360°-uitzicht over de hele stad; bij helder novemberweer zie je <strong>Fuji aan de westkant</strong> — en jullie zijn er vlak voor zonsondergang (~16:30), het beste licht. ~30–45 min. Noord-observatorium open tot 22:00. <em>Dit vervangt Shibuya Sky: zelfde wow, nul gedoe (Sky = tijdslots die 3 weken vooruit uitverkopen, buggy-verbod op het dak, ¥2.700 p.p.).</em></p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~16:00</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#7fb800"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Shinjuku <span>→</span> Shibuya</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#7fb800">JR Yamanote</span>5 min lopen naar Parco</div></div><div class="tr-dur">~10 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~16:15</div>
+      <div class="act-body">
+        <div class="act-title">Shibuya Parco rooftop ✨</div>
+        <div class="act-meta">gratis viewpoint + Pokémon Center + Nintendo Tokyo</div>
+        <p>Yamanote-lijn naar Shibuya, 5 min lopen naar Parco. <strong>Gratis, geen reservering, walk-in, stroller mag mee in de lift — bailen wanneer jullie willen.</strong> 10F rooftop "ComMune" met houten dak-terras en groen. Onderweg in hetzelfde gebouw: <strong>Pokémon Center Shibuya</strong> (lief's nostalgie-stop met Pikachu Sweets café), <strong>Nintendo Tokyo</strong> (eerste ter wereld), Jump Shop, kawaii-verdiepingen. Plan: rooftop bij blue hour (~16:30 zonsondergang) voor de Crossing-skyline, daarna naar beneden voor Pokémon/Nintendo op tempo. <strong>Alternatieve gratis viewpoints in Shibuya:</strong> Hikarie Sky Lobby 11F (boven Shibuya Station, beste hoek op Crossing) en Shibuya Fukuras 17F "Shibu Niwa" rooftop (Tokyu Plaza, andere kant Crossing, minder druk). Allemaal stroller-vriendelijk. Voor het 360°-Fuji-silhouet zou Shibuya Sky de upgrade zijn, maar die heeft fixed-tijd, geen stroller op rooftop, en boekt 3 weken vooruit — niet de moeite met peuter.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Relaxte lunch (~11:30) — Latte Chano-mama 👶</h4>
-      <div class="act-title">Isetan Shinjuku 6F — hét baby-café van Tokyo</div>
-      <p>JR Yamanote Harajuku → Shinjuku (2 stops) of metro naar Shinjuku-sanchome (Isetan direct ondergronds bereikbaar). <strong>Latte Chano-mama</strong> op de complete baby/kids-verdieping (6F) is gemáákt voor deze leeftijd: matras-zitjes waar de peuter naast je ligt of zit, babyvoeding welkom, baby-lounge en kindertoilet op dezelfde verdieping. <strong>Eerlijk: je komt hier voor het comfort, niet de keuken</strong> (Tabelog 3,20 — prima, geen ster). ⚠️ Za = drukker: bij opening ~11:00 naam laten noteren.<br><br><em>Beter eten, minder baby-comfort: <strong>Ohitsuzen Tanbo Yoyogi</strong> (gegrilde vis-teishoku, Tabelog 3,51 — klein, vóór 11:45, baby op schoot). Of: bento uit de Isetan-depachika (dé benchmark van Japan, B1) mee naar Gyoen als picknick — beste eten én meeste ruimte. Kies op de dag.</em></p>
+      <div class="act-time">~17:00</div>
+      <div class="act-body">
+        <div class="act-title">Shibuya Crossing</div>
+        <div class="act-meta">de oversteek zelf bij volle neon · op straatniveau</div>
+        <p>Het drukste voetgangerskruispunt ter wereld — even meelopen om het zelf te ervaren is iets anders dan vanuit de hoogte zien. 5 min, dan door naar diner.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Middag (~12:45) — Shinjuku Gyoen 🛌 stroller-dut</h4>
-      <div class="act-title">Park als dut-locatie · geen klok</div>
-      <p><strong>Shinjuku Gyoen = perfect dut-park</strong>: enorm, vlak, brede paden, drie tuinstijlen (za ✓ open, ma gesloten). Isetan → ingang Shinjuku Gate ~8 min lopen. Wandel het rond terwijl baby in de stroller dut — je doet de Japanse tuin + vijver + Engelse rozentuin in 1.5–2 uur zonder haast. ¥500 entree. Dit is bewust het rust-blok van de dag: duurt de dut langer, dan schuift alles hierna gewoon op.</p>
+      <div class="act-time">~17:30</div>
+      <div class="act-body">
+        <div class="act-title">Diner — 🚂 Uobei (sushi-treintje) of Okonomiyaki Yaiyai</div>
+        <p><strong>A · Uobei Shibuya</strong> (5 min lopen vanaf Parco/station, default) — <strong>sushi-treintje brengt elk bordje rechtstreeks naar je tafel</strong> via een mini-rail: letterlijk peuter-magic als diner-entertainment. Touchscreen Engels · 👶 kinderstoelen ✓, barrièrevrij t/m het toilet, "kinderen welkom" officieel · veggie: tamago, kappa-maki, avocado-maki, inari, edamame · ~¥1.500 p.p., klaar in 30-40 min. ⚠️ Za-avond = drukker: om 17:30 aanschuiven, niet later.<br><br><strong>B · Okonomiyaki Yaiyai</strong> (1 stop Yamanote → Harajuku, 180m van station) — Tabelog 100 okonomiyaki 2025, baby's expliciet welkom, non-smoking, veggie-opties · 👶 de koks bakken vóór je — vraag een box-/tafelplek weg van de counter-teppan; kinderstoel onbevestigd, bel evt. 03-3406-8181 · ¥3.000–4.000 p.p. dinner.<br><br>Thuis rond 19:30 via Ginza-lijn/Yamanote.</p>
+      </div>
     </div>
-    <div class="act-block">
-      <h4>~15:00 — 🏙️ Tokyo Metropolitan Government Building (gratis observatorium)</h4>
-      <div class="act-title">Tocho North Observatory 45F — de gratis Shibuya Sky</div>
-      <p>Vanaf Gyoen: Oedo-lijn Shinjuku → Tochomae (~10 min) of ~20 min wandelen door Nishi-Shinjuku. <strong>Gratis, 202m, directe lift naar 45F, geen reservering, geen tijdslot — en de buggy mag gewoon mee.</strong> 360°-uitzicht over de hele stad; bij helder novemberweer zie je <strong>Fuji aan de westkant</strong> — en jullie zijn er vlak voor zonsondergang (~16:30), het beste licht. ~30–45 min. Noord-observatorium open tot 22:00. <em>Dit vervangt Shibuya Sky: zelfde wow, nul gedoe (Sky = tijdslots die 3 weken vooruit uitverkopen, buggy-verbod op het dak, ¥2.700 p.p.).</em></p>
-    </div>
-    <div class="act-block">
-      <h4>~16:15 — Shibuya Parco rooftop ✨</h4>
-      <div class="act-title">Gratis viewpoint + Pokémon Center + Nintendo Tokyo</div>
-      <p>Yamanote-lijn naar Shibuya, 5 min lopen naar Parco. <strong>Gratis, geen reservering, walk-in, stroller mag mee in de lift — bailen wanneer jullie willen.</strong> 10F rooftop "ComMune" met houten dak-terras en groen. Onderweg in hetzelfde gebouw: <strong>Pokémon Center Shibuya</strong> (lief's nostalgie-stop met Pikachu Sweets café), <strong>Nintendo Tokyo</strong> (eerste ter wereld), Jump Shop, kawaii-verdiepingen. Plan: rooftop bij blue hour (~16:30 zonsondergang) voor de Crossing-skyline, daarna naar beneden voor Pokémon/Nintendo op tempo. <strong>Alternatieve gratis viewpoints in Shibuya:</strong> Hikarie Sky Lobby 11F (boven Shibuya Station, beste hoek op Crossing) en Shibuya Fukuras 17F "Shibu Niwa" rooftop (Tokyu Plaza, andere kant Crossing, minder druk). Allemaal stroller-vriendelijk. Voor het 360°-Fuji-silhouet zou Shibuya Sky de upgrade zijn, maar die heeft fixed-tijd, geen stroller op rooftop, en boekt 3 weken vooruit — niet de moeite met peuter.</p>
-    </div>
-    <div class="act-block">
-      <h4>~17:00 — Shibuya Crossing op straatniveau</h4>
-      <div class="act-title">De oversteek zelf bij volle neon</div>
-      <p>Het drukste voetgangerskruispunt ter wereld — even meelopen om het zelf te ervaren is iets anders dan vanuit de hoogte zien. 5 min, dan door naar diner.</p>
-    </div>
-    <div class="act-block">
-      <h4>Avond (~17:30)</h4>
-      <div class="act-title">Diner — 🚂 Uobei (sushi-treintje) of Okonomiyaki Yaiyai</div>
-      <p><strong>A · Uobei Shibuya</strong> (5 min lopen vanaf Parco/station, default) — <strong>sushi-treintje brengt elk bordje rechtstreeks naar je tafel</strong> via een mini-rail: letterlijk peuter-magic als diner-entertainment. Touchscreen Engels · 👶 kinderstoelen ✓, barrièrevrij t/m het toilet, "kinderen welkom" officieel · veggie: tamago, kappa-maki, avocado-maki, inari, edamame · ~¥1.500 p.p., klaar in 30-40 min. ⚠️ Za-avond = drukker: om 17:30 aanschuiven, niet later.<br><br><strong>B · Okonomiyaki Yaiyai</strong> (1 stop Yamanote → Harajuku, 180m van station) — Tabelog 100 okonomiyaki 2025, baby's expliciet welkom, non-smoking, veggie-opties · 👶 de koks bakken vóór je — vraag een box-/tafelplek weg van de counter-teppan; kinderstoel onbevestigd, bel evt. 03-3406-8181 · ¥3.000–4.000 p.p. dinner.<br><br>Thuis rond 19:30 via Ginza-lijn/Yamanote.</p>
-    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~19:00</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#f39700"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Shibuya <span>→</span> Asakusa <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#f39700">Ginza-lijn</span>~35 min · <span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>1 halte · of taxi</div></div><div class="tr-dur">~45 min</div></div></div></div>
   </div>
   <div class="meals">
     <div><b>Lunch:</b> <b>Latte Chano-mama</b> (Isetan 6F — max baby-comfort, eten prima maar geen ster: 3,20) · <b>Ohitsuzen Tanbo Yoyogi</b> (🐟 beste eten: 3,51 — klein, vóór 11:45) · <b>Isetan-depachika-bento → Gyoen-picknick</b> (beste eten + ruimte) · Gonpachi Nori-temaki (📍 pin, snelle hap) · pancakes: Micasadeco Jingumae (📍 pin — opent 11:00; za drukker) ~¥1.500 p.p.</div>
@@ -2963,8 +3068,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span class="badge badge-tip">⚪️ Speeltuin: Yoyogi Park (pal naast Meiji Jingu, gratis) — grote speeltuin-zone voor peuters, goed als buffer direct na het heiligdom voordat hij in de stroller wil. Shinjuku Gyoen staat later op de dag als dut-park.</span>
   </div>
 </div>
-
-<div class="day-entry" id="dag19">
+<div class="day-entry v2" id="dag19">
   <div class="day-headline">
     <div class="day-num-label">Dag 19 · zo 22 november</div>
     <h3>Chopsticks · Sumida · Skytree · Haneda-hotel · nachtvlucht 01:35</h3>
@@ -2975,72 +3079,111 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
     <span>Kuramae → Haneda Airport T3 · Toei Asakusa-lijn/Keikyu through-service · ~45 min · ~¥700 p.p. · geen overstap</span>
     <span class="transport-detail">Koffers + stroller mee — directe trein, geen overstap · bij drukte of regen: taxi ~30–40 min, ~¥8.000</span>
   </div>
-  <div class="activities">
+  <div class="activities timeline">
     <div class="act-block">
-      <h4>✓ Omgeboekt — QR813 via Haneda (bevestigd)</h4>
-      <div class="act-title">QR813 · HND 01:35 (ma 23/11) → DOH 06:45 · QR95 · DOH 08:15 → ZRH 13:40</div>
-      <p>Layover Doha nu <strong>1u30</strong> (schedule change okt 2026: QR95 vertrekt 08:15 i.p.v. 09:30 · daarvoor 2u45, en 5u25 via Narita). Zelfde aankomst thuis: maandag 13:40. Strategie: peuter doet zijn <strong>volledige avondritueel + eerste slaap in het Haneda-hotel</strong>, wordt ~23:00 wakker gemaakt en slaapt door op de 11u-vlucht — die grotendeels zijn normale nacht is.</p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">✓ Omgeboekt — QR813 via Haneda</div>
+        <div class="act-meta">QR813 HND 01:35 (ma 23/11) → DOH 06:45 · QR95 DOH 08:15 → ZRH 13:40</div>
+        <p>Layover Doha nu <strong>1u30</strong> (schedule change okt 2026: QR95 vertrekt 08:15 i.p.v. 09:30 · daarvoor 2u45, en 5u25 via Narita). Zelfde aankomst thuis: maandag 13:40. Strategie: peuter doet zijn <strong>volledige avondritueel + eerste slaap in het Haneda-hotel</strong>, wordt ~23:00 wakker gemaakt en slaapt door op de 11u-vlucht — die grotendeels zijn normale nacht is.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Ochtend — inpakken · uitchecken vóór de workshop</h4>
-      <div class="act-title">Self-service appartement: uitchecken = gewoon vertrekken, geen receptie</div>
-      <p>Pak de avond ervoor al zoveel mogelijk in, dan is de ochtend rustig. Uitchecken gebeurt vóór jullie naar de workshop gaan.<br><br>Koffers gaan naar de <strong>coin lockers van Kuramae Station</strong> (pal bij het appartement, grote maat ~¥700–800 per koffer — Poka kan niets bewaren, bevestigd). Ophalen aan het einde van de dag op weg naar Haneda — zelfde station, zelfde Toei Asakusa-lijn. Daarna de hele dag hands-free.</p>
+      <div class="act-time">Ochtend</div>
+      <div class="act-body">
+        <div class="act-title">Inpakken · uitchecken</div>
+        <div class="act-meta">self-service: uitchecken = gewoon vertrekken, geen receptie · vóór de workshop</div>
+        <p>Pak de avond ervoor al zoveel mogelijk in, dan is de ochtend rustig. Uitchecken gebeurt vóór jullie naar de workshop gaan.<br><br>Koffers gaan naar de <strong>coin lockers van Kuramae Station</strong> (pal bij het appartement, grote maat ~¥700–800 per koffer — Poka kan niets bewaren, bevestigd). Ophalen aan het einde van de dag op weg naar Haneda — zelfde station, zelfde Toei Asakusa-lijn. Daarna de hele dag hands-free.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Onderweg naar de workshop — Asakusa-buurt</h4>
-      <div class="act-title">Senso-ji-buurt · ochtend-snacks als je er zin in hebt</div>
-      <p>Senso-ji ligt om de hoek. Snacks onderweg: <strong>Kokonoe</strong> age-manju · <strong>Kameju</strong> dorayaki (doosje voor in het vliegtuig) · <strong>Suzukien × Nanaya</strong> matcha-gelato · <strong>Funawa</strong> imo-yokan. Feestdag-zondag: vroeg rustiger. Niks verplicht.</p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">Onderweg naar de workshop</div>
+        <div class="act-meta">Senso-ji-buurt · ochtend-snacks als je er zin in hebt</div>
+        <p>Senso-ji ligt om de hoek. Snacks onderweg: <strong>Kokonoe</strong> age-manju · <strong>Kameju</strong> dorayaki (doosje voor in het vliegtuig) · <strong>Suzukien × Nanaya</strong> matcha-gelato · <strong>Funawa</strong> imo-yokan. Feestdag-zondag: vroeg rustiger. Niks verplicht.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~09:45</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Poka <span>→</span> Asakusa Tosei Building 10F</div><div class="tr-meta"></div></div><div class="tr-dur">~10 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">10:00</div>
+      <div class="act-body">
+        <div class="act-title">✅ 🥢 Eetstokjes-workshop</div>
+        <div class="act-meta">Asakusa Tosei Building 10F · Asakusa Traveling Tokyo · 35 min · ~10 min lopen van Poka · baby gratis mee · ✓ geboekt met gift voucher · het enige vaste punt van de dag</div>
+        <p>Zelf een paar eetstokjes draaien en lakken — stokjes direct mee in de koffer. ✓ Geboekt (gift voucher). Annuleren gratis tot 21 november. Vertrek Poka ~09:45.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>✅ 🥢 Eetstokjes-workshop — 10:00 · Asakusa Tosei Building 10F</h4>
-      <div class="act-title">Asakusa Traveling Tokyo · 35 min · ~10 min lopen van Poka · baby gratis mee · ✓ GEBOEKT met gift voucher · dit is het enige vaste punt van de dag</div>
-      <p>Zelf een paar eetstokjes draaien en lakken — stokjes direct mee in de koffer. ✓ Geboekt (gift voucher). Annuleren gratis tot 21 november. Vertrek Poka ~09:45.</p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">🌊 Sumida-rivierloop naar Skytree</div>
+        <div class="act-meta">~1,5 km · stroller-vriendelijk · gratis · geen klok</div>
+        <p>Het pad langs de Sumida loopt organisch naar de Skytree toe. November = herfstkleuren langs de oever. Peuter kan eruit lopen. <em>⚪️ Speeltuin-buffer: Hanakawado Park (花川戸公園) ligt 2 min van Asakusa — kleine speeltuin met toestellen, perfect als hij na de workshop moet rennen voor hij in de stroller wil.</em></p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>🌊 Sumida-rivierloop naar Skytree</h4>
-      <div class="act-title">~1.5 km langs de Sumida · stroller-vriendelijk · gratis · geen klok</div>
-      <p>Het pad langs de Sumida loopt organisch naar de Skytree toe. November = herfstkleuren langs de oever. Peuter kan eruit lopen. <em>⚪️ Speeltuin-buffer: Hanakawado Park (花川戸公園) ligt 2 min van Asakusa — kleine speeltuin met toestellen, perfect als hij na de workshop moet rennen voor hij in de stroller wil.</em></p>
+      <div class="act-time">·</div>
+      <div class="act-body">
+        <div class="act-title">🎮 Pokémon Center + 🍱 lunch Solamachi</div>
+        <div class="act-meta">Tokyo Solamachi · Pokémon Center 4F · Toriton 7F · op eigen tempo</div>
+        <p>Aankomst in Solamachi op eigen tempo. Neem een wachtnummer bij <strong>Kaitenzushi Toriton (7F)</strong>, browse dan de Pokémon Center (4F) terwijl je wacht — snack ter overbrugging als de honger niet wacht. Stroller gewoon mee door de hele mall.<br><br><strong>Toriton</strong> — kaiten-sushi: zalm, tamago, avocado-maki, kappa-maki, pescetarisch volledig gedekt. Peuter = zelfde transportband-magie als Uobei. ~¥1.500–2.500 p.p.<br><strong>Backup: Miyatake Sanuki Udon (3F Tabe-Terrace)</strong> — walk-in, geen wacht, babykamer direct naast de tafels. ~¥700–1.200 p.p.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-metro" style="--lijn:#ec6e65"><div class="tr-icon">🚇</div><div class="tr-body"><div class="tr-route">Oshiage (Skytree) <span>→</span> Kuramae</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>1 halte · coin lockers Kuramae Station</div></div><div class="tr-dur">~5 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">Na lunch</div>
+      <div class="act-body">
+        <div class="act-title">Koffers ophalen bij Kuramae</div>
+        <div class="act-meta">Oshiage → Kuramae 1 halte · coin lockers Kuramae Station · trein naar Haneda 16:15</div>
+        <p>Oshiage Station (Skytree) zit op de Toei Asakusa Line — dezelfde lijn als Kuramae. 1 stop terug, koffers uit de coin lockers van Kuramae Station halen, dan direct door naar Haneda (diezelfde lijn rijdt door als Keikyu naar T3). Stroller-dut valt vaak vanzelf in op de treinrit.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>🎮 Pokémon Center Skytree Town + 🍱 Lunch Solamachi</h4>
-      <div class="act-title">Tokyo Solamachi · Pokémon Center 4F · Toriton 7F · op eigen tempo</div>
-      <p>Aankomst in Solamachi op eigen tempo. Neem een wachtnummer bij <strong>Kaitenzushi Toriton (7F)</strong>, browse dan de Pokémon Center (4F) terwijl je wacht — snack ter overbrugging als de honger niet wacht. Stroller gewoon mee door de hele mall.<br><br><strong>Toriton</strong> — kaiten-sushi: zalm, tamago, avocado-maki, kappa-maki, pescetarisch volledig gedekt. Peuter = zelfde transportband-magie als Uobei. ~¥1.500–2.500 p.p.<br><strong>Backup: Miyatake Sanuki Udon (3F Tabe-Terrace)</strong> — walk-in, geen wacht, babykamer direct naast de tafels. ~¥700–1.200 p.p.</p>
+      <div class="act-time">~16:15</div>
+      <div class="act-body">
+        <div class="act-title">Directe trein naar Haneda T3</div>
+        <div class="act-meta">Kuramae → Haneda T3 · ~45 min · geen overstap</div>
+        <p>De Toei Asakusa-lijn rijdt door als Keikyu-airport-trein — instappen in Kuramae, uitstappen onder Terminal 3. Check op het perron dat de trein "Haneda Airport" als bestemming toont (through-service; anders 1 cross-platform-overstap bij Sengakuji).</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~16:15</div><div class="act-leg-text"><div class="tr-card tr-train" style="--lijn:#ec6e65"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Kuramae <span>→</span> Haneda Airport T3</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#ec6e65">Asakusa-lijn</span>rijdt door als <span class="tr-lijn" style="--lijn:#1f5fa8">Keikyu</span>· geen overstap · check "Haneda Airport" op het perron</div></div><div class="tr-dur">~45 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~17:15</div>
+      <div class="act-body">
+        <div class="act-title">T3: inchecken Villa Fontaine Grand</div>
+        <div class="act-meta">via loopbrug direct naar het hotel · ✓ geboekt</div>
+        <p><strong>Villa Fontaine Grand Haneda Airport</strong> — in het Haneda Airport Garden-complex, via loopbrug direct aan Terminal 3 vast. ✓ <strong>Geboekt (¥26.283)</strong>: check-in ~17:15, gebruik tot ~23:00, geen late-checkout-gedoe; babybed niet nodig voor die paar uur — peuter slaapt in het grote bed met kussens als val-bescherming. Bonus: rooftop-natuuronsen <strong>Izumi Tenku no Yu</strong> met zicht op de landingsbanen — het échte afscheids-onsen-moment, om beurten terwijl de ander bij de slapende peuter blijft.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>Na lunch — Poka koffers ophalen · trein Haneda</h4>
-      <div class="act-title">Solamachi/Oshiage → Kuramae (Toei Asakusa Line, 1 stop) · koffers ophalen · trein 16:15</div>
-      <p>Oshiage Station (Skytree) zit op de Toei Asakusa Line — dezelfde lijn als Kuramae. 1 stop terug, koffers uit de coin lockers van Kuramae Station halen, dan direct door naar Haneda (diezelfde lijn rijdt door als Keikyu naar T3). Stroller-dut valt vaak vanzelf in op de treinrit.</p>
+      <div class="act-time">~17:45</div>
+      <div class="act-body">
+        <div class="act-title">Diner Haneda Airport Garden · bad · 19:30 in bed</div>
+        <div class="act-meta">eten pal onder het hotel (alles indoor, lift, landside, geen vlucht-check-in nodig) · volledige bedtijd-routine in een écht bed</div>
+        <p>Alles hieronder zit in het Garden-complex zelf, 2–5 min van de hotellift, geverifieerd jul 2026 (⚠️ feestdag-zondag = drukker dan normaal, dus 17:45 aanschuiven is precies goed):<br><br>
+        <strong>A · Oedo Food Hall</strong> (1F, default) — food court met ~5 counters: kaisen-don zeevruchten-rijstkommen, 100% boekweit-soba, Edomae-ramen, steak · voor Mandy kaisen-don of soba (vis-dashi ✓), peuter eet rijst/tamago/noedels mee · 220 stoelen, <strong>kindermenu's + kinderstoelen officieel bevestigd</strong>, buggy naast tafel, ook take-out · zo 11:00–22:00 · ~¥1.000–2.000 p.p.<br>
+        <strong>B · Godai-me Hanayama Udon</strong> (1F) — beroemde Gunma-udon, 3× nationaal kampioen; signature "Oni-himokawa" 5 cm brede linten (deel-magneet voor een 14-maander) + Haneda-only gozen-set met masu-zushi · let op: de niku-varianten hebben vleesbouillon — Mandy neemt de gewone dashi-tsuyu · zo-diner v.a. 17:00 · ~¥1.200–2.200 p.p. · drukste zaak van het complex.<br>
+        <strong>C · Shinpachi Shokudo</strong> (1F) — houtskool-gegrilde vis-teishoku (saba/zalm/hokke + rijst + misosoep): het pescetarische zeker-weten · open tot 05:00 's ochtends, dus óók perfect als <em>tweede hap ~22:30</em> vóór het inchecken · ~¥1.000–2.000 p.p.<br>
+        <strong>D · Tsukiji Sushiko Takumi</strong> (2F) — echte Edomae-sushi aan counter/tafels als jullie de laatste avond willen vieren · zo doorlopend 11:30–21:30 · ~¥3.000–5.000 p.p.<br><br>
+        ⚠️ <em>Ramen-waarschuwing: geen enkele ramen hier (Setagaya T3, Menya Yukimitsu, food hall) is veilig vleesvrij — kip/varken in de bouillon. Ramen = alleen Michael.</em> Fallback/picknick: <strong>Lawson op Garden 2F (24u)</strong> — bento, onigiri, fruit voor op de hotelkamer. In T3 zelf (8–12 min binnendoor, 4F Edo-Koji): Ariso Sushi (24u) en Tsurutontan-udon (6:00–23:00) — handig voor de nacht-uren.<br><br>
+        Daarna: bad, pyjama, melk, <strong>19:30–20:00 slapen</strong> — gewoon zijn normale avond. Ouders pakken om, eten rustig na (of doen de Shinpachi/Lawson-run om 22:30), douchen/onsen, en rusten zelf ook: de nacht wordt kort.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>~16:15 — Directe trein naar Haneda T3</h4>
-      <div class="act-title">Kuramae → Haneda Airport Terminal 3 · ~45 min · geen overstap</div>
-      <p>De Toei Asakusa-lijn rijdt door als Keikyu-airport-trein — instappen in Kuramae, uitstappen onder Terminal 3. Check op het perron dat de trein "Haneda Airport" als bestemming toont (through-service; anders 1 cross-platform-overstap bij Sengakuji).</p>
+      <div class="act-time">~23:00</div>
+      <div class="act-body">
+        <div class="act-title">Wakker maken · lift naar T3 · check-in</div>
+        <div class="act-meta">Qatar check-in + security · boarding ~00:45 · vertrek 01:35</div>
+        <p>Slaperige peuter in de draagzak, via de loopbrug naar de vertrekhal — geen trein, geen taxi, geen kou. ✓ <strong>Bassinet bevestigd op QR813 + QR95</strong> (⚠️ met 14 mnd zit hij mogelijk op de 11kg/lengte-limiet — plan schoot + gangpad-wandelingen als backup). Na take-off valt hij als het goed is snel weer in slaap — 01:35 is midden in zijn nacht.</p>
+      </div>
     </div>
     <div class="act-block">
-      <h4>~17:15 — T3: inchecken Villa Fontaine Grand</h4>
-      <div class="act-title">Via loopbrug direct naar het hotel · ✓ geboekt</div>
-      <p><strong>Villa Fontaine Grand Haneda Airport</strong> — in het Haneda Airport Garden-complex, via loopbrug direct aan Terminal 3 vast. ✓ <strong>Geboekt (¥26.283)</strong>: check-in ~17:15, gebruik tot ~23:00, geen late-checkout-gedoe; babybed niet nodig voor die paar uur — peuter slaapt in het grote bed met kussens als val-bescherming. Bonus: rooftop-natuuronsen <strong>Izumi Tenku no Yu</strong> met zicht op de landingsbanen — het échte afscheids-onsen-moment, om beurten terwijl de ander bij de slapende peuter blijft.</p>
-    </div>
-    <div class="act-block">
-      <h4>~17:45 — Diner Haneda Airport Garden · bad · 19:30 baby in bed</h4>
-      <div class="act-title">Eten pal onder het hotel (alles indoor, lift, landside — geen vlucht-check-in nodig) · volledige bedtijd-routine in een écht bed</div>
-      <p>Alles hieronder zit in het Garden-complex zelf, 2–5 min van de hotellift, geverifieerd jul 2026 (⚠️ feestdag-zondag = drukker dan normaal, dus 17:45 aanschuiven is precies goed):<br><br>
-      <strong>A · Oedo Food Hall</strong> (1F, default) — food court met ~5 counters: kaisen-don zeevruchten-rijstkommen, 100% boekweit-soba, Edomae-ramen, steak · voor Mandy kaisen-don of soba (vis-dashi ✓), peuter eet rijst/tamago/noedels mee · 220 stoelen, <strong>kindermenu's + kinderstoelen officieel bevestigd</strong>, buggy naast tafel, ook take-out · zo 11:00–22:00 · ~¥1.000–2.000 p.p.<br>
-      <strong>B · Godai-me Hanayama Udon</strong> (1F) — beroemde Gunma-udon, 3× nationaal kampioen; signature "Oni-himokawa" 5 cm brede linten (deel-magneet voor een 14-maander) + Haneda-only gozen-set met masu-zushi · let op: de niku-varianten hebben vleesbouillon — Mandy neemt de gewone dashi-tsuyu · zo-diner v.a. 17:00 · ~¥1.200–2.200 p.p. · drukste zaak van het complex.<br>
-      <strong>C · Shinpachi Shokudo</strong> (1F) — houtskool-gegrilde vis-teishoku (saba/zalm/hokke + rijst + misosoep): het pescetarische zeker-weten · open tot 05:00 's ochtends, dus óók perfect als <em>tweede hap ~22:30</em> vóór het inchecken · ~¥1.000–2.000 p.p.<br>
-      <strong>D · Tsukiji Sushiko Takumi</strong> (2F) — echte Edomae-sushi aan counter/tafels als jullie de laatste avond willen vieren · zo doorlopend 11:30–21:30 · ~¥3.000–5.000 p.p.<br><br>
-      ⚠️ <em>Ramen-waarschuwing: geen enkele ramen hier (Setagaya T3, Menya Yukimitsu, food hall) is veilig vleesvrij — kip/varken in de bouillon. Ramen = alleen Michael.</em> Fallback/picknick: <strong>Lawson op Garden 2F (24u)</strong> — bento, onigiri, fruit voor op de hotelkamer. In T3 zelf (8–12 min binnendoor, 4F Edo-Koji): Ariso Sushi (24u) en Tsurutontan-udon (6:00–23:00) — handig voor de nacht-uren.<br><br>
-      Daarna: bad, pyjama, melk, <strong>19:30–20:00 slapen</strong> — gewoon zijn normale avond. Ouders pakken om, eten rustig na (of doen de Shinpachi/Lawson-run om 22:30), douchen/onsen, en rusten zelf ook: de nacht wordt kort.</p>
-    </div>
-    <div class="act-block">
-      <h4>~23:00 — Wakker maken · lift naar T3 · check-in</h4>
-      <div class="act-title">Qatar check-in + security · boarding ~00:45 · vertrek 01:35</div>
-      <p>Slaperige peuter in de draagzak, via de loopbrug naar de vertrekhal — geen trein, geen taxi, geen kou. ✓ <strong>Bassinet bevestigd op QR813 + QR95</strong> (⚠️ met 14 mnd zit hij mogelijk op de 11kg/lengte-limiet — plan schoot + gangpad-wandelingen als backup). Na take-off valt hij als het goed is snel weer in slaap — 01:35 is midden in zijn nacht.</p>
-    </div>
-    <div class="act-block">
-      <h4>Doha 06:45–08:15 (1u30) · thuis ma 13:40</h4>
-      <div class="act-title">Korte overstap — direct door naar de gate</div>
-      <p>1u30 is krap maar werkbaar: na de landing direct naar de gate van QR95, onderweg verschonen (parents' room in de gate-zone) en een ontbijthapje uit de tas. De gratis kids' play areas slaan jullie over — geen tijd. QR95 08:15 → landing Zürich <strong>maandag 23/11 13:40</strong>. Op de tweede vlucht (~7u) doet hij zijn ochtenddut.</p>
+      <div class="act-time">06:45</div>
+      <div class="act-body">
+        <div class="act-title">Doha-overstap 1u30</div>
+        <div class="act-meta">06:45–08:15 · direct door naar de gate · thuis ma 13:40</div>
+        <p>1u30 is krap maar werkbaar: na de landing direct naar de gate van QR95, onderweg verschonen (parents' room in de gate-zone) en een ontbijthapje uit de tas. De gratis kids' play areas slaan jullie over — geen tijd. QR95 08:15 → landing Zürich <strong>maandag 23/11 13:40</strong>. Op de tweede vlucht (~7u) doet hij zijn ochtenddut.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -3277,7 +3420,7 @@ body.compact .day-entry.v2 .notities-knop { display:inline-block; }
 </div>
 
 <div class="footer">
-  Japan met Baby · November 2026 · Qatar Airways ZRH→KIX (QR96/QR802) / HND→ZRH via Doha (QR813/QR95, vertrek ma 23/11 01:35) · 2101 CHF · 17 nachten + Haneda-avondkamer · 4–23 november · geüpdatet 18 oktober 2026 (Qatar schedule change: QR96 → DOH 23:30 / QR95 DOH 08:15 · nieuwe sectie Algemeen + "Tips voor Osaka/Kyoto/Tokyo" boven de dag-schema's · dag 3: Uniqlo 75 min, NB als korte ⚪️ stop · dag 3 = proef compact-modus + vervoer-kaarten)
+  Japan met Baby · November 2026 · Qatar Airways ZRH→KIX (QR96/QR802) / HND→ZRH via Doha (QR813/QR95, vertrek ma 23/11 01:35) · 2101 CHF · 17 nachten + Haneda-avondkamer · 4–23 november · geüpdatet 18 oktober 2026 (Qatar schedule change: QR96 → DOH 23:30 / QR95 DOH 08:15 · sectie Algemeen + "Tips voor Osaka/Kyoto/Tokyo" · telefoon-modus: compact-knop, vervoer-kaarten op alle dagen, Tokyo-dagen op tijdlijn-formaat)
 </div>
 
 <script>
@@ -3400,7 +3543,7 @@ document.querySelectorAll('table').forEach(function(t){
   }, { passive: true });
 })();
 
-/* Compact-modus (proef op dag 3 = .day-entry.v2): knop in de dag-strip, standaard aan op telefoon */
+/* Compact-modus (.day-entry.v2 = alle dagen): knop in de dag-strip, standaard aan op telefoon */
 (function(){
   var strip = document.querySelector('.day-strip');
   if (!strip) return;
@@ -3415,21 +3558,27 @@ document.querySelectorAll('table').forEach(function(t){
     knop.textContent = aan ? 'volledig' : 'compact';
   }
   zet(aan);
+  if (aan) document.querySelectorAll('.day-entry.v2 details.option-card[open]').forEach(function(d){ d.removeAttribute('open'); });
   knop.addEventListener('click', function(){
     zet(!aan);
     try { localStorage.setItem(KEY, aan ? '1' : '0'); } catch(e){}
   });
   function isCompact(){ return document.body.classList.contains('compact'); }
+  document.querySelectorAll('.overview-block[id^="tips-"], #praktisch > .overview-block').forEach(function(x){
+    x.classList.add('inklapbaar');
+    var h = x.querySelector('h3');
+    if (h) h.addEventListener('click', function(){ if (isCompact()) x.classList.toggle('open'); });
+  });
   document.querySelectorAll('.day-entry.v2').forEach(function(d){
     d.querySelectorAll('.act-block').forEach(function(b){
       var t = b.querySelector('.act-title');
-      if (b.querySelector('.act-body p') || b.querySelector('.act-meta')) {
+      if (b.querySelector('p') || b.querySelector('.act-meta')) {
         b.classList.add('meer');
         if (t) t.addEventListener('click', function(){ if (isCompact()) b.classList.toggle('open'); });
       }
       if (t && /^\s*⚪️/.test(t.textContent)) b.classList.add('optioneel');
     });
-    d.querySelectorAll('.tip-box, .choice-block').forEach(function(x){
+    d.querySelectorAll('.tip-box, .choice-block, .meals').forEach(function(x){
       x.classList.add('meer');
       x.addEventListener('click', function(e){ if (isCompact() && !e.target.closest('a')) x.classList.toggle('open'); });
     });
