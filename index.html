@@ -878,6 +878,11 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
 }
 .option-card .option-body strong { color:#111; }
 .option-recommended { border-color:#a8d8a8; background:#f4faf4; }
+.option-card.dag-optie { margin:6px 0 14px; }
+.option-card.dag-optie summary { padding:14px 16px; }
+.option-card.dag-optie .option-body { margin:0 8px; padding:8px 0 4px; }
+.option-card.dag-optie[open] .option-toggle::before { content:"▼ Inklappen"; }
+.option-card.dag-optie:not([open]) .option-toggle::before { content:"▶ Bekijk optie"; }
 .option-recommended .option-tag { color:#2d6a2d; }
 
 /* ─── ACTIVITY-TYPE TAGS ─── */
@@ -1118,10 +1123,10 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
     <a href="#dag4"  class="day-chip chip-osaka"><div class="day-chip-num">Dag 4</div><div class="day-chip-date">7 nov (za)</div><div class="day-chip-city">Osaka</div><div class="day-chip-title">Aquarium · 🐻 · Shinsekai</div></a>
     <a href="#dag5"  class="day-chip chip-koyasan"><div class="day-chip-num">Dag 5</div><div class="day-chip-date">8 nov (zo)</div><div class="day-chip-city">Koyasan</div><div class="day-chip-title">Eko-in tempelverblijf</div></a>
     <a href="#dag6"  class="day-chip chip-kyoto"><div class="day-chip-num">Dag 6</div><div class="day-chip-date">9 nov (ma)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Aankomst · Kiyomizudera · casual avond</div></a>
-    <a href="#dag7"  class="day-chip chip-kyoto"><div class="day-chip-num">Dag 7</div><div class="day-chip-date">10 nov (di)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Fushimi vroeg · rust · 🍁 Eikando</div></a>
+    <a href="#dag7"  class="day-chip chip-kyoto"><div class="day-chip-num">Dag 7</div><div class="day-chip-date">10 nov (di)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Fushimi + 🍁 Eikando · optie A/B</div></a>
     <a href="#dag8"  class="day-chip chip-kyoto"><div class="day-chip-num">Dag 8</div><div class="day-chip-date">11 nov (wo)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Nara · geen wekker · 🥞 pancake-ontbijt</div></a>
     <a href="#dag9"  class="day-chip chip-kyoto"><div class="day-chip-num">Dag 9</div><div class="day-chip-date">12 nov (do)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">⚔️ Samurai 09:30 ✓ · 🍤 Ten no Meshi ✓ · Kintsugi ✓ · 🏮 Kodai-ji</div></a>
-    <a href="#dag10" class="day-chip chip-kyoto"><div class="day-chip-num">Dag 10</div><div class="day-chip-date">13 nov (vr)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Arashiyama · 🍁 Jojakko-ji · 🏛️ Kinkaku-ji</div></a>
+    <a href="#dag10" class="day-chip chip-kyoto"><div class="day-chip-num">Dag 10</div><div class="day-chip-date">13 nov (vr)</div><div class="day-chip-city">Kyoto</div><div class="day-chip-title">Arashiyama A/B · 🍁 Jojakko-ji · 🏛️ Kinkaku-ji</div></a>
     <a href="#dag11" class="day-chip chip-kawaguchiko"><div class="day-chip-num">Dag 11</div><div class="day-chip-date">14 nov (za)</div><div class="day-chip-city">Kyoto → Kawaguchiko</div><div class="day-chip-title">⚪️ Nishiki optioneel · transit · Konanso</div></a>
     <a href="#dag12" class="day-chip chip-kawaguchiko"><div class="day-chip-num">Dag 12</div><div class="day-chip-date">15 nov (zo)</div><div class="day-chip-city">Kawaguchiko</div><div class="day-chip-title">Oishi Park · Houtou · ⚪️ Ropeway</div></a>
     <a href="#dag13" class="day-chip chip-tokyo"><div class="day-chip-num">Dag 13</div><div class="day-chip-date">16 nov (ma)</div><div class="day-chip-city">Kawaguchiko → Tokyo</div><div class="day-chip-title">⚪️ Chureito · bus · Akihabara neon</div></a>
@@ -1151,7 +1156,7 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
     <div class="cost-section">
       <h3>Activiteiten &amp; vervoer</h3>
       <div class="cost-row"><span>Vervoer Japan, 2 p. — treinen + bussen uit de vervoerstabel ¥56.880 + metro/stadsbussen op Suica/ICOCA ~¥20k (Osaka-metro, Kyoto-bussen ¥230/rit, Tokyo-metro, retro-bus Kawaguchiko)</span><span>~¥77k (~CHF 405)</span></div>
-      <div class="cost-row"><span>Taxi's (geplande ritten — vooral Kyoto: Arashiyama 07:30 + Arashiyama → Kinkaku-ji → Kawaramachi (dag 10) + museum-rit (dag 9) + Eikando retour (dag 7) + station-transfers met koffers · Osaka: kasteel → hotel (dag 3, ~¥1.500) + 1–2 ritjes · Kawaguchiko/Tokyo elk 1–2 ritjes · excl. regen-backup Kuramae→Haneda ¥8k)</span><span>~¥25–32k (~CHF 135–170)</span></div>
+      <div class="cost-row"><span>Taxi's (geplande ritten — vooral Kyoto: Arashiyama (07:30, of ~08:20 naar Otagi) + Arashiyama → Kinkaku-ji → Kawaramachi (dag 10) + museum-rit (dag 9) + Eikando retour (dag 7, optie A) + station-transfers met koffers · Osaka: kasteel → hotel (dag 3, ~¥1.500) + 1–2 ritjes · Kawaguchiko/Tokyo elk 1–2 ritjes · excl. regen-backup Kuramae→Haneda ¥8k)</span><span>~¥25–32k (~CHF 135–170)</span></div>
       <div class="cost-row"><span>✓ GYG-vouchers (eetstokjes, kintsugi, samurai museum + Disneyland)</span><span>~CHF 28 bijbetaald</span></div>
       <div class="cost-row"><span>TeamLab Borderless (2 p., dynamisch)</span><span>~€45–65</span></div>
       <div class="cost-row"><span>✓ Tokyo Disneyland (2 p.)</span><span>inbegrepen in vouchers</span></div>
@@ -1687,7 +1692,7 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
 <div class="city-divider">
   <h2>🍁 Kyoto</h2>
   <div class="city-meta">5 nachten · inchecken 9 nov · uitchecken 14 nov · YenSan Matsu Higashiyama ✓ (CHF 694)</div>
-  <span class="koyo-note">Koyo ~10–30% — forecast 2026 (stand 17/10) is wéér laat: Eikando/Tofuku-ji/Arashiyama 見頃 vanaf ~23–25 nov, JMC Kyoto 11 dec · beste vroege gok: Eikando (dag 7 namiddag) · verlichting die wél loopt: Kodai-ji (dag 9, na kintsugi)</span>
+  <span class="koyo-note">Koyo ~10–30% — forecast 2026 (stand 17/10) is wéér laat: Eikando/Tofuku-ji/Arashiyama 見頃 vanaf ~23–25 nov, JMC Kyoto 11 dec · beste vroege gok: Eikando (dag 7) · verlichting die wél loopt: Kodai-ji (dag 9, na kintsugi)</span>
 </div>
 
 <!-- ─── TIPS VOOR KYOTO ─── -->
@@ -1764,7 +1769,7 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
   <div class="tip-box" style="margin-top:16px;">
     <strong>🚌 Vervoer in Kyoto</strong><br><br>
     • Bus <strong>#100</strong> en <strong>#206</strong> zijn de "tourist loop" van Kyoto · IC-kaart werkt overal: achterin instappen, bij het uitstappen voorin tappen<br>
-    • Taxi's zijn de dut-vriendelijke optie: GO-app of taxistandplaats, geen autostoeltje nodig (zie Algemeen) · dag 10 = 07:30 taxi naar Arashiyama<br>
+    • Taxi's zijn de dut-vriendelijke optie: GO-app of taxistandplaats, geen autostoeltje nodig (zie Algemeen) · dag 10 = taxi 07:30 (A) of ~08:20 naar Otagi (B)<br>
     • Kyoto Station: Isetan B2 depachika + Akachan Honpo (Aeon Mall) liggen op de route van de Nara-dag (8) en het vertrek (11)
   </div>
 </div>
@@ -1894,14 +1899,24 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
 <div class="day-entry v2" id="dag7">
   <div class="day-headline">
     <div class="day-num-label">Dag 7 · di 10 november</div>
-    <h3>Fushimi Inari vroeg · rustdag · 🍁 Eikando + Nanzen-ji namiddag</h3>
+    <h3>Fushimi Inari + 🍁 Eikando &amp; Nanzen-ji · A vroege start of B uitgeslapen</h3>
     <div class="sleep-note">🏨 Kyoto</div>
   </div>
   <div class="transport-bar">
     <span class="transport-pill">Reistijd vandaag</span>
-    <span>Deur → torii-poorten ~30 min: 10-12 min lopen naar Keihan Shichijo + Keihan 2 stops ~5 min (~¥170 p.p.) + 5 min lopen · terug idem · Namiddag: taxi machiya → Eikando ~10-12 min (~¥1.800), terug vanaf Nanzen-ji idem (OV = Keage-metro + Keihan ~35 min, niet de moeite met een moe kind)</span>
+    <span>Fushimi Inari: deur → torii ~30 min (10–12 min lopen naar Keihan Shichijo + 2 haltes ~5 min, ~¥170 p.p. + 5 min lopen) · Eikando/Nanzen-ji met OV ~40–45 min (Keihan → Sanjo, ondergronds over op de Tozai-lijn → Keage, ~¥390 p.p. + 10–15 min lopen) of taxi ~10–12 min (~¥1.800) · <b>A:</b> taxi heen naar Eikando (laatste toegang 16:00), terug taxi of OV · <b>B:</b> alles met OV, taxi enkel als hij moe is</span>
   </div>
   <div class="activities timeline">
+    <details class="option-card dag-optie">
+      <summary>
+        <div>
+          <div class="option-tag">Optie A · vroege start</div>
+          <div class="option-title">⛩️ Fushimi Inari 07:35 → bed-dut → 🍁 Eikando + Nanzen-ji bij zonsondergang</div>
+          <div class="option-tagline">Kies als: peuter vroeg wakker en goed geslapen · onderaan al volk om 07:30, wél minder dan na 09:30 · namiddag-taxi naar Eikando (laatste toegang 16:00)</div>
+        </div>
+        <span class="option-toggle"></span>
+      </summary>
+      <div class="option-body">
     <div class="act-block">
       <div class="act-time">07:00</div>
       <div class="act-body">
@@ -1914,8 +1929,8 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
       <div class="act-time">07:35</div>
       <div class="act-body">
         <div class="act-title"><span class="act-tag act-tag-must">Must</span>⛩️ Fushimi Inari Taisha</div>
-        <div class="act-meta"><b>24u gratis</b> · 5 min lopen vanaf Inari Station · vóór 08:30 = bijna leeg</div>
-        <p>10.000 rode torii-poorten slingeren de berg omhoog. <strong>Waarom "kom vroeg" hier écht werkt:</strong> iedereen leest dat advies, bijna niemand doet het — tourbussen en dagjesmensen uit Osaka arriveren pas 09:30–10:00. En de drukte concentreert zich in de eerste 400 m (de dubbele torii-rij) — precies het stuk dat jullie met peuter doen. <strong>Twee versies — kies op de dag:</strong></p>
+        <div class="act-meta"><b>24u gratis</b> · 5 min lopen vanaf Inari Station · om 07:35 rustiger dan later, maar niet leeg</div>
+        <p>10.000 rode torii-poorten slingeren de berg omhoog. <strong>Eerlijk verwachtingsmanagement:</strong> ook om 07:30 is het onderaan al druk — wie echt leeg wil, mikt tegenwoordig op 06:00 (en dat doen we niet). Het blijft wél rustiger dan vanaf 09:30–10:00, als de tourbussen en dagjesmensen uit Osaka komen. De drukte zit in de eerste 400 m (de dubbele torii-rij); wie klimt (versie B), laat de meeste mensen achter zich. <strong>Twee versies — kies op de dag:</strong></p>
         <div class="choice-block"><strong>Versie A — Vlak (peuter-licht):</strong> rol stroller door de grote poorten aan de voet. Onderaan zijn ~30 min vlakke verharde paden + dubbele rij kleine torii. Geen trappen, peuter blijft in stroller. ~30-45 min totaal.</div>
         <div class="choice-block"><strong>Versie B — Hike naar Yotsutsuji-uitzichtpunt:</strong> bij begin van trappen klap stroller in, zet aan de zijkant of bij kraampje. Peuter in draagzak voor 30-40 min hike omhoog. ~08:15 boven met uitzicht over Kyoto. Daarna terug, stroller oppikken. Pittig maar lege bergpad.</div>
       </div>
@@ -1934,12 +1949,71 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
       <div class="act-body">
         <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>🍁 Namiddag</div>
         <div class="act-meta">default: Eikando + Nanzen-ji (koyo-middag, 10 min van huis) · Default-pad: peuter komt net uit een echte bed-dut = beste humeur van de dag · niets moet</div>
-        <div class="choice-block"><strong>A · Eikando (Zenrin-ji) + Nanzen-ji</strong> (default) · <em>"Momiji no Eikando": ~3.000 esdoorns rond de Hojo-vijver, de overdekte Garyoro-gang tegen de helling en de Tahoto-pagode met uitzicht over de stad — dé koyo-klassieker van Higashiyama en de beste vroege gok van Kyoto: ook bij 30% kleuring is er zichtbaar rood, terwijl de Tsutenkyo-brug van Tofuku-ji zonder kleur een brug over een groene vallei is.</em> ⏰ Vandaag is de <b>laatste reguliere dag</b>: ¥1.000 p.p., 09:00–16:00 laatste toegang (sluit 17:00) — vanaf wo 11/11 start de herfst-寺宝展 (¥1.500 + drukker). Avondverlichting loopt pas 20/11–6/12, die missen jullie sowieso.<br><strong>Tijdlijn:</strong> ~14:45 wakker → 15:00 taxi (~10-12 min, ~¥1.800) → 15:15 Eikando, ruim vóór laatste toegang 16:00 · stroller parkeren bij de ingang, peuter in de carrier (gangen met trappen, pagode-trap) · ~16:30 eruit, 5 min lopen naar <b>Nanzen-ji</b>: Sanmon-poort en het bakstenen <b>Suirokaku-aquaduct</b> — gratis terrein, breed grindpad dus stroller weer uit · zonsondergang 16:50 = schemer tussen de pijlers · ~17:10 taxi terug (~10 min) → diner-keuze hieronder.<br><em>Gion, Shirakawa en de oude straatjes zitten al op dag 6 (schemer via Yasaka/Shirakawa) en dag 9 (Shirakawa-ochtend + straatjes na de lunch) — je verliest niets.</em></div>
+        <div class="choice-block"><strong>A · Eikando (Zenrin-ji) + Nanzen-ji</strong> (default) · <em>"Momiji no Eikando": ~3.000 esdoorns rond de Hojo-vijver, de overdekte Garyoro-gang tegen de helling en de Tahoto-pagode met uitzicht over de stad — dé koyo-klassieker van Higashiyama en de beste vroege gok van Kyoto: ook bij 30% kleuring is er zichtbaar rood, terwijl de Tsutenkyo-brug van Tofuku-ji zonder kleur een brug over een groene vallei is.</em> ⏰ Vandaag is de <b>laatste reguliere dag</b>: ¥1.000 p.p., 09:00–16:00 laatste toegang (sluit 17:00) — vanaf wo 11/11 start de herfst-寺宝展 (¥1.500 + drukker). Avondverlichting loopt pas 20/11–6/12, die missen jullie sowieso.<br><strong>Tijdlijn:</strong> ~14:45 wakker → 15:00 taxi (~10-12 min, ~¥1.800) → 15:15 Eikando, ruim vóór laatste toegang 16:00 · stroller parkeren bij de ingang, peuter in de carrier (gangen met trappen, pagode-trap) · ~16:30 eruit, 5 min lopen naar <b>Nanzen-ji</b>: Sanmon-poort en het bakstenen <b>Suirokaku-aquaduct</b> — gratis terrein, breed grindpad dus stroller weer uit · zonsondergang 16:50 = schemer tussen de pijlers · ~17:10 taxi terug (~10 min) → diner-keuze hieronder · <em>of terug met OV: ~10 min lopen naar Keage → Tozai 2 haltes → Sanjo-Keihan, en daar zit <b>UNO Ramen</b> (diner A) op 2 min · daarna Keihan 2 haltes naar huis.</em><br><em>Gion, Shirakawa en de oude straatjes zitten al op dag 6 (schemer via Yasaka/Shirakawa) en dag 9 (Shirakawa-ochtend + straatjes na de lunch) — je verliest niets.</em></div>
         <div class="choice-block"><strong>B · Rust thuis</strong> (lage-energie-fallback) · niets plannen: thuis spelen of uitbollen in <b>Maruyama Park</b> om de hoek (peuter mag los, kleine speeltuin) · Gion en de oude straatjes komen op dag 6 en 9 sowieso langs.</div>
         <div class="choice-block"><strong>C · Nijo Castle</strong> (⚪️ alleen als iedereen om 14:30 nog energie heeft — Shogun-fans) · vanaf Kyoto Station ~15 min: Karasuma-lijn → Karasuma-Oike + Tozai-lijn 1 stop naar Nijojo-mae, of taxi ~10 min (~¥1.500) · aankomst ~14:50, <strong>ruim vóór LE 16:00</strong> · ¥1.300 · ~1u15 · Shogun-paleis Tokugawa Ieyasu (1603), nachtegaalvloer, Ninomaru Goten (UNESCO, 33 kamers goud-leaf) · stroller in de tuinen, draagzak voor het paleis-interieur (schoenen uit) · daarna metro/taxi terug Higashiyama — diner wordt dan ~17:30-18:00, iets minder relaxed.</div>
       </div>
     </div>
-    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Diner-keuze — alle 4 opties dichtbij hotel · beslis op de dag op peuter-staat</div></div>
+      </div>
+    </details>
+    <details class="option-card dag-optie">
+      <summary>
+        <div>
+          <div class="option-tag">Optie B · uitgeslapen</div>
+          <div class="option-title">🍁 Eikando 09:00 bij opening + Nanzen-ji → bed-dut → ⛩️ Fushimi Inari + zonsondergang</div>
+          <div class="option-tagline">Kies als: slechte nacht of zin om uit te slapen · Eikando met de eerste groep · Inari met klim, onderaan druk maar boven rustig · alles met OV · thuis ~17:50</div>
+        </div>
+        <span class="option-toggle"></span>
+      </summary>
+      <div class="option-body">
+    <div class="act-block">
+      <div class="act-time">~07:30</div>
+      <div class="act-body">
+        <div class="act-title">Rustig ontbijt thuis · géén wekker</div>
+        <div class="act-meta">vertrek ~08:15 · Eikando opent om 09:00 en iedereen start dan tegelijk — op dit uur loont vroeg zijn wél</div>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~08:15</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Keihan Shichijo <span>→</span> Sanjo <span>→</span> Keage</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span> 2 haltes (~¥170 p.p.) · ondergronds overstappen op de <span class="tr-lijn" style="--lijn:#d2691e">Tozai</span> (~5–7 min) · 2 haltes naar Keage (~¥220 p.p.) · ~15 min lopen via de Neiji-mampo-tunnel en Nanzen-ji naar Eikando · lift Keage: checken · of taxi ~12 min ~¥1.800</div></div><div class="tr-dur">~45 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">09:00</div>
+      <div class="act-body">
+        <div class="act-title"><span class="act-tag act-tag-must">Must</span>🍁 Eikando (Zenrin-ji) bij opening</div>
+        <div class="act-meta"><b>Eerste groep binnen</b> · ¥1.000 p.p. (10/11 = laatste reguliere dag, vanaf 11/11 ¥1.500) · stroller bij de ingang, peuter in de carrier · ~1u15</div>
+        <p>Zelfde tempel als in optie A (zie daar de uitleg: Hojo-vijver, Garyoro-gang, Tahoto-pagode) — maar nu in ochtendlicht en vóór de groepen. Valt hij in de carrier in slaap: prima, gewoon verder wandelen.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~10:15</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Eikando <span>→</span> Nanzen-ji</div><div class="tr-meta">zuidwaarts, vlak</div></div><div class="tr-dur">~5 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~10:20</div>
+      <div class="act-body">
+        <div class="act-title">⛩️ Nanzen-ji — Sanmon + aquaduct</div>
+        <div class="act-meta">gratis terrein · breed grindpad, stroller weer uit · ~30 min · doorloopstuk, geen hoofdact</div>
+        <p>De reusachtige Sanmon-poort en het bakstenen <b>Suirokaku-aquaduct</b>. 's Ochtends minder sfeer dan in de schemering (optie A), wél minder volk.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~10:50</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Nanzen-ji <span>→</span> Keage <span>→</span> Sanjo <span>→</span> machiya</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#d2691e">Tozai</span> + <span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span> · ~10 min lopen naar Keage · dutje in de trein = prima · of taxi ~10 min ~¥1.800 (standplaats Eikando/Nanzen-ji of GO-app)</div></div><div class="tr-dur">~40 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~11:30</div>
+      <div class="act-body">
+        <div class="act-title">🏠 Thuis · lunch · bed-dut</div>
+        <div class="act-meta">lunch thuis of Fresco om de hoek · <b>bed-dut ~12:30–14:30</b> (heeft hij al in de trein geslapen, dan later/korter — geen probleem)</div>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~14:50</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Keihan Shichijo <span>→</span> Fushimi-Inari</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span>10–12 min lopen · 2 haltes ~5 min · ¥170 p.p. · 5 min lopen naar de poorten</div></div><div class="tr-dur">~30 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~15:20</div>
+      <div class="act-body">
+        <div class="act-title"><span class="act-tag act-tag-must">Must</span>⛩️ Fushimi Inari — namiddag + zonsondergang</div>
+        <div class="act-meta"><b>24u gratis</b> · onderaan druk, hogerop rustig · zonsondergang 16:50 · lantaarns langs de hoofdroute gaan aan rond schemer</div>
+        <p><strong>Eerlijk verwachtingsmanagement:</strong> onderaan is het om 15:30 druk, maar de meeste mensen maken foto's bij de eerste torii-rij en gaan niet verder. Na ~17:00 dunt het ook onderaan uit. <strong>Twee versies — kies op de dag:</strong></p>
+        <div class="choice-block"><strong>Versie A — Vlak:</strong> stroller door de grote poorten, ~45 min over de vlakke paden en de dubbele torii-rij · in de drukte · thuis ~17:00.</div>
+        <div class="choice-block"><strong>Versie B — Klim naar Yotsutsuji:</strong> stroller inklappen bij het begin van de trappen, peuter in de carrier · ~35–40 min omhoog, boven ~16:15–16:30 · <b>zonsondergang 16:50 over Kyoto</b> · draai uiterlijk ~16:50 om: afdalen in de schemering langs de verlichte hoofdroute (stenen trappen — telefoonlamp bij de hand) · thuis ~17:50.</div>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~17:20</div><div class="act-leg-text"><div class="tr-card tr-train"><div class="tr-icon">🚆</div><div class="tr-body"><div class="tr-route">Fushimi-Inari <span>→</span> Shichijo <span>→</span> machiya</div><div class="tr-meta"><span class="tr-lijn" style="--lijn:#1f5fa8">Keihan</span>2 haltes + 10–12 min lopen · thuis ~17:50 (versie A ~17:00) · diner: liefst C of D hieronder</div></div><div class="tr-dur">~30 min</div></div></div></div>
+      </div>
+    </details>
+    <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Diner-keuze — alle 4 opties dichtbij hotel · beslis op de dag op peuter-staat · na optie B (thuis ~17:50) liefst C of D</div></div>
     <div class="act-block">
       <div class="act-time">~17:30</div>
       <div class="act-body">
@@ -1969,8 +2043,8 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
     Boek vooraf vanuit Zwitserland; sommige shops bieden hotel-return next-day tegen meerprijs. Vervangt de namiddag-keuze (Eikando/Nijo) — een shoot ~15:00–17:00 werkt precies richting golden hour in Higashiyama.
   </div>
   <div class="badges">
-    <span class="badge badge-tip">⏰ Vertrek 07:05 · 07:35 bij de torii · vóór 09:00 weg — tourbussen komen pas 09:30–10:00</span>
-    <span class="badge badge-tip">😌 Default = rustdag: thuis ~10:15, echte bed-dut, namiddag Eikando + Nanzen-ji (15:00 taxi · laatste toegang 16:00 · 10/11 nog ¥1.000, vanaf 11/11 ¥1.500)</span>
+    <span class="badge badge-tip">🔀 Kies 's ochtends op slaap + energie · A: vertrek 07:05, 07:35 bij de torii (onderaan al volk, minder dan na 09:30) · B: géén wekker, Eikando 09:00 bij opening, Inari ~15:20 + zonsondergang boven</span>
+    <span class="badge badge-tip">😌 Beide: één echte bed-dut ~12:30–14:30 · Eikando 10/11 nog ¥1.000 (vanaf 11/11 ¥1.500) · A: taxi 15:00 (laatste toegang 16:00) · B: alles met OV</span>
     <span class="badge badge-tip">🏮 Kodai-ji herfstverlichting (~20–25 min lopen via Ninenzaka · 23/10–13/12 · 17:00–22:00, laatste toegang 21:30 · ¥800) — sámen gepland op dag 9 na kintsugi · om beurten na 20:00 blijft het vangnet op elke andere vrije avond</span>
     <span class="badge badge-tip">⚪️ Speeltuin-buffer: Maruyama Park (丸山公園, pal naast Yasaka Shrine — gratis, 24u open, vlak grasveld + kleine speeltuin, perfect als hij na de Inari-klim renruimte nodig heeft)</span>
   </div>
@@ -2192,20 +2266,30 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
 <div class="day-entry v2" id="dag10">
   <div class="day-headline">
     <div class="day-num-label">Dag 10 · vr 13 november</div>
-    <h3>Arashiyama · Bamboo Grove · 🍁 Jojakko-ji · ⚪️ Otagi Tempel · 🏛️ Kinkaku-ji namiddag</h3>
+    <h3>Arashiyama · A bamboe vroeg of B Otagi bergaf · 🍁 Jojakko-ji · 🏛️ Kinkaku-ji namiddag</h3>
     <div class="sleep-note">🏨 Kyoto</div>
   </div>
   <div class="transport-bar">
     <span class="transport-pill">Reistijd vandaag</span>
-    <span>Heen: taxi 07:30 → Bamboo Grove ~25 min (~¥3.500) — met peuter de enige zinnige route · Jojakko-ji: 10 min lopen · ⚪️ met Otagi: taxi Jojakko-ji → Otagi ~5–10 min (~¥1.000) + dezelfde taxi laten wachten → Togetsukyo ~10 min (~¥1.500 + wachttarief) · vangnet bus 90 om :21 · zonder Otagi: ~20 min lopen naar de rivier · Namiddag: taxi Arashiyama → Kinkaku-ji ~20 min (~¥3.000) · taxi Kinkaku-ji → Kawaramachi ~25 min (~¥3.000, diner) · na diner bus/metro naar Higashiyama ~15 min</span>
+    <span><b>B:</b> taxi ~08:20 → Otagi ~35–40 min (~¥4.500–5.000, schatting) · daarna alles te voet bergaf (~3 km: Otagi → ⚪️ Adashino → Saga-Toriimoto → Jojakko-ji → bamboe → rivier) · <b>A:</b> taxi 07:30 → Bamboo Grove ~25 min (~¥3.500) · Jojakko-ji: 10 min lopen · ⚪️ met Otagi: taxi Jojakko-ji → Otagi ~5–10 min (~¥1.000) + dezelfde taxi laten wachten → Togetsukyo ~10 min (~¥1.500 + wachttarief) · vangnet bus 90 om :21 · zonder Otagi: ~20 min lopen naar de rivier · Namiddag (A en B): taxi Arashiyama → Kinkaku-ji ~20 min (~¥3.000) · taxi Kinkaku-ji → Kawaramachi ~25 min (~¥3.000, diner) · na diner bus/metro naar Higashiyama ~15 min</span>
   </div>
   <div class="activities timeline">
+    <details class="option-card dag-optie">
+      <summary>
+        <div>
+          <div class="option-tag">Optie A · vroege start</div>
+          <div class="option-title">🎋 Bamboebos 08:00 → 🍁 Jojakko-ji 09:00 → ⚪️ Otagi → ☕ rivier</div>
+          <div class="option-tagline">Kies als: peuter vroeg wakker · bamboebos om 08:00 rustiger dan later, maar niet meer leeg · Otagi = taxi heen + laten wachten</div>
+        </div>
+        <span class="option-toggle"></span>
+      </summary>
+      <div class="option-body">
     <div class="act-block">
       <div class="act-time">07:00</div>
       <div class="act-body">
         <div class="act-title">Vroeg ontbijt thuis · taxi om 07:30</div>
-        <div class="act-meta">Om 08:00 in het bos = leeg · met OV (via Kyoto Station) ben je ~1u kwijt en moet je om 07:00 weg — taxi wint</div>
-        <div class="choice-block"><strong>⚪️ Vroege start — peuter vroeg wakker?</strong> · Zelfde volgorde, maar Jojakko-ji én Otagi openen pas om <b>09:00</b> — vroeger weg levert alleen een nóg leger bamboebos op. Gebruik het halfuur voor <b>Tenryu-ji</b>, het enige dat eerder open is: taxi <b>07:00</b> → bamboe <b>~07:30</b> → rustig doorlopen / rondje Ogura-vijver → <b>08:30 Tenryu-ji — alleen de tuin</b> (noord-poort direct aan het bamboepad · ¥500 · UNESCO · vlak, stroller mee · ~30 min · Sogenchi-vijver met de bergwand als achtergrond) → ~09:00 10 min lopen → <b>~09:15 Jojakko-ji</b> → rest van de dag ~15 min later. Geen zin in Tenryu-ji? Slenter door de Sagano-straatjes en sta om 09:00 bij Jojakko-ji — dan schuift alles ~15 min naar vóren. Volgorde omdraaien (eerst Otagi) heeft geen zin: opent ook pas 09:00 en ligt het verst.</div>
+        <div class="act-meta">Om 08:00 in het bos = rustiger dan later (leeg is het niet meer) · met OV (via Kyoto Station) ben je ~1u kwijt en moet je om 07:00 weg — taxi wint</div>
+        <div class="choice-block"><strong>⚪️ Vroege start — peuter vroeg wakker?</strong> · Zelfde volgorde, maar Jojakko-ji én Otagi openen pas om <b>09:00</b> — vroeger weg levert alleen een nóg leger bamboebos op. Gebruik het halfuur voor <b>Tenryu-ji</b>, het enige dat eerder open is: taxi <b>07:00</b> → bamboe <b>~07:30</b> → rustig doorlopen / rondje Ogura-vijver → <b>08:30 Tenryu-ji — alleen de tuin</b> (noord-poort direct aan het bamboepad · ¥500 · UNESCO · vlak, stroller mee · ~30 min · Sogenchi-vijver met de bergwand als achtergrond) → ~09:00 10 min lopen → <b>~09:15 Jojakko-ji</b> → rest van de dag ~15 min later. Geen zin in Tenryu-ji? Slenter door de Sagano-straatjes en sta om 09:00 bij Jojakko-ji — dan schuift alles ~15 min naar vóren. Liever bovenaan beginnen bij Otagi? → optie B.</div>
       </div>
     </div>
     <div class="act-leg tr"><div class="act-leg-time">07:30</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Bamboo Grove</div><div class="tr-meta">taxi ~¥3.500 · OV-alternatief: Kyoto Station + JR Sanin-lijn 15 min ¥240 + 12 min lopen = ~1u deur-tot-bos</div></div><div class="tr-dur">~25 min</div></div></div></div>
@@ -2214,7 +2298,7 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
       <div class="act-body">
         <div class="act-title">🎋 Arashiyama Bamboo Grove</div>
         <div class="act-meta"><b>24u gratis toegankelijk</b> · breed verhard pad · stroller prima · ~30 min is genoeg</div>
-        <p>Dichte bamboetunnel die het licht gefilterd doorlaat. <strong>Eerlijk verwachtingsmanagement:</strong> het pad is ~500 m en in 10–15 min uitgelopen — zie het als sfeervolle opwarmer van Arashiyama, niet als hoofdact. Om 08:00 is het vrijwel leeg (en kans op mist); vanaf ~09:30 wordt het een photo-op-file. De rivier en de Togetsukyo-brug later vandaag zijn minstens zo goed.</p>
+        <p>Dichte bamboetunnel die het licht gefilterd doorlaat. <strong>Eerlijk verwachtingsmanagement:</strong> het pad is ~500 m en in 10–15 min uitgelopen — zie het als sfeervolle opwarmer van Arashiyama, niet als hoofdact. Om 08:00 is het rustiger dan later (en kans op mist), maar niet meer leeg; vanaf ~09:30 wordt het een photo-op-file. De rivier en de Togetsukyo-brug later vandaag zijn minstens zo goed.</p>
       </div>
     </div>
     <div class="act-leg tr"><div class="act-leg-time">~08:30</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Bamboo Grove <span>→</span> Jojakko-ji</div><div class="tr-meta">noordwaarts door de Sagano-straatjes, langs de Ogura-vijver · poort opent 09:00 — geen haast</div></div><div class="tr-dur">~10 min</div></div></div></div>
@@ -2254,6 +2338,64 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
       </div>
     </div>
     <div class="act-leg"><div class="act-leg-time">↓</div><div class="act-leg-text">Picknick blijft aan de rivier · soba/udon = ~10 min lopen richting Saga-Arashiyama Station</div></div>
+      </div>
+    </details>
+    <details class="option-card dag-optie">
+      <summary>
+        <div>
+          <div class="option-tag">Optie B · uitgeslapen, van boven naar beneden</div>
+          <div class="option-title">🗿 Otagi 09:00 → ⚪️ Adashino-bamboe → Saga-Toriimoto → 🍁 Jojakko-ji → rivier</div>
+          <div class="option-tagline">Kies als: rustiger start gewenst · taxi naar het hoogste punt, dan ~3 km bergaf te voet · grote bamboebos enkel als doorgang · aan de rivier ~12:00</div>
+        </div>
+        <span class="option-toggle"></span>
+      </summary>
+      <div class="option-body">
+    <div class="act-block">
+      <div class="act-time">~07:45</div>
+      <div class="act-body">
+        <div class="act-title">Rustig ontbijt thuis · taxi ~08:20</div>
+        <div class="act-meta">Otagi opent om 09:00 — iedereen start dan tegelijk, dus geen race · daarna gaat de hele ochtend bergaf</div>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~08:20</div><div class="act-leg-text"><div class="tr-card tr-taxi"><div class="tr-icon">🚕</div><div class="tr-body"><div class="tr-route">machiya <span>→</span> Otagi Nenbutsu-ji</div><div class="tr-meta">taxi ~¥4.500–5.000 (schatting) · GO-app · toon 愛宕念仏寺 · geen zinnig OV (bus 90 rijdt ~1×/u) · één rit i.p.v. drie (geen wachttarief, geen vangnetbus)</div></div><div class="tr-dur">~35–40 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">09:00</div>
+      <div class="act-body">
+        <div class="act-title">Otagi Nenbutsu-ji Tempel bij opening</div>
+        <div class="act-meta"><b>Open</b> 09:00–16:00 · ¥1.000 (kinderen &lt;10 gratis) · ⚠️ <b>vr 13/11 ✓ open</b> (gesloten wo+za) · lichte trappen → carrier · ~45 min</div>
+        <p>De 1200 mossige stenen figuren uit optie A — nu als eerste stop, fris, en met de eerste bezoekers.</p>
+      </div>
+    </div>
+    <div class="act-block">
+      <div class="act-time">~09:45</div>
+      <div class="act-body">
+        <div class="act-title"><span class="act-tag act-tag-keuze">Keuze</span>Beslismoment aan de poort van Otagi</div>
+        <div class="act-meta">drie keer carrier (Otagi, Adashino, Jojakko-ji) is veel · Adashino overlapt qua thema met Otagi (stenen beelden) — de meerwaarde is het rustige bamboepaadje</div>
+        <div class="choice-block"><strong>⚪️ A · Adashino erbij</strong> — peuter vrolijk, jullie fris · ~8 min bergaf.</div>
+        <div class="choice-block"><strong>B · Meteen naar beneden</strong> — Saga-Toriimoto af naar Jojakko-ji · ~30 min vroeger aan de rivier · het rustige bamboemoment heb je al op dag 9 (verlicht bamboepad Kodai-ji).</div>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">↓</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Otagi <span>→</span> Adashino Nenbutsu-ji</div><div class="tr-meta">bergaf, ~600 m · buggy oké</div></div><div class="tr-dur">~8 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~10:00</div>
+      <div class="act-body">
+        <div class="act-title">⚪️ Adashino Nenbutsu-ji 化野念仏寺</div>
+        <div class="act-meta"><b>Open</b> 09:00–16:30 (LE 16:00, mrt–nov) · ¥500 · kinderen gratis · <b>cash only</b> · sluit soms bij slecht weer of ceremonies · ~30 min</div>
+        <p>~8.000 stenen boeddha's en grafbeeldjes op het tempelterrein, en achteraan een kort <b>bamboepaadje</b> met trappen omhoog — het rustige broertje van het grote bamboebos. Carrier voor het bamboepad, buggy bij de ingang.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~10:30</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Adashino <span>→</span> Saga-Toriimoto <span>→</span> Jojakko-ji</div><div class="tr-meta">bergaf, ~1,3 km · bewaarde oude straat met rieten daken en theehuisjes (dango-stop onderweg) · smal straatje, voetpad deels afwezig — buggy oké, let op auto's</div></div><div class="tr-dur">~20 min</div></div></div></div>
+    <div class="act-block">
+      <div class="act-time">~10:50</div>
+      <div class="act-body">
+        <div class="act-title">🍁 Jojakko-ji</div>
+        <div class="act-meta"><b>Open</b> 09:00–16:30 · ~¥500 · ~45 min · trappen → carrier, buggy bij de poort · zonder Adashino ~10:20</div>
+        <p>Zelfde tempel als in optie A (zie daar) — het koyo-hoogtepunt van de dag.</p>
+      </div>
+    </div>
+    <div class="act-leg tr"><div class="act-leg-time">~11:35</div><div class="act-leg-text"><div class="tr-card tr-walk"><div class="tr-icon">🚶</div><div class="tr-body"><div class="tr-route">Jojakko-ji <span>→</span> Bamboo Grove <span>→</span> rivier</div><div class="tr-meta">langs de Ogura-vijver, kort door het grote bamboebos (druk rond deze tijd — doorgang van 10 min, geen fotostop) · koffie/snack schuift naar na de lunch (% Arabica aan de brug, Koto Imo Honpo)</div></div><div class="tr-dur">~20–25 min</div></div></div></div>
+      </div>
+    </details>
     <div class="act-block">
       <div class="act-time">~12:00</div>
       <div class="act-body">
@@ -2302,14 +2444,14 @@ body.compact .overview-block.inklapbaar:not(.open) { padding:14px 18px; }
     </div>
   </div>
   <div class="badges">
-    <span class="badge badge-tip">🎋 08:00 in het bos = leeg (taxi 07:30) · vanaf 09:30 photo-op-file · 500 m — opwarmer, geen hoofdact</span>
+    <span class="badge badge-tip">🔀 Kies 's ochtends op slaap + energie · A: taxi 07:30, bamboebos 08:00 (rustiger, niet leeg) · B: taxi ~08:20 naar Otagi, alles bergaf te voet · beide ~12:00 aan de rivier</span>
     <span class="badge badge-tip">🍁 Jojakko-ji opent 09:00 · trappen → carrier mee, buggy bij de poort</span>
-    <span class="badge badge-tip">⚪️ Otagi = keuze ter plekke bij Jojakko-ji (~09:45) · gesloten wo+za · vr 13/11 ✓ open · laat de taxi wachten — terug rijdt alleen bus 90 (:21), niet 62/72</span>
-    <span class="badge badge-tip">⚪️ Vroeg wakker? Taxi 07:00 → Tenryu-ji-tuin om 08:30 (enige dat vóór 09:00 open is) → Jojakko-ji ~09:15</span>
+    <span class="badge badge-tip">⚪️ Otagi gesloten wo+za · vr 13/11 ✓ open · A: keuze bij Jojakko-ji, taxi laten wachten (terug rijdt alleen bus 90 :21) · B: eerste stop, geen terugrit nodig · Adashino ¥500 cash</span>
+    <span class="badge badge-tip">⚪️ Optie A extra vroeg wakker? Taxi 07:00 → Tenryu-ji-tuin om 08:30 (enige dat vóór 09:00 open is) → Jojakko-ji ~09:15</span>
     <span class="badge badge-tip">Lunch = casual: soba/udon bij het station of picknick aan de rivier</span>
-    <span class="badge badge-tip">☕ ~11:00 koffie/snack-stop (zonder Otagi ~10:00): % Arabica take-away + kruip-pauze op Nakanoshima · kleedje met waterdichte onderkant mee</span>
+    <span class="badge badge-tip">☕ A: ~11:00 koffie/snack-stop (zonder Otagi ~10:00) · B: na de lunch · % Arabica take-away + kruip-pauze op Nakanoshima · kleedje met waterdichte onderkant mee</span>
     <span class="badge badge-tip">🧥 08:00 in het dal ~8–10°C · laagjes + muts voor de peuter</span>
-    <span class="badge badge-tip">🚕 Taxi 07:30 via de GO-app · autostoeltje niet nodig (zie Algemeen)</span>
+    <span class="badge badge-tip">🚕 Taxi 07:30 (A) of ~08:20 naar Otagi (B) via de GO-app · autostoeltje niet nodig (zie Algemeen)</span>
     <span class="badge badge-tip">🏛️ Kinkaku-ji ~15:00 (laatste toegang ~16:30) → taxi Kawaramachi → Engine Ramen ~17:00 → ~19:00 thuis</span>
   </div>
 </div>
